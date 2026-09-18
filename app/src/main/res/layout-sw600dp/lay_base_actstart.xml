@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            style="@style/AppToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/app_name" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/NestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/Com_FourPadding"
+            android:paddingBottom="@dimen/Com_FourPadding">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/ActStart_ShimmerFrameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="false"
+                app:shimmer_base_alpha="1.0"
+                app:shimmer_dropoff="0.1"
+                app:shimmer_duration="1000"
+                app:shimmer_highlight_alpha="0.2"
+                app:shimmer_intensity="0.8"
+                app:shimmer_repeat_count="0"
+                app:shimmer_tilt="35">
+
+                <ImageView
+                    android:id="@+id/ActStart_ImageView_Logo"
+                    android:layout_width="@dimen/Com_CompanyLogoWidth"
+                    android:layout_height="@dimen/Com_CompanyLogoHeight"
+                    android:contentDescription="@string/ComInfor_LogoDesc"
+                    android:src="@drawable/logoviettas_animated_vector" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ActStart_MaterialTextView_ProcessInfor"
+                style="@style/GroupTextViewSmallLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:text="@string/Com_Message_DangXuLy"
+                android:textStyle="italic|bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/inclay_base_footer" />
+
+</LinearLayout>

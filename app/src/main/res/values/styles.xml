@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CropActivity" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/md_theme_primaryContainer</item>
+        <item name="colorPrimaryDark">@color/md_theme_primaryContainer</item>
+        <item name="colorAccent">@color/md_theme_onPrimary</item>
+        <item name="android:statusBarColor">@color/md_theme_primaryContainer</item>
+        <item name="android:navigationBarColor">@color/md_theme_primaryContainer</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="AppToolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="subtitleTextColor">?attr/colorOnPrimary</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">?attr/colorPrimaryContainer</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>A
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/AppTitleTextAppearance</item>
+        <item name="subtitleTextAppearance">@style/AppSubTitleTextAppearance</item>
+    </style>
+
+    <style name="AppCollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="subtitleTextColor">?attr/colorOnPrimary</item>
+        <item name="collapsedTitleTextColor">?attr/colorOnPrimary</item>
+        <item name="collapsedSubtitleTextColor">?attr/colorOnPrimary</item>
+        <item name="expandedTitleTextColor">?attr/colorOnPrimary</item>
+        <item name="expandedSubtitleTextColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="AppTitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textSize">@dimen/Com_AppTitleFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppSubTitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Subtitle">
+        <item name="android:textSize">@dimen/Com_TitleFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FloatingActionButtonCircleStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="FloatingActionButtonEllipStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25%</item>
+    </style>
+
+    <style name="DialogCustom" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <!-- Đưa background bo góc vào window background của Dialog -->
+        <item name="android:windowBackground">@drawable/bg_dialog_background</item>
+    </style>
+
+    <style name="AppPopupAnimation_SlideUp">
+        <item name="android:windowEnterAnimation">@anim/item_slideup</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppPopupAnimation_SlideDown">
+        <item name="android:windowEnterAnimation">@anim/item_slidedown</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+
+    <style name="TabCaptionDarkBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">1</item>-->
+        <!--        <item name="android:shadowDy">1</item>-->
+        <!--        <item name="android:shadowRadius">1</item>-->
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="TabCaptionDarkItalic" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">1</item>-->
+        <!--        <item name="android:shadowDy">1</item>-->
+        <!--        <item name="android:shadowRadius">1</item>-->
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <style name="AppTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="helperTextTextColor">?attr/colorPrimary</item>
+        <item name="cursorColor">?attr/colorPrimary</item>
+        <item name="cursorErrorColor">?attr/colorError</item>
+        <item name="hintTextColor">?attr/colorPrimary</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="startIconTint">?attr/colorPrimary</item>
+        <item name="endIconTint">?attr/colorPrimary</item>
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <item name="boxBackgroundColor">?attr/colorSurface</item>
+        <item name="boxCornerRadiusTopStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">?attr/colorOnPrimaryFixed</item>
+    </style>
+
+    <style name="AppTextInputLayoutDisabled" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="helperTextTextColor">?attr/colorPrimary</item>
+        <item name="cursorColor">?attr/colorPrimary</item>
+        <item name="cursorErrorColor">?attr/colorError</item>
+        <item name="hintTextColor">?attr/colorPrimary</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="startIconTint">?attr/colorPrimary</item>
+        <item name="endIconTint">?attr/colorPrimary</item>
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <item name="boxBackgroundColor">@color/cardview_shadow_start_color</item>
+        <item name="boxCornerRadiusTopStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">?attr/colorOnPrimaryFixed</item>
+    </style>
+
+    <style name="AppTextInputLayout_ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="helperTextTextColor">?attr/colorPrimary</item>
+        <item name="cursorColor">?attr/colorPrimary</item>
+        <item name="cursorErrorColor">?attr/colorError</item>
+        <item name="hintTextColor">?attr/colorPrimary</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="startIconTint">?attr/colorPrimary</item>
+        <item name="endIconTint">?attr/colorPrimary</item>
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <item name="boxBackgroundColor">?attr/colorSurface</item>
+        <item name="boxCornerRadiusTopStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">?attr/colorOnPrimaryFixed</item>
+    </style>
+
+    <style name="AppTextInputLayoutDisabled_ExposedDropdownMenu" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="helperTextTextColor">?attr/colorPrimary</item>
+        <item name="cursorColor">?attr/colorPrimary</item>
+        <item name="cursorErrorColor">?attr/colorError</item>
+        <item name="hintTextColor">?attr/colorPrimary</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="startIconTint">?attr/colorPrimary</item>
+        <item name="endIconTint">?attr/colorPrimary</item>
+        <item name="helperTextTextAppearance">@style/HelperTextAppearance</item>
+        <item name="boxBackgroundColor">@color/cardview_shadow_start_color</item>
+        <item name="boxCornerRadiusTopStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/Com_DoublePadding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/Com_DoublePadding</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxStrokeColor">?attr/colorOnPrimaryFixed</item>
+    </style>
+
+    <style name="AppTextInputEditText">
+        <item name="android:paddingStart">@dimen/Com_TouchMinHeight</item>
+        <item name="android:paddingEnd">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textIsSelectable">true</item>
+        <item name="android:selectAllOnFocus">true</item>
+    </style>
+
+    <style name="AppTextInputEditText2">
+        <item name="android:paddingStart">@dimen/Com_DoublePadding</item>
+        <item name="android:paddingEnd">@dimen/Com_DoublePadding</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textIsSelectable">true</item>
+        <item name="android:selectAllOnFocus">true</item>
+    </style>
+
+    <style name="HelperTextAppearance">
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="HintTextAppearance">
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="hintMaxLines">1</item>
+    </style>
+
+
+    <style name="AppButonCommands" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppButonCommands_NoShadow" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppButonCommands_Green" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:backgroundTint">@color/commandbuttongreen_tint_states</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppButonCommands_White" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:backgroundTint">@color/commandbutton_text_states</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppButonCommands_Red" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:backgroundTint">@color/commandbuttonred_tint_states</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppButonCommands_Yellow" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:backgroundTint">@color/commandbuttonyellow_tint_states</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppIconButonCommands_White" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:backgroundTint">@color/iconbutton_whitetint_nocheck_states</item>
+        <item name="iconTint">@color/md_theme_primary</item>
+    </style>
+
+    <style name="AppIconButonCommands_Green" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:backgroundTint">@color/iconbutton_whitetint_nocheck_states</item>
+        <item name="iconTint">@color/MyGColor</item>
+    </style>
+
+    <style name="AppIconButonCommands_Red" parent="Widget.Material3.Button.IconButton">
+        <item name="android:minHeight">@dimen/Com_TouchMinHeight</item>
+        <item name="android:backgroundTint">@color/iconbutton_whitetint_nocheck_states</item>
+        <item name="iconTint">@color/md_theme_error</item>
+    </style>
+
+
+    <style name="TitleHeaderTextViewLight" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_TitleFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="TitleHeaderTextViewDark" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_TitleFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="TitleTextViewLight" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="TitleTextViewLightBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="TitleTextViewDark" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="TitleTextViewDarkBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <!--        <item name="android:shadowColor">?attr/colorSurface</item>-->
+        <!--        <item name="android:shadowDx">2</item>-->
+        <!--        <item name="android:shadowDy">2</item>-->
+        <!--        <item name="android:shadowRadius">5</item>-->
+    </style>
+
+    <style name="GroupHeaderTextViewLight" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+    </style>
+
+    <style name="GroupHeaderTextViewLightBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupHeaderTextViewDark" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="GroupHeaderTextViewDarkBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupTextViewLight" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+    </style>
+
+    <style name="GroupTextViewLightBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupTextViewDark" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="GroupTextViewDarkBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupTextViewSmallLight" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+    </style>
+
+    <style name="GroupTextViewSmallLightBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupTextViewSmallDark" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="GroupTextViewSmallDarkBold" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">@dimen/Com_Padding</item>
+        <item name="android:paddingEnd">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LinearLayout_Header_Footer">
+        <item name="android:minHeight">@dimen/Com_HeaderMinHeight</item>
+        <item name="android:background">?attr/colorPrimaryContainer</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="LinearLayout_Header_Footer_Entity">
+        <item name="android:minHeight">@dimen/Com_HeaderMinHeight</item>
+        <item name="android:background">@color/md_theme_surface</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DetailHeaderTextView" parent="TextAppearance.AppCompat">
+        <item name="android:padding">@dimen/Com_Padding</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/table_header_cell_nobg</item>
+    </style>
+
+    <style name="DetailHeaderTextViewSTT" parent="TextAppearance.AppCompat">
+        <item name="android:paddingTop">@dimen/Com_Padding</item>
+        <item name="android:paddingBottom">@dimen/Com_Padding</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/table_header_cell_nobg</item>
+        <item name="android:text">@string/Com_Caption_STT</item>
+    </style>
+
+    <style name="DetailFooterTextView" parent="TextAppearance.AppCompat">
+        <item name="android:padding">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/table_header_cell_nobg</item>
+    </style>
+
+    <style name="DetailTextView" parent="TextAppearance.AppCompat">
+        <item name="android:padding">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:background">@drawable/table_content_cell_bg</item>
+    </style>
+
+    <style name="DetailTextViewBold" parent="TextAppearance.AppCompat">
+        <item name="android:padding">@dimen/Com_Padding</item>
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/table_content_cell_bg</item>
+    </style>
+
+    <style name="DetailTextViewSTT" parent="TextAppearance.AppCompat">
+        <item name="android:paddingTop">@dimen/Com_Padding</item>
+        <item name="android:paddingBottom">@dimen/Com_Padding</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/Com_SmallFontSize</item>
+        <item name="android:background">@drawable/table_content_cell_bg</item>
+    </style>
+
+
+    <style name="NavTextActive">
+        <!--        <item name="paddingStart">@dimen/Com_Padding</item>-->
+        <!--        <item name="paddingEnd">@dimen/Com_Padding</item>-->
+        <!--        <item name="android:textSize">@dimen/Com_HeaderFontSize</item>-->
+        <!--        <item name="android:textStyle">bold</item>-->
+        <item name="android:textSize">0.01sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
+        <!-- Đổ bóng cho chữ (Shadow) -->
+        <!--        <item name="android:shadowColor">#40000000</item> &lt;!&ndash; Màu đen mờ 25% &ndash;&gt;-->
+        <!--        <item name="android:shadowDx">2</item> &lt;!&ndash; Độ lệch ngang &ndash;&gt;-->
+        <!--        <item name="android:shadowDy">5</item> &lt;!&ndash; Độ lệch dọc (tạo cảm giác nổi lên) &ndash;&gt;-->
+        <!--        <item name="android:shadowRadius">3</item> &lt;!&ndash; Độ nhòe của bóng &ndash;&gt;-->
+        <!-- Bỏ dòng fontFamily nếu ní chưa cấu hình font trong thư mục res/font -->
+    </style>
+
+    <!-- Style cho menu bình thường -->
+    <style name="NavTextInactive">
+        <item name="android:textSize">@dimen/Com_NormalFontSize</item>
+        <!--        <item name="android:shadowRadius">0</item> &lt;!&ndash; Tắt bóng &ndash;&gt;-->
+    </style>
+
+</resources>

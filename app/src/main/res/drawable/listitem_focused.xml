@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <corners android:radius="@dimen/Com_DoublePadding"/>-->
+    <solid android:color="@color/MyItemPickedBackgroudColor2"/>
+    <stroke
+        android:width="0.25dp"
+        android:color="?attr/colorOnPrimaryFixed"/>
+
+</shape>

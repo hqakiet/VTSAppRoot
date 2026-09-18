@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup_menu2"
+    android:orientation="vertical"
+    android:padding="@dimen/Com_TribblePadding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_HomQua"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_HomTruoc"
+            app:rippleColor="@color/MyRipColor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_HomNay"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_HomNay"
+            app:rippleColor="@color/MyRipColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_TuanTruoc"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_TuanTruoc"
+            app:rippleColor="@color/MyRipColor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_TuanNay"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_TuanNay"
+            app:rippleColor="@color/MyRipColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_ThangTruoc"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_ThangTruoc"
+            app:rippleColor="@color/MyRipColor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_ThangNay"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_ThangNay"
+            app:rippleColor="@color/MyRipColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_NamTruoc"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_NamTruoc"
+            app:rippleColor="@color/MyRipColor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Picker_MaterialTextView_NamNay"
+            style="@style/TitleTextViewLight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar_month"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minWidth="150dp"
+            android:minHeight="@dimen/Com_TouchMinHeight"
+            android:stateListAnimator="@animator/lift_on_touch"
+            android:text="@string/Com_Caption_NamNay"
+            app:rippleColor="@color/MyRipColor" />
+
+    </LinearLayout>
+
+</LinearLayout>

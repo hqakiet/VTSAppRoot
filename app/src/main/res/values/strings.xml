@@ -1,0 +1,634 @@
+<resources>
+    <string name="app_name">VTS</string>
+
+    <string name="ComInfor_CompanyName">Viettas SaiGon JSC.</string>
+    <string name="ComInfor_CompanyFullName">Công Ty Cổ Phần Giải Pháp Thương Mại\nViệt Nam Sài Gòn</string>
+    <string name="ComInfor_CompanyFullName2">Công Ty Cổ Phần Giải Pháp Thương Mại Việt Nam Sài Gòn</string>
+    <string name="ComInfor_Address">351/9 Nơ Trang Long, P. Bình Lợi Trung, Tp.HCM</string>
+    <string name="ComInfor_Address2">351/9 Nơ Trang Long, Phường Bình Lợi Trung, Tp.Hồ Chí Minh</string>
+    <string name="ComInfor_TaxCode">MST: 0312055283</string>
+    <string name="ComInfor_TaxCode2">0312055283</string>
+    <string name="ComInfor_Tel">ĐT: 02822412141 - 02822412142</string>
+    <string name="ComInfor_Tel2">02822412141 - 02822412142</string>
+    <string name="ComInfor_Website">Website: https://www.viettassaigon.vn</string>
+    <string name="ComInfor_Website2">https://www.viettassaigon.vn</string>
+    <string name="ComInfor_Email">Email: hotro@viettassaigon.vn</string>
+    <string name="ComInfor_Email2">hotro@viettassaigon.vn</string>
+    <string name="ComInfor_LogoDesc">Logo Viettas</string>
+    <string name="ComInfor_AppLogoDesc">Logo ứng dụng</string>
+    <string name="ComInfor_GoogleLogoDesc">Logo Google</string>
+
+    <!--  Biometric  -->
+    <string name="Biometric_Title">Xác thực sinh trắc học cho %s</string>
+    <string name="Biometric_Caption_Cancel">Hủy bỏ</string>
+    <string name="Biometric_Message_Failed">Thử lại</string>
+
+    <!--  Message  -->
+    <string name="Message_Com_Title">Thông báo</string>
+    <string name="Message_Com_Title_Confirm">Xác nhận</string>
+    <string name="Message_Valid_Title">Kiểm tra dữ liệu</string>
+    <string name="Message_Caption_ButtonOK">Đồng ý</string>
+    <string name="Message_Caption_ButtonYes">Có</string>
+    <string name="Message_Caption_ButtonNo">Không</string>
+    <string name="Message_Caption_ButtonCancel">Bỏ qua</string>
+    <string name="Message_Caption_LongClickToPick">Nhấn giữ lâu để sửa</string>
+    <string name="Message_Caption_ClickToPick">Chọn</string>
+    <string name="Message_Caption_ClickToUnPick">Bỏ chọn</string>
+    <string name="Message_Caption_UnDo">Hoàn tác</string>
+    <string name="Message_Caption_Privacy">Chính sách bảo mật</string>
+    <string name="Message_Caption_Term">Điều khoản sử dụng</string>
+
+    <string name="Com_Title_ChonNgay">Chọn ngày</string>
+    <string name="Com_Title_ChonTuan">Chọn tuần</string>
+    <string name="Com_Title_ChonThang">Chọn tháng</string>
+    <string name="Com_Title_ChonNam">Chọn năm</string>
+    <string name="Com_Title_ChonNgayGio">Chọn thời gian</string>
+
+    <string name="Button_DoItList">Nhấn giữ để quét</string>
+    <string name="Button_TonKho">Tồn kho</string>
+    <string name="Button_NXT">Nhập-Xuất-Tồn</string>
+    <string name="Button_Kill_spid">Ngắt phiên</string>
+    <string name="Button_View">Xem</string>
+    <string name="Button_Add">Thêm</string>
+    <string name="Button_Del">Xóa</string>
+    <string name="Button_DelItems">Xóa (%s)</string>
+    <string name="Button_Edit">Sửa</string>
+    <string name="Button_DelAll">Xóa hết</string>
+    <string name="Button_Close">Đóng</string>
+    <string name="Button_Save">Lưu</string>
+    <string name="Button_ScanImage">Quét ảnh</string>
+    <string name="Button_Crop">Cắt ảnh</string>
+    <string name="Button_Locked">Khóa</string>
+    <string name="Button_LockedItems">Khóa (%s)</string>
+    <string name="Button_UnLocked">Gỡ khóa</string>
+    <string name="Button_UnLockedItems">Gỡ khóa (%s)</string>
+    <string name="NoPicture">Chưa có ảnh</string>
+    <string name="Button_PickedImage">Chọn ảnh</string>
+    <string name="Button_Picked">Chọn</string>
+    <string name="Button_PickedItems">Chọn (%s)</string>
+    <string name="Button_UnPicked">Bỏ chọn</string>
+    <string name="Button_UnPickedItems">Bỏ chọn (%s)</string>
+    <string name="Button_Share">Chia sẻ</string>
+    <string name="Button_Search">Tìm kiếm dữ liệu</string>
+    <string name="Button_ToTop">Lên đầu trang</string>
+    <string name="Button_ToBot">Xuống cuối trang</string>
+    <string name="Button_MoreActions">Trình đơn ngữ cảnh</string>
+    <string name="Button_BarcodeScan">Quét mã vạch</string>
+    <string name="Button_ChonMaHang">Chọn mã hàng</string>
+    <string name="Button_Confirm">Xác nhận</string>
+    <string name="Button_Cancel">Hủy bỏ</string>
+    <string name="Button_GetBill">Nhận phiếu</string>
+    <string name="Button_Inquiry">Truy vấn</string>
+    <string name="Button_CheckBarcodeType">Mã</string>
+    <string name="Button_Done">Xong</string>
+    <string name="Button_Hide">Ẩn</string>
+    <string name="Button_Today">Hôm nay</string>
+    <string name="Button_CancelEdit">Hủy bỏ thay đổi</string>
+
+    <string name="Com_Caption_TuNgay">Từ ngày</string>
+    <string name="Com_Caption_DenNgay">Đến ngày</string>
+
+    <string name="Com_Caption_HomTruoc">Hôm qua</string>
+    <string name="Com_Caption_TuanTruoc">Tuần trước</string>
+    <string name="Com_Caption_ThangTruoc">Tháng trước</string>
+    <string name="Com_Caption_NamTruoc">Năm trước</string>
+    <string name="Com_Caption_HomNay">Hôm nay</string>
+    <string name="Com_Caption_TuanNay">Tuần này</string>
+    <string name="Com_Caption_ThangNay">Tháng này</string>
+    <string name="Com_Caption_NamNay">Năm nay</string>
+
+    <string name="Com_Caption_Cong">Cộng</string>
+    <string name="Com_Caption_CongNotSum">\?</string>
+    <string name="Com_Caption_CongItem">Tổng cộng %s</string>
+    <string name="Com_Caption_CacNhomConLai">Các nhóm còn lại</string>
+    <string name="Com_Caption_DangXuat">Đăng xuất</string>
+    <string name="Com_Caption_Search">Nhập nội dung để tìm</string>
+    <string name="Com_Caption_ClearSearch">Xóa nội dung tìm</string>
+    <string name="Com_Caption_DoSearch">Tìm</string>
+    <string name="Com_Caption_Lookup">Nhập để lọc hàng hóa</string>
+    <string name="Com_Caption_IsPicked">Chọn</string>
+    <string name="Com_Caption_NotAvaliable">Khóa</string>
+    <string name="Com_Caption_STT">#</string>
+    <string name="Com_Caption_HaiCham">:</string>
+    <string name="Com_Caption_ListItem">Danh sách dữ liệu</string>
+    <string name="Com_Caption_LimitCount">(Tối đa %s)</string>
+    <string name="Com_Caption_Today">Hôm nay</string>
+    <string name="Com_Caption_XemNoiDung">Xem nội dung</string>
+    <string name="Com_Caption_CongPhieu">Tổng cộng %s phiếu</string>
+    <string name="Com_Caption_CongTrongLuong">Tổng cộng %s Kg</string>
+    <string name="Com_Caption_PhotoPicker">Chọn ảnh</string>
+    <string name="Com_Caption_PhotoFromCamera">Chụp ảnh mới</string>
+    <string name="Com_Caption_PhotoFromGallery">Chọn từ bộ sưu tập</string>
+    <string name="Com_Caption_PhotoCropper">Cắt ảnh</string>
+
+    <!--  ComData  -->
+    <string name="BaseData_Caption_CongAdv">Tổng cộng</string>
+    <string name="BaseData_Caption_KhoHang">Kho hàng</string>
+    <string name="BaseData_Caption_HangHoa">Hàng hóa</string>
+
+    <!--  Com_Message  -->
+    <string name="Com_Message_KhongCoDuLieu">Không có dữ liệu</string>
+    <string name="Com_Message_KhongCoDuLieu_WithContent">Không tìm thấy dữ liệu với nội dung [%s]</string>
+    <string name="Com_Message_ChuaCoDuLieu">Chưa có dữ liệu</string>
+    <string name="Com_Message_DangNapDuLieu">Đang nạp dữ liệu …</string>
+    <string name="Com_Message_DangXuLy">Đang xử lý …</string>
+    <string name="Com_Message_ChoGiayLat">Vui lòng chờ trong giây lát</string>
+    <string name="Com_Message_NoNetwork">Kết nối Internet không khả dụng</string>
+    <!--    <string name="Com_Message_DangChoMaHang">Chưa có mã hàng nào được chọn, hãy sử dụng tính năng quét mã vạch hoặc chọn mã hàng từ danh sách.</string>-->
+    <!--    <string name="Com_Message_ChuaCoDuLieu_TreoKhoa">Hiện tại, không có dữ liệu bị treo khóa nào cần phải xử lý .</string>-->
+    <string name="Com_Message_Loi">Lỗi: </string>
+    <string name="Com_Message_Loi_KhongCoQuyen">Tài khoản của bạn không có quyền xem dữ liệu nào!\nVui lòng liên hệ Quản trị viên.</string>
+    <string name="Com_Message_Loi_AppUpdateFailed">Tạm thời không thể truy xuất thông tin cập nhật từ máy chủ cập nhật</string>
+    <string name="Com_Message_LoiDangNhapGoogle">Không thể đăng nhập tài khoản Google vào lúc này.\nBắt buộc đăng nhập tài khoản Google trước khi sử dụng.</string>
+    <string name="Com_Message_AskForPermissions">Cấp quyền truy xuất máy ảnh và nội dung nghe nhìn để chụp, gửi, lưu ảnh phiếu cấn.</string>
+    <string name="Com_Message_SaiMatKhauBaoVe">Mật khẩu bảo vệ không chính xác</string>
+    <string name="Com_Message_NoNewVersion">Phiên bản hiện tại đã là phiên bản mới nhất.</string>
+    <string name="Com_Message_ClickBackAgainToExit">Nhấn Back lần nữa để thoát.</string>
+    <string name="Com_Message_TokenExpired">Phiên đăng nhập hết hạn.</string>
+    <string name="Com_Message_XacNhanThoat">Có thật sự muốn thoát khỏi ứng dụng không?</string>
+    <string name="Com_Message_LoiTuChoiDangNhapGoogle">Bạn cần đăng nhập tài khoản Google để xác thực danh tính.\nBắt buộc đăng nhập tài khoản Google trước khi sử dụng.</string>
+    <string name="Com_Message_XacNhan_DangXuat_Google">Bạn có thực sự muốn đăng xuất khỏi tài khoản Google hiện hành không?</string>
+    <string name="Com_Message_XacNhan_DangXuat">Bạn có thực sự muốn đăng xuất khỏi tài khoản hiện hành không?</string>
+    <string name="Com_Message_AppNeedUpdate">Ứng dụng cần phải được cập nhật phiên bản mới trước khi sử dụng.</string>
+    <string name="Com_Message_AppHasUpdate">Ứng dụng đã có phiên bản cập nhật mới.\nBạn có muốn tải xuống bản cập nhật mới ngay bây giờ không?</string>
+    <string name="Com_Message_AppUpdateDownloading">Đang tải bản cập nhật mới…</string>
+    <string name="Com_Message_AppUpdateDownloadFinish">Đã tải xong bản cập nhật mới.</string>
+    <string name="Com_Message_AskForAccessPermission">Yêu cầu cung cấp quyền truy cập%s …</string>
+    <string name="Com_Message_AskForAccessPermission_OK">Yêu cầu cung cấp quyền truy cập hoàn tất</string>
+    <string name="Com_Message_AskForAccessPermission_Failed">Yêu cầu cung cấp quyền truy cập thất bại.</string>
+    <string name="Com_Message_Logging">Đăng nhập hệ thống%s …</string>
+    <string name="Com_Message_Login_OK">Đăng nhập hệ thống hoàn tất.</string>
+    <string name="Com_Message_Login_Failed">Đăng nhập hệ thống thất bại.</string>
+    <string name="Com_Message_CheckDataNotEmpty">Không được để trống.</string>
+    <string name="Com_Message_CheckDataNotOK">Không hợp lệ.</string>
+    <string name="Com_Message_GoogleLogging">Xác thực tài khoản Google%s …</string>
+    <string name="Com_Message_PasscodeChangeOK">Mật khẩu bảo vệ đã được thay đổi thành công.</string>
+    <string name="Com_Message_PasscodeCreateOK">Mật khẩu bảo vệ đã được gán thành công.</string>
+    <string name="Com_Message_PasscodeDeleteOK">Mật khẩu bảo vệ đã được loại bỏ thành công.</string>
+    <string name="Com_Message_InsertDataOK">%s đã được thêm vào dữ liệu.</string>
+    <string name="Com_Message_DeleteDataOK">%s đã được xóa khỏi dữ liệu.</string>
+    <string name="Com_Message_UpdateDataOK">Thông tin điều chỉnh %s đã lưu vào dữ liệu.</string>
+    <string name="Com_Message_CropperCancel">Thao tác đã bị hủy.</string>
+
+    <string name="Com_Message_DataHasError">Dữ liệu còn lỗi.\nVui lòng kiểm tra lại.</string>
+    <string name="Com_Message_AskForDelete_Data">Bạn đang xóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
+    <string name="Com_Message_AskForKhoa_Data">Bạn đang khóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
+    <string name="Com_Message_AskForGoKhoa_Data">Bạn đang gỡ khóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
+
+    <string name="App_Message_LoiKhongCoKhoHang">Không tồn tại kho hàng nào.</string>
+    <string name="App_Message_LoiKhongCoTonKhoHangHoa">Không có dữ liệu tồn kho của hàng hóa này</string>
+    <string name="App_Message_LoiKhongTonTaiMaTem">Không có dữ liệu của mã tem này trong hệ thống</string>
+    <string name="Com_Message_XacNhan_Policy">Tôi đồng ý</string>
+
+    <string name="Com_Message_ItemCleared">Bạn vừa xóa %s - %s khỏi danh sách.</string>
+    <string name="Com_Message__ClearItem_Phieu">Số phiếu %s đã bị Xóa khỏi danh sách.</string>
+    <string name="Com_Message__ChangeWeight">Trọng lượng hàng của hình %s hiện tại đã bị thay đổi. Bạn có muốn thay đổi không?</string>
+    <string name="Com_Message__ClearImage_Phieu_NhapXuat">Xóa dữ liệu hình ở vị trí này sẽ xóa kèm cả dữ liệu hình ảnh phía bên dưới. Bạn có muốn tiếp tục không?</string>
+    <string name="Com_Message__ClearImage_Phieu_GiaCong">Xóa dữ liệu hình ở vị trí này sẽ xóa kèm các dữ liệu hình ảnh phía bên dưới. Bạn có muốn tiếp tục không?</string>
+
+
+    <!--  FraData  -->
+    <string name="FraData_WeightBill">Phiếu cân xe</string>
+
+    <!--  FraThongBao  -->
+    <string name="FraThongBao_MarkAllRead">Đánh dấu đã đọc tất cả</string>
+    <string name="FraThongBao_DeleteAll">Xóa tất cả</string>
+    <string name="FraThongBao_ListItem_SoPhieu">Số:</string>
+    <string name="FraThongBao_ListItem_Ngay">Ngày:</string>
+    <string name="FraThongBao_ListItem_XeNgoai">Xe ngoài:</string>
+    <string name="FraThongBao_ListItem_SoXe">Số xe:</string>
+    <string name="FraThongBao_ListItem_NgayPhieu">Ngày phiếu:</string>">
+    <string name="FraThongBao_ListItem_TaiXe">Tài xế:</string>
+    <string name="FraThongBao_ListItem_HangHoa">Hàng nhận:</string>
+    <string name="FraThongBao_ListItem_TrongLuong">Số lượng:</string>
+    <string name="FraThongBao_ListItem_TrongLuong_Unit">KG</string>
+    <string name="FraThongBao_ListItem_HangHoaGC">Hàng nhận:</string>
+    <string name="FraThongBao_ListItem_TrongLuongGC">Số lượng:</string>
+    <string name="FraThongBao_ListItem_TrongLuongGC_Unit">KG</string>
+    <string name="FraThongBao_ListItem_HangHoaTV">Hàng nhận:</string>
+    <string name="FraThongBao_ListItem_TrongLuongTV">Số lượng:</string>
+    <string name="FraThongBao_ListItem_TrongLuongTV_Unit">KG</string>
+    <string name="FraThongBao_ListItem_KhachHang">Khách hàng:</string>
+
+    <!--  ActSetting  -->
+    <string name="FraSetting_Title">Cài đặt</string>
+
+    <string name="FraSetting_TextView_SercurityGroup">Bảo mật</string>
+    <string name="FraSetting_TextView_AppProtect">Bảo vệ ứng dụng</string>
+    <string name="FraSetting_TextView_SetPasscode">Mật khẩu bảo vệ</string>
+    <string name="FraSetting_TextView_Account">Tài khoản đăng nhập</string>
+    <string name="FraSetting_TextView_Logout">Đăng xuất khỏi tài khoản</string>
+    <string name="FraSetting_TextView_DoiMatKhau">Đổi mật khẩu đăng nhập</string>
+    <string name="FraSetting_Button_SetPasscode">Thay đổi mã bảo vệ</string>
+    <string name="FraSetting_Button_Logout">Đăng xuất khỏi tài khoản</string>
+    <string name="FraSetting_Button_DoiMatKhau">Đổi mật khẩu</string>
+    <string name="FraSetting_TextView_UsingFingerPrint">Sử dụng vân tay thay cho mã bảo vệ</string>
+    <string name="FraSetting_TextView_TietKiemPin">Tiết kiệm pin</string>
+    <string name="FraSetting_TextView_ThongBaoTaoPhieu">Nhận thông báo khi phiếu được Tạo</string>
+    <string name="FraSetting_TextView_ThongBaoXoaPhieu">Nhận thông báo khi phiếu được Xóa</string>
+    <string name="FraSetting_TextView_HienThiThongKeNhanVien">Hiện thống kê nhân viên</string>
+    <string name="FraSetting_TextView_HienThiThongKeChuyenXe">Hiện thống kê chuyến xe</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangNhan">Hiện thống kê hàng nhận</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangNhan_HomNay">Hôm nay</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangNhan_TuanNay">Tuần này</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangGiao">Hiện thống kê hàng giao</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangGiao_HomNay">Hôm nay</string>
+    <string name="FraSetting_TextView_HienThiThongKeHangGiao_TuanNay">Tuần này</string>
+
+    <string name="FraSetting_TextView_SysInforGroup">Giá trị hệ thống</string>
+    <string name="FraSetting_CommonLimitPickedData_Helper">Số lượng mã hàng tối đa lưu trữ cho truy vấn tồn kho</string>
+    <string name="FraSetting_Caption_Number_1">1</string>
+    <string name="FraSetting_Caption_Number_20">20</string>
+    <string name="FraSetting_FirstPageSize_Helper">Số dòng dữ liệu hiển thị trang đầu tiên</string>
+    <string name="FraSetting_Caption_Number_1000">1.000</string>
+    <string name="FraSetting_Caption_Number_10000">10.000</string>
+    <string name="FraSetting_NextPageSize_Helper">Số dòng dữ liệu hiển thị mỗi trang kế tiếp</string>
+    <string name="FraSetting_Caption_Number_100">100</string>
+    <string name="FraSetting_Caption_Number_2000">2.000</string>
+
+    <string name="FraSetting_HoTroQuetMa">Các loại mã vạch hỗ trợ nhận dạng</string>
+    <string name="FraSetting_TextView_UsingEAN8">Sử dụng mã EAN8</string>
+    <string name="FraSetting_TextView_UsingEAN13">Sử dụng mã EAN13</string>
+    <string name="FraSetting_TextView_UsingCode128">Sử dụng mã CODE128</string>
+    <string name="FraSetting_TextView_UsingQrCode">Sử dụng mã QR-Code</string>
+
+
+    <!--  ActPassCode  -->
+    <string name="ActPasscode_Title">Ứng dụng đã được bảo vệ</string>
+    <string name="ActPasscode_TextView_DienGiai">Nhập mật khẩu để mở khóa</string>
+    <string name="ActPasscode_TextEdit_Password_Hint">Mật khẩu</string>
+    <string name="ActPasscode_TextEdit_Password_Helper">Nhập mật khẩu để mở khóa</string>
+    <string name="ActPasscode_Button_Confirm">Xác nhận</string>
+    <string name="ActPasscode_TextView_OpenFingerLogin">Sử dụng vân tay</string>
+    <string name="ActPasscode_Message_MatKhauKhongHopLe">Mật khẩu bảo vệ không hợp lệ</string>-->
+    <string name="ActPasscode_Message_SaiMatKhauBaoVe">Mật khẩu bảo vệ không chính xác</string>-->
+
+    <!--  ActSetPassCode  -->
+    <string name="ActSetPassCode_Title">Thiết lập mật khẩu bảo vệ</string>
+    <string name="ActSetPasscode_TextView_DienGiai">Thiết lập mật khẩu bảo vệ</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint">Mật khẩu hiện hành</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper">Nhập mật khẩu bảo vệ hiện hành</string>
+    <string name="ActSetPassCode_EditText_Password_Hint">Mật khẩu mới</string>
+    <string name="ActSetPassCode_EditText_Password_Helper">Nhập mật khẩu bảo vệ mới</string>
+    <string name="ActSetPasscode_EditText_RePassword_Hint">Xác nhận mật khẩu mới</string>
+    <string name="ActSetPasscode_EditText_RePassword_Helper">Nhập lại mật khẩu giống bên trên một lần nữa</string>
+    <string name="ActSetPasscode_Message_NoOldPassword">Chưa nhập mật khẩu hiện hành</string>
+    <string name="ActSetPasscode_Message_NoPassword">Chưa nhập mật khẩu</string>
+    <string name="ActSetPasscode_Message_PasswordNotMatch">Mật khẩu không khớp</string>
+    <string name="ActSetPasscode_Button_Confirm">Xác nhận</string>
+
+    <string name="ActSetPassCode_EditText_OldPassword_Hint1">Số thứ 1</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper1">Số thứ 1</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint2">Số thứ 2</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper2">Số thứ 2</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint3">Số thứ 3</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper3">Số thứ 3</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint4">Số thứ 4</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper4">Số thứ 4</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint5">Số thứ 5</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper5">Số thứ 5</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Hint6">Số thứ 6</string>
+    <string name="ActSetPassCode_EditText_OldPassword_Helper6">Số thứ 6</string>
+    <!--  ActLogin  -->
+    <string name="ActLogin_Title">Đăng nhập ứng dụng</string>
+    <string name="ActLogin_TextView_Account_Hint">Tài khoản</string>
+    <string name="ActLogin_TextView_Account_Helper">Nhập vào tài khoản</string>
+    <string name="ActLogin_EditText_Password_Hint">Mật khẩu</string>
+    <string name="ActLogin_EditText_Password_Helper">Nhập vào mật khẩu</string>
+    <string name="ActLogin_TextView_Confirm_Account">HOẶC</string>
+    <string name="ActLogin_Button_Confirm">Đăng nhập</string>
+    <string name="ActLogin_Button_Google_Confirm">Sử dụng tài khoản Google</string>
+    <string name="ActLogin_Message_NoAccount">Chưa nhập tài khoản</string>
+    <string name="ActLogin_Message_NoPassword">Chưa nhập mật khẩu</string>
+    <string name="ActLogin_TextView_Agreement">Bằng cách tiếp tục truy cập, bạn đồng ý với %s và %s của chúng tôi.</string>
+
+    <!--  ActAbout  -->
+    <string name="ActAbout_Title">Thông tin</string>
+    <string name="ActAbout_AppDescription">Công cụ Kiểm soát nội bộ giành riêng cho công nhân viên đang làm việc tại doanh nghiệp, bản quyền thuộc về Công Ty Cổ Phần Giải Pháp Thương Mại Việt Nam Sài Gòn</string>
+    <string name="ActAbout_AppBaoLuuQuyen">Công Ty Cổ Phần Giải Pháp Thương Mại Việt Nam Sài Gòn bảo lưu mọi quyền.</string>
+    <string name="ActAbout_TextView_AppVersion">Phiên bản ứng dụng:</string>
+    <string name="ActAbout_TextView_DiaChi">Địa chỉ:</string>
+    <string name="ActAbout_TextView_MaSoThue">MST:</string>
+    <string name="ActAbout_TextView_DienThoai">Điện thoại:</string>
+    <string name="ActAbout_TextView_Website">Website:</string>
+    <string name="ActAbout_TextView_Email">Email:</string>
+    <string name="ActAbout_TextView_Terms">Điều khoản sử dụng:</string>
+    <string name="ActAbout_TextView_Privacy">Chính sách bảo mật:</string>
+
+    <!--  Act_DoiMatKhau  -->
+    <string name="Act_DoiMatKhau_Title">Đổi mật khẩu</string>
+    <string name="Act_DoiMatKhau_HintMatKhau_Old">Mật khẩu hiện hành</string>
+    <string name="Act_DoiMatKhau_HelperMatKhau_Old">Nhập mật khẩu hiện hành</string>
+    <string name="Act_DoiMatKhau_HintMatKhau_New">Mật khẩu mới</string>
+    <string name="Act_DoiMatKhau_HelperMatKhau_New">Nhập mật khẩu mới mà bạn muốn thay đổi</string>
+    <string name="Act_DoiMatKhau_HintMatKhau_New_Confirm">Xác nhận mật khẩu mới</string>
+    <string name="Act_DoiMatKhau_HelperMatKhau_New_Confirm">Nhập mật khẩu mới mà bạn muốn thay đổi một lần nữa</string>
+    <string name="Act_DoiMatKhau_ProcessOK">Mật khẩu đã được thay đổi thành công. Bạn cần phải đăng nhập lại với mật khẩu mới.</string>
+
+    <!--  ActMain  -->
+    <string name="MainFunction_Home">Trang chủ</string>
+    <string name="MainFunction_Data">Dữ liệu</string>
+    <string name="MainFunction_Info">Thông tin</string>
+    <string name="MainFunction_Notify">Thông báo</string>
+    <string name="MainFunction_Setting">Cài đặt</string>
+
+    <!--  FraTrangChu  -->
+    <string name="FraTrangChu_NhanVienInOut">Số lượng nhân viên</string>
+    <string name="FraTrangChu_NhanVienPhonBan">Phòng ban</string>
+    <string name="FraTrangChu_NhanVienPhonBan_ColName">Phòng ban</string>
+    <string name="FraTrangChu_NhanVienPhonBan_ColValue">Tổng</string>
+    <string name="FraTrangChu_NhanVienPhonBan_ColValue0">Vắng</string>
+    <string name="FraTrangChu_NhanVienPhonBan_ColValue1">Đi làm</string>
+    <string name="FraTrangChu_HangHoaChuyenXe_HomQua">Các chuyến hàng hôm qua</string>
+    <string name="FraTrangChu_HangHoaChuyenXe_HomNay">Các chuyến hàng hôm nay</string>
+    <string name="FraTrangChu_HangNhap_HomQua">Hàng nhận hôm qua</string>
+    <string name="FraTrangChu_HangNhap_HomNay">Hàng nhận hôm nay</string>
+    <string name="FraTrangChu_HangNhap_TuanNay">Hàng nhận tuần này</string>
+    <string name="FraTrangChu_HangXuat_HomQua">Hàng giao hôm qua</string>
+    <string name="FraTrangChu_HangXuat_HomNay">Hàng giao hôm nay</string>
+    <string name="FraTrangChu_HangXuat_TuanNay">Hàng giao tuần này</string>
+    <string name="FraTrangChu_HangHoa_Kg">Số lượng</string>
+    <string name="FraTrangChu_ChuyenXe_ColName">Hàng hóa</string>
+    <string name="FraTrangChu_HangNhapXuat_ColName">Khách hàng / Hàng hóa</string>
+    <string name="FraTrangChu_HangHoa_ColValue12">Nhận</string>
+    <string name="FraTrangChu_HangHoa_ColValue1">Xe</string>
+    <string name="FraTrangChu_HangHoa_ColValue2">Số lượng</string>
+    <string name="FraTrangChu_HangHoa_ColValue34">Giao</string>
+    <string name="FraTrangChu_HangHoa_ColValue3">Xe</string>
+    <string name="FraTrangChu_HangHoa_ColValue4">Số lượng</string>
+
+    <!--  ActPhuongXa  -->
+    <string name="ActPhuongXa_Title">Phường/Xã - Tỉnh/Thành phố</string>
+    <string name="ActPhuongXa_ColCap_Ten">Phường/Xã</string>
+    <string name="ActPhuongXa_ColCap_TenTinhThanh">Tỉnh/Thành phố</string>
+
+    <!--  ActHangHoa  -->
+    <string name="ActHangHoa_Title">Hàng hóa</string>
+    <string name="ActHangHoa_ColCap_Ma">Mã</string>
+    <string name="ActHangHoa_ColCap_Ten">Tên</string>
+    <string name="ActHangHoa_ColCap_Loai">Loại</string>
+    <string name="ActHangHoa_ColCap_Nhom">Nhóm</string>
+    <string name="ActHangHoa_ColCap_DVT">ĐVT</string>
+    <string name="ActHangHoa_ColCap_GhiChu">Ghi chú</string>
+    <!--  ActHangHoa_Entity  -->
+    <string name="ActHangHoa_Entity_Title">Thông tin hàng hóa</string>
+    <string name="ActHangHoa_Entity_Title_ADD">Thêm hàng hóa mới</string>
+    <string name="ActHangHoa_Entity_Ma">Mã hàng</string>
+    <string name="ActHangHoa_Entity_Ten">Tên hàng</string>
+    <string name="ActHangHoa_Entity_DVT">ĐVT</string>
+    <string name="ActHangHoa_Entity_Loai">Loại hàng</string>
+    <string name="ActHangHoa_Entity_Nhom">Nhóm hàng</string>
+    <string name="ActHangHoa_Entity_GhiChu">Ghi chú</string>
+
+    <!--  Act_Xe  -->
+    <string name="ActXe_Title">Xe nhà</string>
+    <string name="ActXe_ColCap_Ma">Biển số</string>
+    <string name="ActXe_ColCap_Ten">Tên gọi</string>
+    <string name="ActXe_ColCap_Loai">Loại</string>
+    <string name="ActXe_ColCap_TaiXe">Tài xế</string>
+    <!--  ActXe_Entity  -->
+    <string name="ActXe_Entity_Title">Thông tin xe</string>
+    <string name="ActXe_Entity_Title_ADD">Thêm xe mới</string>
+    <string name="ActXe_Entity_Ma_Helper">Biển số</string>
+    <string name="ActXe_Entity_Ten_Helper">Tên gợi nhớ của xe</string>
+    <string name="ActXe_Entity_Loai_Helper">Loại xe</string>
+    <string name="ActXe_Entity_Nhom_Helper">Nhóm xe</string>
+    <string name="ActXe_Entity_TaiXe_Helper">Tài xế cố định theo xe (nếu có)</string>
+    <string name="ActXe_Entity_GhiChu_Helper">Ghi chú</string>
+
+    <!--  ActNhanVien  -->
+    <string name="ActNhanVien_Title">Nhân viên</string>
+    <string name="ActNhanVien_ColCap_MaNV">Mã</string>
+    <string name="ActNhanVien_ColCap_Ho">Họ</string>
+    <string name="ActNhanVien_ColCap_Ten">Tên</string>
+    <string name="ActNhanVien_ColCap_HoTen">Họ tên</string>
+    <string name="ActNhanVien_ColCap_GioiTinh">GT</string>
+    <string name="ActNhanVien_ColCap_NgaySinh">Ngày sinh</string>
+    <string name="ActNhanVien_ColCap_DienThoai">Điện thoại</string>
+    <string name="ActNhanVien_ColCap_DiaChi">Địa chỉ</string>
+    <string name="ActNhanVien_ColCap_CCCD">Số căn cước</string>
+    <string name="ActNhanVien_ColCap_PhongBan">Phòng ban</string>
+    <string name="ActNhanVien_ColCap_NgayBatDau">Bắt đầu</string>
+    <!--  ActNhanVien_Entity  -->
+    <string name="ActNhanVien_Entity_Title">Thông tin nhân viên</string>
+    <string name="ActNhanVien_Entity_EMID">Mã nhân viên</string>
+    <string name="ActNhanVien_Entity_EMHo">Họ và tên đệm</string>
+    <string name="ActNhanVien_Entity_EMTen">Tên</string>
+    <string name="ActNhanVien_Entity_EMNgaySinh">Ngày sinh</string>
+    <string name="ActNhanVien_Entity_EMGioiTinh">Giới tính</string>
+    <string name="ActNhanVien_Entity_EMGioiTinh_Nam">Nam</string>
+    <string name="ActNhanVien_Entity_EMGioiTinh_Nu">Nữ</string>
+    <string name="ActNhanVien_Entity_EMDienThoai">Điện thoại liên hệ</string>
+    <string name="ActNhanVien_Entity_EMEmail">Email</string>
+    <string name="ActNhanVien_Entity_EMDiaChi_SoDuong">Số, đường</string>
+    <string name="ActNhanVien_Entity_EMDiaChi_PhuongXa">Phường, Xã</string>
+    <string name="ActNhanVien_Entity_EMDiaChi_TinhThanh">Tỉnh, Thành</string>
+    <string name="ActNhanVien_Entity_EMCCCDPP_So">Số căn cước</string>
+    <string name="ActNhanVien_Entity_EMNgayBatDauHH">Ngày bắt đầu làm việc</string>
+    <string name="ActNhanVien_Entity_EMTenPhongBanHH">Phòng ban làm việc</string>
+    <string name="ActNhanVien_Entity_GhiChu">Ghi chú</string>
+
+    <!--  ActKhachHangDanhSach  -->
+    <string name="ActKhachHangDanhSach_Title">Khách hàng</string>
+    <string name="ActKhachHangDanhSach_ColCap_Ten">Tên</string>
+    <string name="ActKhachHangDanhSach_ColCap_DiaChi">Địa chỉ</string>
+    <string name="ActKhachHangDanhSach_ColCap_DienThoai">Điện thoại</string>
+    <string name="ActKhachHangDanhSach_ColCap_Email">Email</string>
+    <!--  ActKhachHangEntity  -->
+    <string name="ActKhachHangEntity_Title">Thông tin Khách hàng</string>
+    <string name="ActKhachHangEntity_Title_ADD">Thêm Khách hàng mới</string>
+    <string name="ActKhachHangEntity_Ma">Mã</string>
+    <string name="ActKhachHangEntity_Ten">Tên</string>
+    <string name="ActKhachHangEntity_DiaChi">Địa chỉ</string>
+    <string name="ActKhachHangEntity_MST">Mã số thuế</string>
+    <string name="ActKhachHangEntity_DienThoai">Điện thoại</string>
+    <string name="ActKhachHangEntity_Email">Email</string>
+    <string name="ActKhachHangEntity_Loai">Loại</string>
+    <string name="ActKhachHangEntity_Nhom">Nhóm</string>
+    <string name="ActKhachHangEntity_GhiChu">Ghi chú</string>
+
+
+    <!--  ActPhieuNhap  -->
+    <string name="ActPhieuNhap_Title">Chuyến hàng nhận</string>
+    <string name="ActPhieuNhap_ColCap_SoPhieu">Số</string>
+    <string name="ActPhieuNhap_ColCap_Ngay">Ngày</string>
+    <string name="ActPhieuNhap_ColCap_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuNhap_ColCap_SoXe">Số xe</string>
+    <string name="ActPhieuNhap_ColCap_TaiXe">T.Xế</string>
+    <string name="ActPhieuNhap_ColCap_HangHoa">Hàng</string>
+    <string name="ActPhieuNhap_ColCap_KhachHang">Khách</string>
+    <string name="ActPhieuNhap_ColCap_TrongLuong">Số/Tr.Lg</string>
+    <string name="ActPhieuNhap_ColCap_GhiChu">Ghi chú</string>
+    <string name="ActPhieuNhap_ColCap_TrangThai">Tr.Thái</string>
+    <!--  ActPhieuNhap_Entity  -->
+    <string name="ActPhieuNhap_Entity_Title">Thông tin chuyến hàng nhận</string>
+    <string name="ActPhieuNhap_Entity_Title_ADD">Chuyến hàng nhận mới</string>
+    <string name="ActPhieuNhap_Entity_SoPhieu">Số phiếu</string>
+    <string name="ActPhieuNhap_Entity_Ngay">Ngày</string>
+
+    <string name="ActPhieuNhap_Entity_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuNhap_Entity_SoXe">Số xe</string>
+    <string name="ActPhieuNhap_Entity_SoXe_XeNgoai">Số xe ngoài</string>
+    <string name="ActPhieuNhap_Entity_SoXe_XeNha">Số xe nhà</string>
+
+    <string name="ActPhieuNhap_Entity_TaiXe">Tài xế</string>
+    <string name="ActPhieuNhap_Entity_NhanVien">Nhân viên</string>
+    <string name="ActPhieuNhap_Entity_KhachHang">Khách hàng</string>
+    <string name="ActPhieuNhap_Entity_HangHoa">Hàng nhận</string>
+    <string name="ActPhieuNhap_Entity_TrongLuongHang">Số lượng</string>
+
+    <string name="ActPhieuNhap_Entity_ThoiGian01">Thời gian cân hàng</string>
+    <string name="ActPhieuNhap_Entity_ThoiGian02">Thời gian cân hàng</string>
+    <string name="ActPhieuNhap_Entity_ThoiGian03">Thời gian cân hàng</string>
+    <string name="ActPhieuNhap_Entity_ThoiGian04">Thời gian cân hàng</string>
+    <string name="ActPhieuNhap_Entity_ThoiGian05">Thời gian cân hàng</string>
+    <string name="ActPhieuNhap_Entity_ThoiGian06">Thời gian cân hàng</string>
+
+    <string name="ActPhieuNhap_Entity_GhiChu">Ghi chú</string>
+
+    <!--  ActPhieuGiaCong_ListItem2  -->
+    <string name="ActPhieuNhap_ListItem2_SoPhieu">Số:</string>
+    <string name="ActPhieuNhap_ListItem2_Ngay">:</string>
+    <string name="ActPhieuNhap_ListItem2_XeNgoai">Xe ngoài:</string>
+    <string name="ActPhieuNhap_ListItem2_SoXe">Số xe:</string>
+    <string name="ActPhieuNhap_ListItem2_TaiXe">:</string>
+    <string name="ActPhieuNhap_ListItem2_HangHoa">Hàng nhận:</string>
+    <string name="ActPhieuNhap_ListItem2_TrongLuong">:</string>
+    <string name="ActPhieuNhap_ListItem2_KhachHang">Khách hàng:</string>
+
+
+    <!--  ActPhieuXuat  -->
+    <string name="ActPhieuXuat_Title">Chuyến hàng giao</string>
+    <string name="ActPhieuXuat_ColCap_SoPhieu">Số</string>
+    <string name="ActPhieuXuat_ColCap_Ngay">Ngày</string>
+    <string name="ActPhieuXuat_ColCap_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuXuat_ColCap_SoXe">Số xe</string>
+    <string name="ActPhieuXuat_ColCap_TaiXe">T.Xế</string>
+    <string name="ActPhieuXuat_ColCap_HangHoa">Hàng</string>
+    <string name="ActPhieuXuat_ColCap_KhachHang">Khách</string>
+    <string name="ActPhieuXuat_ColCap_TrongLuong">Số/Tr.Lg</string>
+    <string name="ActPhieuXuat_ColCap_GhiChu">Ghi chú</string>
+    <string name="ActPhieuXuat_ColCap_TrangThai">Tr.Thái</string>
+    <!--  ActPhieuXuat_Entity  -->
+    <string name="ActPhieuXuat_Entity_Title">Thông tin chuyến hàng giao</string>
+    <string name="ActPhieuXuat_Entity_Title_ADD">Chuyến hàng giao mới</string>
+    <string name="ActPhieuXuat_Entity_SoPhieu">Số phiếu</string>
+    <string name="ActPhieuXuat_Entity_Ngay">Ngày</string>
+
+    <string name="ActPhieuXuat_Entity_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuXuat_Entity_SoXe">Số xe</string>
+    <string name="ActPhieuXuat_Entity_SoXe_XeNgoai">Số xe ngoài</string>
+    <string name="ActPhieuXuat_Entity_SoXe_XeNha">Số xe nhà</string>
+
+    <string name="ActPhieuXuat_Entity_TaiXe">Tài xế</string>
+    <string name="ActPhieuXuat_Entity_NhanVien">Nhân viên</string>
+    <string name="ActPhieuXuat_Entity_KhachHang">Khách hàng</string>
+    <string name="ActPhieuXuat_Entity_HangHoa">Hàng giao</string>
+    <string name="ActPhieuXuat_Entity_TrongLuongHang">Số lượng</string>
+
+    <string name="ActPhieuXuat_Entity_ThoiGian01">Thời gian cân hàng</string>
+    <string name="ActPhieuXuat_Entity_ThoiGian02">Thời gian cân hàng</string>
+    <string name="ActPhieuXuat_Entity_ThoiGian03">Thời gian cân hàng</string>
+    <string name="ActPhieuXuat_Entity_ThoiGian04">Thời gian cân hàng</string>
+    <string name="ActPhieuXuat_Entity_ThoiGian05">Thời gian cân hàng</string>
+    <string name="ActPhieuXuat_Entity_ThoiGian06">Thời gian cân hàng</string>
+
+    <string name="ActPhieuXuat_Entity_GhiChu">Ghi chú</string>
+
+    <!--  ActPhieuXuat_ListItem2  -->
+    <string name="ActPhieuXuat_ListItem2_SoPhieu">Số:</string>
+    <string name="ActPhieuXuat_ListItem2_Ngay">:</string>
+    <string name="ActPhieuXuat_ListItem2_XeNgoai">Xe ngoài:</string>
+    <string name="ActPhieuXuat_ListItem2_SoXe">Số xe:</string>
+    <string name="ActPhieuXuat_ListItem2_TaiXe">:</string>
+    <string name="ActPhieuXuat_ListItem2_HangHoa">Hàng giao:</string>
+    <string name="ActPhieuXuat_ListItem2_TrongLuong">:</string>
+    <string name="ActPhieuXuat_ListItem2_KhachHang">Khách hàng:</string>
+
+
+    <!--  ActPhieuGiaCong  -->
+    <string name="ActPhieuGiaCong_Title">Chuyến hàng gia công</string>
+    <string name="ActPhieuGiaCong_ColCap_SoPhieu">Số</string>
+    <string name="ActPhieuGiaCong_ColCap_Ngay">Ngày</string>
+    <string name="ActPhieuGiaCong_ColCap_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuGiaCong_ColCap_SoXe">Số xe</string>
+    <string name="ActPhieuGiaCong_ColCap_TaiXe">T.Xế</string>
+    <string name="ActPhieuGiaCong_ColCap_HangHoa">Hàng</string>
+    <string name="ActPhieuGiaCong_ColCap_KhachHang">Khách</string>
+    <string name="ActPhieuGiaCong_ColCap_TrongLuong">Số/Tr.Lg</string>
+    <string name="ActPhieuGiaCong_ColCap_GhiChu">Ghi chú</string>
+    <string name="ActPhieuGiaCong_ColCap_TrangThai">Tr.Thái</string>
+    <!--  ActPhieuGiaCongEntity  -->
+    <string name="ActPhieuGiaCongEntity_Title">Thông tin chuyến hàng gia công</string>
+    <string name="ActPhieuGiaCongEntity_Title_ADD">Chuyến hàng gia công mới</string>
+    <string name="ActPhieuGiaCongEntity_SoPhieu">Số phiếu</string>
+    <string name="ActPhieuGiaCongEntity_Ngay">Ngày</string>
+
+    <string name="ActPhieuGiaCongEntity_XeNgoai">Xe ngoài</string>
+    <string name="ActPhieuGiaCongEntity_SoXe">Số xe</string>
+    <string name="ActPhieuGiaCongEntity_SoXe_XeNgoai">Số xe ngoài</string>
+    <string name="ActPhieuGiaCongEntity_SoXe_XeNha">Số xe nhà</string>
+
+    <string name="ActPhieuGiaCongEntity_TaiXe">Tài xế</string>
+    <string name="ActPhieuGiaCongEntity_NhanVien">Nhân viên</string>
+    <string name="ActPhieuGiaCongEntity_KhachHang">Khách hàng</string>
+
+    <string name="ActPhieuGiaCongEntity_HangHoa">Hàng giao</string>
+    <string name="ActPhieuGiaCongEntity_TrongLuongHang">Số lượng</string>
+    <string name="ActPhieuGiaCongEntity_ThoiGian01">Thời điểm cân hàng giao</string>
+
+    <string name="ActPhieuGiaCongEntity_HangHoaGC">Hàng bán</string>
+    <string name="ActPhieuGiaCongEntity_TrongLuongHangGC">Số lượng</string>
+    <string name="ActPhieuGiaCongEntity_ThoiGian03">Thời điểm cân hàng bán</string>
+
+    <string name="ActPhieuGiaCongEntity_HangHoaTV">Hàng thu về</string>
+    <string name="ActPhieuGiaCongEntity_TrongLuongHangTV">Số lượng</string>
+    <string name="ActPhieuGiaCongEntity_ThoiGian05">Thời điểm cân hàng thu về</string>
+
+    <string name="ActPhieuGiaCongEntity_GhiChu">Ghi chú</string>
+
+    <!--  ActPhieuGiaCong_ListItem2  -->
+    <string name="ActPhieuGiaCong_ListItem2_SoPhieu">Số:</string>
+    <string name="ActPhieuGiaCong_ListItem2_Ngay">:</string>
+    <string name="ActPhieuGiaCong_ListItem2_XeNgoai">Xe ngoài:</string>
+    <string name="ActPhieuGiaCong_ListItem2_SoXe">Số xe:</string>
+    <string name="ActPhieuGiaCong_ListItem2_TaiXe">:</string>
+    <string name="ActPhieuGiaCong_ListItem2_HangHoa">Hàng giao:</string>
+    <string name="ActPhieuGiaCong_ListItem2_TrongLuong">:</string>
+    <string name="ActPhieuGiaCong_ListItem2_KhachHang">Khách hàng:</string>
+    <string name="ActPhieuGiaCong_ListItem2_HangHoaGC">Hàng bán:</string>
+    <string name="ActPhieuGiaCong_ListItem2_TrongLuongGC">:</string>
+    <string name="ActPhieuGiaCong_ListItem2_HangHoaTV">Hàng thu về:</string>
+    <string name="ActPhieuGiaCong_ListItem2_TrongLuongTV">:</string>
+
+
+    <!--  ActFullImage  -->
+    <string name="ActFullImage_Title">Ảnh đầy đủ</string>
+
+
+    <!--  ActTruyVan_HangHoaChuyenXe  -->
+    <string name="ActTruyVan_HangHoaChuyenXe_Title">Hàng hóa theo chuyến</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColName">Hàng hóa</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue12">Nhận</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue1">Xe</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue2">Số lượng</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue34">Giao</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue3">Xe</string>
+    <string name="ActTruyVan_HangHoaChuyenXe_ColCap_ColValue4">Số lượng</string>
+
+    <!--  ActTruyVan_HangHoaNhan  -->
+    <string name="ActTruyVan_HangHoaNhan_Title">Thống kê hàng nhận</string>
+    <string name="ActTruyVan_HangHoaNhan_ByItem_TabTitle">Hàng hóa</string>
+    <string name="ActTruyVan_HangHoaNhan_ByCus_TabTitle">Khách hàng</string>
+    <string name="ActTruyVan_HangHoaNhan_ColCap_ColName">Hàng hóa / Khách hàng</string>
+    <string name="ActTruyVan_HangHoaNhan_ColCap_ColValue">Số lượng</string>
+
+    <!--  ActTruyVan_HangHoaGiao  -->
+    <string name="ActTruyVan_HangHoaGiao_Title">Thống kê hàng giao</string>
+    <string name="ActTruyVan_HangHoaGiao_ByItem_TabTitle">Hàng hóa</string>
+    <string name="ActTruyVan_HangHoaGiao_ByCus_TabTitle">Khách hàng</string>
+    <string name="ActTruyVan_HangHoaGiao_ColCap_ColName">Hàng hóa / Khách hàng</string>
+    <string name="ActTruyVan_HangHoaGiao_ColCap_ColValue">Số lượng</string>
+
+
+</resources>

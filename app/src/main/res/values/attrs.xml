@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="MyItemPickedBackgroudColor1" format="reference"/>
+    <attr name="MyItemPickedBackgroudColor2" format="reference"/>
+    <attr name="MyItemPickedBackgroudColor3" format="reference"/>
+    <attr name="MyGColor" format="reference"/>
+    <attr name="MyGColorDisable" format="reference"/>
+    <attr name="MyYColor" format="reference"/>
+    <attr name="MyYColorDisable" format="reference"/>
+    <attr name="MyNoColor" format="reference"/>
+    <attr name="MyRipColor" format="reference"/>
+    <attr name="MyBColor" format="reference"/>
+    <attr name="MyZeroColor" format="reference"/>
+    <attr name="MyPrimaryContainer_40" format="reference"/>
+
+</resources>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ActAbout_AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:contentScrim="?attr/colorPrimaryContainer"
+            app:expandedSubtitleTextAppearance="@style/AppTitleTextAppearance"
+            app:expandedTitleTextColor="?attr/colorOnPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/ComInfor_CompanyFullName2"
+            app:titleMaxLines="2">
+
+            <ImageView
+                android:id="@+id/ActAbout_ImageView_BigLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ksng_bg_1024"
+                android:contentDescription="@string/ComInfor_AppLogoDesc"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:paddingBottom="50dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/logoviettas_blue_0512"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/ActAbout_MaterialToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <LinearLayout
+                    android:id="@+id/ActAbout_LinearLayout_ToolbarContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/Com_DoublePadding"
+                    android:paddingEnd="@dimen/Com_DoublePadding"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="128dp"
+                        android:layout_height="32dp"
+                        android:contentDescription="@string/ComInfor_AppLogoDesc"
+                        android:src="@drawable/logoviettas_blue_0128" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/AppTitleTextAppearance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/Com_DoublePadding"
+                        android:text="@string/ComInfor_CompanyName" />
+                </LinearLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ActAbout_NestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/Com_TribblePadding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/ActAbout_TextView_DiaChi" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/ComInfor_Address2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/ActAbout_TextView_MaSoThue" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/ComInfor_TaxCode2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/ActAbout_TextView_DienThoai" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:minHeight="@dimen/Com_TouchMinHeight"
+                    android:text="@string/ComInfor_Tel2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/ActAbout_TextView_Website" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:minHeight="@dimen/Com_TouchMinHeight"
+                    android:text="@string/ComInfor_Website2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/ActAbout_TextView_Email" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:minHeight="@dimen/Com_TouchMinHeight"
+                    android:text="@string/ComInfor_Email2" />
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/Com_Padding"
+                android:background="?attr/colorPrimary"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/ActAbout_ImageView_AppIcon"
+                android:layout_width="@dimen/Com_AppLogoSize"
+                android:layout_height="@dimen/Com_AppLogoSize"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:contentDescription="@string/ComInfor_AppLogoDesc"
+                android:src="@drawable/vts" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/GroupHeaderTextViewLightBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textSize="@dimen/Com_TitleFontSize" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/GroupHeaderTextViewLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:text="@string/ActAbout_AppDescription"
+                android:textAlignment="textStart" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/ActAbout_TextView_AppVersion"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ActAbout_MaterialTextView_AppVersion"
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/GroupHeaderTextViewLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:text="@string/ActAbout_AppBaoLuuQuyen"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/ActAbout_TextView_Terms" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ActAbout_MaterialTextView_Terms"
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/Com_Caption_XemNoiDung"
+                    app:drawableTint="?attr/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Com_TribblePadding"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/GroupHeaderTextViewLight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/ActAbout_TextView_Privacy" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/ActAbout_MaterialTextView_Privacy"
+                    style="@style/GroupHeaderTextViewLightBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/Com_Caption_XemNoiDung"
+                    app:drawableTint="?attr/colorPrimary" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

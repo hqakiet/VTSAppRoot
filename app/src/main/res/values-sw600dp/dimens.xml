@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="Com_App_Header_Height">40dp</dimen>
+    <dimen name="Com_App_SubHeader_Height">34dp</dimen>
+
+    <dimen name="Com_Padding">8dp</dimen>
+    <dimen name="Com_DoublePadding">16dp</dimen>
+    <dimen name="Com_TribblePadding">24dp</dimen>
+    <dimen name="Com_FourPadding">32dp</dimen>
+    <dimen name="Com_FivePadding">40dp</dimen>
+    <dimen name="Com_SixPadding">48dp</dimen>
+    <dimen name="Com_SevenPadding">56dp</dimen>
+    <dimen name="Com_EightPadding">64dp</dimen>
+    <dimen name="Com_NinePadding">72dp</dimen>
+
+    <dimen name="Com_RevPadding">-8dp</dimen>
+    <dimen name="Com_RevDoublePadding">-16dp</dimen>
+    <dimen name="Com_RevTribblePadding">-24dp</dimen>
+    <dimen name="Com_RevFourPadding">-32dp</dimen>
+    <dimen name="Com_RevFivePadding">-40dp</dimen>
+
+    <dimen name="Com_VerySmallFontSize">11sp</dimen>
+    <dimen name="Com_SmallFontSize">12sp</dimen>
+    <dimen name="Com_NormalFontSize">14sp</dimen>
+    <dimen name="Com_HeaderFontSize">16sp</dimen>
+    <dimen name="Com_TitleFontSize">18sp</dimen>
+    <dimen name="Com_AppTitleFontSize">23sp</dimen>
+    <dimen name="Com_TitleFontMaxSize">31sp</dimen>
+
+    <dimen name="Com_HeaderMinHeight">35dp</dimen>
+    <dimen name="Com_DetailMinHeight">30dp</dimen>
+    <dimen name="Com_HeaderHeight">35dp</dimen>
+    <dimen name="Com_TouchMinHeight">50dp</dimen>
+    <dimen name="Com_TouchMinHeightMed">60dp</dimen>
+    <dimen name="Com_TouchMinHeightMax">68dp</dimen>
+
+    <dimen name="Com_MinWidth">600dp</dimen>
+    <dimen name="Com_MaxWidth">900dp</dimen>
+    <dimen name="Com_TextInputMinWidth">120dp</dimen>
+
+    <dimen name="Com_AppLogoSize">128dp</dimen>
+    <dimen name="Com_CompanyLogoWidth">384dp</dimen>
+    <dimen name="Com_CompanyLogoHeight">96dp</dimen>
+    <dimen name="Com_IconSize">32dp</dimen>
+    <dimen name="Com_TouchIconSize">32dp</dimen>
+    <dimen name="Com_ThumbIconSize">48dp</dimen>
+    <dimen name="Com_MenuMinSize">170dp</dimen>
+    <dimen name="Com_ChucNangIconSize">96dp</dimen>
+    <dimen name="Com_ThumbSize">128dp</dimen>
+
+    <dimen name="Com_MainFunctionHeight">200dp</dimen>
+
+    <dimen name="Com_MainBottomMenuWidth">400dp</dimen>
+    <dimen name="Com_MainBottomMenuHeight">75dp</dimen>
+    <dimen name="Com_MainBottomPadding">83dp</dimen>
+    <dimen name="Com_MainBottomDoublePadding">91dp</dimen>
+    <dimen name="Com_MainBottomTribblePadding">99dp</dimen>
+
+</resources>

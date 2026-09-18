@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Crop frame -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M7,17H5V5h12v2h2V3H7v14z" />
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M17,19H7V9h2v8h8v2z" />
+
+    <!-- Rotate arrow -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,12V8l-1.76,1.76C16.97,8.67 15.57,8 14,8c-2.76,0 -5,2.24 -5,5h2c0,-1.65 1.35,-3 3,-3 1.01,0 1.93,0.5 2.48,1.28L14,14h6z" />
+</vector>

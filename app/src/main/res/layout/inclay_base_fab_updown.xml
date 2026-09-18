@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FloatingActionButton_BackToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="@dimen/Com_DoublePadding"
+        android:layout_marginTop="@dimen/Com_DoublePadding"
+        android:layout_marginEnd="@dimen/Com_DoublePadding"
+        android:layout_marginBottom="65dp"
+
+        android:alpha="0.75"
+        android:clickable="true"
+        android:contentDescription="@string/Button_ToTop"
+        android:focusable="true"
+        android:visibility="gone"
+
+        app:elevation="10dp"
+        app:fabCustomSize="45dp"
+        app:maxImageSize="@dimen/Com_IconSize"
+        app:pressedTranslationZ="2dp"
+        app:shapeAppearanceOverlay="@style/FloatingActionButtonCircleStyle"
+        app:srcCompat="@drawable/ic_arrow_upward"
+        app:tint="?attr/colorOnPrimary" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FloatingActionButton_GoToBot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/Com_DoublePadding"
+
+        android:alpha="0.75"
+        android:clickable="true"
+        android:contentDescription="@string/Button_ToBot"
+        android:focusable="true"
+        android:visibility="gone"
+
+        app:elevation="10dp"
+        app:fabCustomSize="45dp"
+        app:maxImageSize="@dimen/Com_IconSize"
+        app:pressedTranslationZ="2dp"
+        app:shapeAppearanceOverlay="@style/FloatingActionButtonCircleStyle"
+        app:srcCompat="@drawable/ic_arrow_downward"
+        app:tint="?attr/colorOnPrimary" />
+
+</FrameLayout>

@@ -1,0 +1,18 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logoviettas_animated"
+    >
+
+    <target
+        android:name="group_slogan"
+        android:animation="@animator/logoviettas_rotate" />
+
+    <target
+        android:name="blue_path"
+        android:animation="@animator/logoviettas_fade_in" />
+
+    <target
+        android:name="red_path"
+        android:animation="@animator/logoviettas_fade_in" />
+
+</animated-vector>

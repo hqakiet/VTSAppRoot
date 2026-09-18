@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LinearLayout_SingleDateAndTimePicker"
+    android:layout_width="@dimen/Com_MinWidth"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup_menu2"
+    android:paddingStart="@dimen/Com_FivePadding"
+    android:paddingEnd="@dimen/Com_FivePadding"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/SingleDateAndTimePicker_MaterialTextView_Caption"
+        style="@style/TitleHeaderTextViewLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/Com_Padding"
+        android:text="@string/Com_Title_ChonNgay"
+        android:textSize="@dimen/Com_AppTitleFontSize" />
+
+    <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+        android:id="@+id/SingleDateAndTimePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/Com_DoublePadding"
+        android:paddingBottom="@dimen/Com_DoublePadding"
+        app:picker_itemSpacing="@dimen/Com_TouchMinHeightMed"
+        app:picker_selectedTextColor="@color/md_theme_primary"
+        app:picker_selectorColor="@color/md_theme_primary"
+        app:picker_selectorHeight="@dimen/Com_TouchMinHeightMax"
+        app:picker_textColor="@color/md_theme_primary"
+        app:picker_textSize="@dimen/Com_TitleFontSize"
+        app:picker_visibleItemCount="7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/Com_DoublePadding"
+        android:paddingBottom="@dimen/Com_DoublePadding">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/SingleDateAndTimePicker_MaterialButton_NgayHienHanh"
+            style="@style/AppButonCommands"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/Com_DoublePadding"
+            android:layout_marginEnd="@dimen/Com_Padding"
+            android:layout_weight="1"
+            android:text="@string/Button_Today" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/SingleDateAndTimePicker_MaterialButton_OK"
+            style="@style/AppButonCommands"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/Com_Padding"
+            android:layout_marginEnd="@dimen/Com_Padding"
+            android:layout_weight="1"
+            android:text="@string/Button_Picked" />
+
+    </LinearLayout>
+
+</LinearLayout>

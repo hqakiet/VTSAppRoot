@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimaryContainer"
+    android:gravity="center"
+    android:minHeight="@dimen/Com_TouchMinHeight"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GroupTextViewDark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:labelFor="@+id/Filter_MaterialTextView_TuNgay"
+            android:text="@string/Com_Caption_TuNgay" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Filter_MaterialTextView_TuNgay"
+            style="@style/GroupTextViewDark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GroupTextViewDark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/Com_Caption_DenNgay" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Filter_MaterialTextView_DenNgay"
+            style="@style/GroupTextViewDark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/MaterialButton_DateFromToHelper"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="@dimen/Com_TouchMinHeight"
+            android:layout_height="@dimen/Com_TouchMinHeight"
+            android:backgroundTint="@color/MyNoColor"
+            android:contentDescription="@string/Button_Picked"
+            android:visibility="gone"
+            app:icon="@drawable/ic_info"
+            app:iconSize="@dimen/Com_TouchIconSize"
+            app:iconTint="@color/md_theme_onPrimary" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/MaterialButton_Search"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="@dimen/Com_TouchMinHeight"
+        android:layout_height="@dimen/Com_TouchMinHeight"
+        android:backgroundTint="@color/MyNoColor"
+        android:checkable="true"
+        android:contentDescription="@string/Button_Search"
+        android:visibility="gone"
+        app:icon="@drawable/ic_search"
+        app:iconSize="@dimen/Com_TouchIconSize"
+        app:iconTint="@color/iconbutton_whitetint_states" />
+
+</LinearLayout>

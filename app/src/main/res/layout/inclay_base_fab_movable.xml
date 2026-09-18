@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.floatingactionbutton.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/FloatingActionButton_Movable"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/Com_TribblePadding"
+
+    android:alpha="0.75"
+    android:clickable="true"
+    android:contentDescription="@string/Button_MoreActions"
+    android:focusable="true"
+    android:visibility="visible"
+
+    app:elevation="10dp"
+    app:fabSize="normal"
+    app:layout_anchorGravity="bottom|right"
+    app:maxImageSize="@dimen/Com_HeaderMinHeight"
+    app:pressedTranslationZ="2dp"
+    app:shapeAppearanceOverlay="@style/FloatingActionButtonCircleStyle"
+    app:srcCompat="@drawable/ic_more_horiz"
+    app:tint="?attr/colorOnPrimary"/>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Search_LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimaryContainer"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center"
+    android:minHeight="@dimen/Com_TouchMinHeight"
+    android:orientation="horizontal"
+    android:padding="@dimen/Com_Padding"
+    android:visibility="gone">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="3dp"
+        app:cardCornerRadius="@dimen/Com_DoublePadding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/Com_Padding"
+            android:paddingTop="3dp"
+            android:paddingEnd="@dimen/Com_Padding"
+            android:paddingBottom="@dimen/Com_Padding">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/Com_Caption_Search">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Search_TextInputEditText_SearchContent"
+                    style="@style/AppTextInputEditText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:selectAllOnFocus="true"
+                    android:textAlignment="textStart" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Search_MaterialButton_ClearContent"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:contentDescription="@string/Com_Caption_ClearSearch"
+                android:visibility="visible"
+                app:icon="@drawable/ic_close"
+                app:iconSize="@dimen/Com_TouchIconSize"
+                app:iconTint="@color/md_theme_error" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Search_MaterialButton_DoSearchContent"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:contentDescription="@string/Com_Caption_DoSearch"
+                app:icon="@drawable/ic_search"
+                app:iconSize="@dimen/Com_TouchIconSize"
+                app:iconTint="@color/md_theme_primary" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="MyItemPickedBackgroudColor1">#1A1A38E2</color>
+    <color name="MyItemPickedBackgroudColor2">#26F0DD33</color>
+    <color name="MyItemPickedBackgroudColor3">#26DE1A1A</color>
+    <color name="MyGColor">#1B5E20</color>
+    <color name="MyGColorDisable">#3D5040</color>
+    <color name="MyYColor">#926800</color>
+    <color name="MyYColorDisable">#CC9D997F</color>
+    <color name="MyNoColor">#00000000</color>
+    <color name="MyRipColor">#330027FA</color>
+    <color name="MyBColor">#80000000</color>
+    <color name="MyZeroColor">#808080</color>
+    <color name="MyPrimaryContainer_40">#1000497C</color>
+    <color name="MyOverlay">#503D5040</color>
+
+
+    <color name="MyDeactiveSearchButton">#BF808080</color>
+    <color name="MyActiveSearchButton">#00497C</color>
+    <color name="MyBottomMainMenuFABBackColor">#00497C</color>
+    <color name="MyBottomMainMenuIconColor">#FFFFFF</color>
+    <color name="MyBottomMainMenuTextColor">#FFFFFF</color>
+    <color name="MyBottomMainMenuIconDeactiveColor">#00497C</color>
+    <color name="MyBottomMainMenuTextDeactiveColor">#00497C</color>
+    <color name="MySwipeToDeleteColor">#D9FF0000</color>
+
+
+    <color name="noColor">#00000000</color>
+    <color name="logo">#0093BC</color>
+    <color name="test">#B3BBCAE7</color>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout_StatusBar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/Com_TouchMinHeight"
+    android:orientation="horizontal"
+    android:background="?attr/colorPrimaryContainer"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/ComInfor_LogoDesc"
+        android:src="@drawable/logoviettas_bluewhiteback_0128"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        >
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GroupHeaderTextViewDarkBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/Com_Padding"
+            android:paddingEnd="@dimen/Com_Padding"
+            android:text="@string/ComInfor_CompanyFullName2"
+            android:textStyle="bold"
+            android:textSize="@dimen/Com_NormalFontSize"
+            />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GroupTextViewDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ComInfor_Address2"
+            android:textStyle="italic"
+            android:textSize="@dimen/Com_SmallFontSize"
+            />
+    </LinearLayout>
+</LinearLayout>

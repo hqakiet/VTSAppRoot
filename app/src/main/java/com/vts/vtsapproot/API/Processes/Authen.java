@@ -25,6 +25,8 @@ public class Authen {
         APIService mAPIService = gvSystem.GetAPIServiceNoAuthen(pTimeOut);
         ReqMod_DangNhap mRequestModel = null;
 
+        gvSystem.App_ListDBs.clear();
+
         if (gvSystem.App_NhanThongBao)
             mRequestModel = new ReqMod_DangNhap.Builder().tokenID(gvSystem.App_GoogleSignInToken).clientToken(gvSystem.getApp_ClientToken()).build();
         else
@@ -50,10 +52,22 @@ public class Authen {
                             gvSystem.setApp_CurrentPassword(null);
 
                             gvSystem.App_DanhSachChucNang(mResponseModel.getChucNangPhanQuyens());
-                            gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
-                            gvSystem.App_sysval_SOLEDONGIA = mResponseModel.getSoLeHeThong().getSOLEDONGIA();
-                            gvSystem.App_sysval_SOLESOTIEN = mResponseModel.getSoLeHeThong().getSOLESOTIEN();
-                            gvSystem.App_sysval_SOLETYLE = mResponseModel.getSoLeHeThong().getSOLETYLE();
+
+                            if (mResponseModel.getDataResults() != null) {
+                                gvSystem.App_ListDBs.addAll(mResponseModel.getDataResults());
+                            }
+
+                            if (mResponseModel.getSoLeHeThong() != null) {
+                                gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
+                                gvSystem.App_sysval_SOLEDONGIA = mResponseModel.getSoLeHeThong().getSOLEDONGIA();
+                                gvSystem.App_sysval_SOLESOTIEN = mResponseModel.getSoLeHeThong().getSOLESOTIEN();
+                                gvSystem.App_sysval_SOLETYLE = mResponseModel.getSoLeHeThong().getSOLETYLE();
+                            } else {
+                                gvSystem.App_sysval_SOLESOLUONG = 0;
+                                gvSystem.App_sysval_SOLEDONGIA = 0;
+                                gvSystem.App_sysval_SOLESOTIEN = 0;
+                                gvSystem.App_sysval_SOLETYLE = 0;
+                            }
 
                             pResult.GetDataOK();
                         } else {
@@ -99,6 +113,9 @@ public class Authen {
     public static void DangNhap_UserPwd(int pTimeOut, String pUser, String pPass, APIService.DoAPI_Authen_Result pResult) {
         APIService mAPIService = gvSystem.GetAPIServiceNoAuthen(pTimeOut);
         ReqMod_DangNhap mRequestModel = new ReqMod_DangNhap.Builder().user(pUser).pass(pPass).clientToken(gvSystem.getApp_ClientToken()).build();
+
+        gvSystem.App_ListDBs.clear();
+
         Call<ResMod_DangNhap> call = mAPIService.DoAPI_DangNhap(gvSystem.App_BaseUrl + gvSystem.App_DangNhapFunction, mRequestModel);
         call.enqueue(new Callback<>() {
             @Override
@@ -119,6 +136,10 @@ public class Authen {
                             gvSystem.setApp_CurrentPassword(pPass);
 
                             gvSystem.App_DanhSachChucNang(mResponseModel.getChucNangPhanQuyens());
+
+                            if (mResponseModel.getDataResults() != null) {
+                                gvSystem.App_ListDBs.addAll(mResponseModel.getDataResults());
+                            }
 
                             if (mResponseModel.getSoLeHeThong() != null) {
                                 gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
@@ -180,6 +201,8 @@ public class Authen {
     public static void RefreshToken(int pTimeOut, APIService.DoAPI_Authen_Result pResult) {
         ReqMod_RefreshToken mRequestModel = null;
 
+        gvSystem.App_ListDBs.clear();
+
         if (gvSystem.App_NhanThongBao)
             mRequestModel = new ReqMod_RefreshToken(gvSystem.getApp_RefreshToken(), gvSystem.getApp_ClientToken());
         else
@@ -199,6 +222,11 @@ public class Authen {
                             gvSystem.setApp_IsReleaseTest(mResponseModel.isReleaseTest());
 
                             gvSystem.App_DanhSachChucNang(mResponseModel.getChucNangPhanQuyens());
+
+                            if (mResponseModel.getDataResults() != null) {
+                                gvSystem.App_ListDBs.addAll(mResponseModel.getDataResults());
+                            }
+
                             if (mResponseModel.getSoLeHeThong() != null) {
                                 gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
                                 gvSystem.App_sysval_SOLEDONGIA = mResponseModel.getSoLeHeThong().getSOLEDONGIA();

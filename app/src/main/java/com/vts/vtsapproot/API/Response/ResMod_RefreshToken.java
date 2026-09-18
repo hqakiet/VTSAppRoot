@@ -11,8 +11,8 @@ public class ResMod_RefreshToken extends ResMod_Base implements Serializable {
     boolean NewVersion;
     Date NgayHetHan;
     List<ResModDetail_DanhSachChucNang> ChucNangPhanQuyens;
+    List<ResModDetail_RemoteDB> DataResults;
     ResModDetail_GiaTriHeThong SoLeHeThong;
-
     public String getTKN() {
         return TKN;
     }
@@ -31,6 +31,10 @@ public class ResMod_RefreshToken extends ResMod_Base implements Serializable {
 
     public List<ResModDetail_DanhSachChucNang> getChucNangPhanQuyens() {
         return ChucNangPhanQuyens;
+    }
+
+    public List<ResModDetail_RemoteDB> getDataResults() {
+        return DataResults;
     }
 
     public ResModDetail_GiaTriHeThong getSoLeHeThong() {

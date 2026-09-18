@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.vts.vtsapproot.API.APIService;
 import com.vts.vtsapproot.API.Response.ResModDetail_DanhSachChucNang;
+import com.vts.vtsapproot.API.Response.ResModDetail_RemoteDB;
 import com.vts.vtsapproot.R;
 
 import java.io.ByteArrayOutputStream;
@@ -71,6 +72,9 @@ public class gvSystem {
     public static String App_RefreshTokenFunction = "auth/RefreshToken";
 
     public static LocalDB App_LocalDB = null;
+
+    public static ArrayList<ResModDetail_RemoteDB> App_ListDBs = new ArrayList<>();
+
     public static int App_LimitListBigSize = 500;
     public static int App_sysval_SOLESOLUONG = 0;
     public static int App_sysval_SOLEDONGIA = 0;

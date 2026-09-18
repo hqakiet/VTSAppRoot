@@ -13,6 +13,7 @@ public class ResMod_DangNhap
     Date NgayHetHan;
     List<ResModDetail_DanhSachChucNang> ChucNangPhanQuyens;
     ResModDetail_GiaTriHeThong SoLeHeThong;
+    List<ResModDetail_RemoteDB> DataResults;
 
     public String getTKN() {
         return TKN;
@@ -36,6 +37,10 @@ public class ResMod_DangNhap
 
     public List<ResModDetail_DanhSachChucNang> getChucNangPhanQuyens() {
         return ChucNangPhanQuyens;
+    }
+
+    public List<ResModDetail_RemoteDB> getDataResults() {
+        return DataResults;
     }
 
     public ResModDetail_GiaTriHeThong getSoLeHeThong() {

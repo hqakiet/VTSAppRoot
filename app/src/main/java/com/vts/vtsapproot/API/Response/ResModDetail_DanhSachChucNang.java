@@ -19,6 +19,7 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
     private String TenNhomChucNang;
     private String MaChucNang;
     private String TenChucNang;
+    private String Caption;
     private String GhiChu;
     private boolean ALLOW_VISIBLE;
     private boolean ALLOW_VIEW;
@@ -49,15 +50,13 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
         this.BGColorResId = BGColorResId;
     }
 
-//    public String getCaption() {
-//        return Caption;
-//    }
-//
-//    public void setCaption(String caption) {
-//        Caption = caption;
-//    }
-//
-//    private String Caption;
+    public String getCaption() {
+        return Caption;
+    }
+
+    public void setCaption(String caption) {
+        Caption = caption;
+    }
 
     public int getTextColorResId() {
         return TextColorResId;

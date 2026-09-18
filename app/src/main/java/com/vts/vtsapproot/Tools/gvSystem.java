@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -688,6 +690,12 @@ public class gvSystem {
             return false;
         }
         return true;
+    }
+
+    public static String loaiBoDauTiengViet(String str) {
+        String nfdFormatedStr = Normalizer.normalize(str, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(nfdFormatedStr).replaceAll("").replaceAll("đ", "d").replaceAll("Đ", "D");
     }
 
     public static String getDeviceName() {

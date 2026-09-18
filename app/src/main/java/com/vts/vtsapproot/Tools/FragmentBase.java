@@ -70,6 +70,15 @@ public class FragmentBase
         ((ActBase) getContext()).setupDateTimeDialogPicker(anchorView, pInitDate, pPickedDate);
     }
 
+    protected void setupMonthOnlyPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
+        if (getContext() == null) return;
+        ((ActBase) getContext()).setupMonthOnlyPicker(anchorView, pInitDate, pPickedDate);
+    }
+    protected void setupMonthOnlyDialogPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
+        if (getContext() == null) return;
+        ((ActBase) getContext()).setupMonthOnlyDialogPicker(anchorView, pInitDate, pPickedDate);
+    }
+
     protected void setupNgayTuanThangPicker(View anchorView, DateFromToPickerInterface pPickedDateFromTo) {
         if (getContext() == null) return;
         ((ActBase) getContext()).setupNgayTuanThangPicker(anchorView, pPickedDateFromTo);

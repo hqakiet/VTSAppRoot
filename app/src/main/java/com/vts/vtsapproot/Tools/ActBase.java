@@ -598,6 +598,112 @@ public abstract class ActBase
 //        popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
     }
 
+    protected void setupMonthOnlyPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.inclay_base_singledateandtimepicker, null);
+        PopupWindow popupWindow = new PopupWindow(
+                view,
+                ((isLandscape || isLargeScreen || isXLargeScreen)
+                        ? ViewGroup.LayoutParams.WRAP_CONTENT
+                        : ViewGroup.LayoutParams.MATCH_PARENT), // Rộng
+                ViewGroup.LayoutParams.WRAP_CONTENT, // Cao
+                true // Cho phép bấm ra ngoài để đóng
+        );
+
+        SingleDateAndTimePicker singleDateAndTimePicker = view.findViewById(R.id.SingleDateAndTimePicker);
+        MaterialButton singleDateAndTimePicker_MaterialButton_NgayHienHanh = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_NgayHienHanh);
+        MaterialButton singleDateAndTimePicker_MaterialButton_OK = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_OK);
+
+        if (isLandscape || isLargeScreen || isXLargeScreen) {
+            MaterialTextView SingleDateAndTimePicker_MaterialTextView_Caption = view.findViewById(R.id.SingleDateAndTimePicker_MaterialTextView_Caption);
+            SingleDateAndTimePicker_MaterialTextView_Caption.setText(getText(R.string.Com_Title_ChonThang));
+            SingleDateAndTimePicker_MaterialTextView_Caption.setVisibility(View.VISIBLE);
+        }
+
+        singleDateAndTimePicker.setMinDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 1, 1));
+        singleDateAndTimePicker.setMaxDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 12, 31));
+
+        singleDateAndTimePicker.setDisplayHours(false);
+        singleDateAndTimePicker.setDisplayMinutes(false);
+        singleDateAndTimePicker.setDisplayDays(false);
+        singleDateAndTimePicker.setDisplayMonths(true);
+        singleDateAndTimePicker.setDisplayYears(false);
+        singleDateAndTimePicker.setDisplayDaysOfMonth(false);
+        singleDateAndTimePicker.setCurved(true);
+        singleDateAndTimePicker.setCyclic(true);
+        singleDateAndTimePicker.setTypeface(Typeface.DEFAULT_BOLD);
+
+        singleDateAndTimePicker.setDefaultDate(pInitDate);
+
+        singleDateAndTimePicker_MaterialButton_NgayHienHanh.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            singleDateAndTimePicker.selectDate(calendar);
+        });
+        singleDateAndTimePicker_MaterialButton_OK.setOnClickListener(v -> {
+            pPickedDate.DatePicked(singleDateAndTimePicker.getDate());
+            popupWindow.dismiss();
+        });
+
+        if (!gvSystem.getApp_TietKiemPin())
+            popupWindow.setAnimationStyle(android.R.style.Animation);
+        popupWindow.setElevation(10);
+
+        if (isLandscape || isLargeScreen || isXLargeScreen) {
+            popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+        } else {
+            popupWindow.showAsDropDown(anchorView, 0, 0);
+        }
+    }
+
+    protected void setupMonthOnlyDialogPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.inclay_base_singledateandtimepicker, null);
+        PopupWindow popupWindow = new PopupWindow(
+                view,
+                ViewGroup.LayoutParams.WRAP_CONTENT, // Rộng
+                ViewGroup.LayoutParams.WRAP_CONTENT, // Cao
+                true // Cho phép bấm ra ngoài để đóng
+        );
+
+        SingleDateAndTimePicker singleDateAndTimePicker = view.findViewById(R.id.SingleDateAndTimePicker);
+        LinearLayout LinearLayout_SingleDateAndTimePicker = view.findViewById(R.id.LinearLayout_SingleDateAndTimePicker);
+        MaterialTextView SingleDateAndTimePicker_MaterialTextView_Caption = view.findViewById(R.id.SingleDateAndTimePicker_MaterialTextView_Caption);
+        MaterialButton singleDateAndTimePicker_MaterialButton_NgayHienHanh = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_NgayHienHanh);
+        MaterialButton singleDateAndTimePicker_MaterialButton_OK = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_OK);
+
+        LinearLayout_SingleDateAndTimePicker.setBackgroundResource(R.drawable.bg_popup_menu2);
+
+        SingleDateAndTimePicker_MaterialTextView_Caption.setText(getText(R.string.Com_Title_ChonThang));
+        SingleDateAndTimePicker_MaterialTextView_Caption.setVisibility(View.VISIBLE);
+
+        singleDateAndTimePicker.setMinDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 1, 1));
+        singleDateAndTimePicker.setMaxDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 12, 31));
+
+        singleDateAndTimePicker.setDisplayHours(false);
+        singleDateAndTimePicker.setDisplayMinutes(false);
+        singleDateAndTimePicker.setDisplayDays(false);
+        singleDateAndTimePicker.setDisplayMonths(true);
+        singleDateAndTimePicker.setDisplayYears(false);
+        singleDateAndTimePicker.setDisplayDaysOfMonth(false);
+        singleDateAndTimePicker.setCurved(true);
+        singleDateAndTimePicker.setCyclic(true);
+        singleDateAndTimePicker.setTypeface(Typeface.DEFAULT_BOLD);
+
+        singleDateAndTimePicker.setDefaultDate(pInitDate);
+
+        singleDateAndTimePicker_MaterialButton_NgayHienHanh.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            singleDateAndTimePicker.selectDate(calendar);
+        });
+        singleDateAndTimePicker_MaterialButton_OK.setOnClickListener(v -> {
+            pPickedDate.DatePicked(singleDateAndTimePicker.getDate());
+            popupWindow.dismiss();
+        });
+
+        if (!gvSystem.getApp_TietKiemPin())
+            popupWindow.setAnimationStyle(android.R.style.Animation);
+        popupWindow.setElevation(10);
+
+        popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+    }
 
     private void setupEnterSharedElementCallback() {
         if (!gvSystem.getApp_TietKiemPin() && My_TransitionObject != null && My_TransitionName != null && !My_TransitionName.isEmpty()) {

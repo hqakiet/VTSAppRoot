@@ -119,10 +119,18 @@ public class Authen {
                             gvSystem.setApp_CurrentPassword(pPass);
 
                             gvSystem.App_DanhSachChucNang(mResponseModel.getChucNangPhanQuyens());
-                            gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
-                            gvSystem.App_sysval_SOLEDONGIA = mResponseModel.getSoLeHeThong().getSOLEDONGIA();
-                            gvSystem.App_sysval_SOLESOTIEN = mResponseModel.getSoLeHeThong().getSOLESOTIEN();
-                            gvSystem.App_sysval_SOLETYLE = mResponseModel.getSoLeHeThong().getSOLETYLE();
+
+                            if (mResponseModel.getSoLeHeThong() != null) {
+                                gvSystem.App_sysval_SOLESOLUONG = mResponseModel.getSoLeHeThong().getSOLESOLUONG();
+                                gvSystem.App_sysval_SOLEDONGIA = mResponseModel.getSoLeHeThong().getSOLEDONGIA();
+                                gvSystem.App_sysval_SOLESOTIEN = mResponseModel.getSoLeHeThong().getSOLESOTIEN();
+                                gvSystem.App_sysval_SOLETYLE = mResponseModel.getSoLeHeThong().getSOLETYLE();
+                            } else {
+                                gvSystem.App_sysval_SOLESOLUONG = 0;
+                                gvSystem.App_sysval_SOLEDONGIA = 0;
+                                gvSystem.App_sysval_SOLESOTIEN = 0;
+                                gvSystem.App_sysval_SOLETYLE = 0;
+                            }
 
                             pResult.GetDataOK();
                         } else {

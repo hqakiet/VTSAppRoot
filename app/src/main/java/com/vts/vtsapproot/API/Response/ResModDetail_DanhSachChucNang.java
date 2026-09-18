@@ -39,6 +39,7 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
     private int IconResId;
     private int TextColorResId;
     private int BGColorResId;
+    private int IconColorResId;
 
     public int getBGColorResId() {
         return BGColorResId;
@@ -164,6 +165,14 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
 
     public String getGhiChu() {
         return GhiChu;
+    }
+
+    public int getIconColorResId() {
+        return IconColorResId;
+    }
+
+    public void setIconColorResId(int iconColorResId) {
+        IconColorResId = iconColorResId;
     }
 
     public ResModDetail_DanhSachChucNang() {

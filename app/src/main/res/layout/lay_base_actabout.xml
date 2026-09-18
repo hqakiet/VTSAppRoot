@@ -25,7 +25,7 @@
                 android:id="@+id/ActAbout_ImageView_BigLogo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/ksng_bg_1024"
+                android:background="@drawable/vts_bg_1024"
                 android:contentDescription="@string/ComInfor_AppLogoDesc"
                 android:paddingStart="50dp"
                 android:paddingEnd="50dp"
@@ -210,7 +210,7 @@
                 android:layout_height="@dimen/Com_AppLogoSize"
                 android:layout_marginTop="@dimen/Com_TribblePadding"
                 android:contentDescription="@string/ComInfor_AppLogoDesc"
-                android:src="@drawable/vts" />
+                android:src="@drawable/logo_app" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/GroupHeaderTextViewLightBold"

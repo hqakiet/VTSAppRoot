@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/Com_AppLogoSize"
                 android:layout_height="@dimen/Com_AppLogoSize"
                 android:contentDescription="@string/ComInfor_AppLogoDesc"
-                android:src="@drawable/vts" />
+                android:src="@drawable/logo_app" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"

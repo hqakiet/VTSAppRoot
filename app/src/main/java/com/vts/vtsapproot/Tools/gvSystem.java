@@ -87,10 +87,10 @@ public class gvSystem {
 
         App_IsFromNotification = config.isApp_IsFromNotification();
 
-        App_AutoProcessSystembars= config.isApp_AutoProcessSystembars();
+        App_AutoProcessSystembars = config.isApp_AutoProcessSystembars();
         App_SystembarsIsDark = config.isApp_SystembarsIsDark();
 
-        App_ChucNangAdmin= config.isApp_ChucNangAdmin();
+        App_ChucNangAdmin = config.isApp_ChucNangAdmin();
 
         App_NhanThongBao = config.isApp_NhanThongBao();
 
@@ -122,23 +122,26 @@ public class gvSystem {
 
     public static void App_DanhSachChucNang(List<ResModDetail_DanhSachChucNang> pResModDetails) {
         App_ChucNangAdmin = false;
-        gvSystem._DanhSachChucNangs = new ArrayList<>();
-        gvSystem._FullDanhSachChucNangs = new ArrayList<>(pResModDetails);
 
-        // Nếu project con có truyền custom logic thì ưu tiên chạy logic của project con
-        if (App_FunctionConfigProvider != null) {
-            App_FunctionConfigProvider.onProcessDanhSachChucNang(
-                    pResModDetails,
-                    gvSystem._DanhSachChucNangs,
-                    gvSystem._FullDanhSachChucNangs
-            );
-        } else {
-            // Logic mặc định chung (nếu cần)
-            for (ResModDetail_DanhSachChucNang item : pResModDetails) {
-                item.setBGColorResId(R.color.md_theme_primaryContainer);
-                item.setTextColorResId(R.color.md_theme_onPrimary);
-                item.setIconResId(R.drawable.ic_home);
-                gvSystem._DanhSachChucNangs.add(item);
+        if (pResModDetails != null && !pResModDetails.isEmpty()) {
+            gvSystem._DanhSachChucNangs = new ArrayList<>();
+            gvSystem._FullDanhSachChucNangs = new ArrayList<>(pResModDetails);
+
+            // Nếu project con có truyền custom logic thì ưu tiên chạy logic của project con
+            if (App_FunctionConfigProvider != null) {
+                App_FunctionConfigProvider.onProcessDanhSachChucNang(
+                        pResModDetails,
+                        gvSystem._DanhSachChucNangs,
+                        gvSystem._FullDanhSachChucNangs
+                );
+            } else {
+                // Logic mặc định chung (nếu cần)
+                for (ResModDetail_DanhSachChucNang item : pResModDetails) {
+                    item.setBGColorResId(R.color.md_theme_primaryContainer);
+                    item.setTextColorResId(R.color.md_theme_onPrimary);
+                    item.setIconResId(R.drawable.ic_home);
+                    gvSystem._DanhSachChucNangs.add(item);
+                }
             }
         }
     }

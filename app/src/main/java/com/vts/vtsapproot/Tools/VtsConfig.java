@@ -13,6 +13,7 @@ public class VtsConfig {
     private boolean App_ChucNangAdmin;
 
     private boolean App_NhanThongBao;
+    private boolean App_Camera;
 
     private int App_LocalDBVersion;
 
@@ -102,6 +103,14 @@ public class VtsConfig {
 
     public void setApp_NhanThongBao(boolean app_NhanThongBao) {
         App_NhanThongBao = app_NhanThongBao;
+    }
+
+    public boolean isApp_Camera() {
+        return App_Camera;
+    }
+
+    public void setApp_Camera(boolean app_Camera) {
+        App_Camera = app_Camera;
     }
 
     public int getApp_LocalDBVersion() {

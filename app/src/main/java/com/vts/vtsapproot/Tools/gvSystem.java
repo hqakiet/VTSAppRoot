@@ -63,6 +63,7 @@ public class gvSystem {
     public static boolean App_ChucNangAdmin = false;
 
     public static boolean App_NhanThongBao = false;
+    public static boolean App_Camera = false;
 
     public static int App_LocalDBVersion = 1;
 
@@ -97,6 +98,7 @@ public class gvSystem {
         App_ChucNangAdmin = config.isApp_ChucNangAdmin();
 
         App_NhanThongBao = config.isApp_NhanThongBao();
+        App_Camera = config.isApp_Camera();
 
         App_LocalDBVersion = config.getApp_LocalDBVersion();
 

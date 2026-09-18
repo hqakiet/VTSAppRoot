@@ -134,11 +134,13 @@ public class ActStart
         List<String> requiredPermissions = new ArrayList<>();
 
         // 1. Luôn yêu cầu quyền Camera
-        requiredPermissions.add(Manifest.permission.CAMERA);
+        if (gvSystem.App_Camera)
+            requiredPermissions.add(Manifest.permission.CAMERA);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requiredPermissions.add(Manifest.permission.POST_NOTIFICATIONS);
-        }
+        if (gvSystem.App_NhanThongBao)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requiredPermissions.add(Manifest.permission.POST_NOTIFICATIONS);
+            }
 
         // Kiểm tra xem có quyền nào chưa được cấp không
         List<String> missingPermissions = new ArrayList<>();

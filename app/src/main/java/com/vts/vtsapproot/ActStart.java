@@ -360,7 +360,10 @@ public class ActStart
         }
         Intent intent = null;
         if (App_FunctionConfigProvider != null) {
-            intent = App_FunctionConfigProvider.getMainActivityIntent(this, _NotiRemoteDB);
+            if (_NotiRemoteDB != null && !_NotiRemoteDB.isEmpty())
+                intent = App_FunctionConfigProvider.getMainActivityIntent(this, _NotiRemoteDB);
+            else
+                intent = App_FunctionConfigProvider.getMainActivityIntent(this);
         }
         if (intent != null) {
             startActivity(intent);

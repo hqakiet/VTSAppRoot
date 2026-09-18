@@ -121,6 +121,9 @@
     <string name="Com_Caption_PhotoFromGallery">Chọn từ bộ sưu tập</string>
     <string name="Com_Caption_PhotoCropper">Cắt ảnh</string>
 
+    <string name="Com_Caption_Thang">Tháng</string>
+
+
     <!--  ComData  -->
     <string name="BaseData_Caption_CongAdv">Tổng cộng</string>
     <string name="BaseData_Caption_KhoHang">Kho hàng</string>

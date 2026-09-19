@@ -39,11 +39,11 @@ public abstract class FragmentListBaseNoVm<
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (FloatingActionButton_Movable != null) {
-            restoreSharedPreferences(FloatingActionButton_Movable);
+            restoreSharedPreferences(FloatingActionButton_Movable,RecyclerView);
         }
         if (savedInstanceState != null) {
             if (FloatingActionButton_Movable != null) {
-                FloatingActionButton_Movable.postDelayed(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable), 100);
+                FloatingActionButton_Movable.postDelayed(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable, RecyclerView), 100);
             }
         }
     }
@@ -96,8 +96,8 @@ public abstract class FragmentListBaseNoVm<
             });
         }
         if (FloatingActionButton_Movable != null) {
-            restoreSharedPreferences(FloatingActionButton_Movable);
-            FloatingActionButton_Movable.postDelayed(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable), 100);
+            restoreSharedPreferences(FloatingActionButton_Movable, RecyclerView);
+            FloatingActionButton_Movable.postDelayed(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable, RecyclerView), 100);
             FloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
                 private static final int MAX_CLICK_DURATION = 200; // ms
                 private long startClickTime;

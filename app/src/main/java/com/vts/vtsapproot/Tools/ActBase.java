@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -21,16 +22,19 @@ import android.widget.PopupWindow;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.SystemBarStyle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 import com.vts.vtsapproot.API.Interfaces.BaseSingleProcessInterface;
 import com.vts.vtsapproot.API.Interfaces.DateFromToPickerInterface;
@@ -45,8 +49,7 @@ import java.util.Map;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public abstract class ActBase
-        extends FragmentActivity {
+public class ActBase extends AppCompatActivity {
 
     protected final MutableLiveData<CustomListEvents<?>> _CustomListEvents = new MutableLiveData<>();
     public boolean isLandscape;
@@ -63,7 +66,6 @@ public abstract class ActBase
         return _CustomListEvents;
     }
 
-    protected Insets MySystemBarInsets = Insets.of(0, 0, 0, 0);
     protected int MyBottomMenuHeight;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -72,15 +74,14 @@ public abstract class ActBase
         // chặn xoay
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // Bật EdgeToEdge nhưng để màu trong suốt để lộ màu nền Activity bên dưới
+        int mColor = ContextCompat.getColor(this, gvSystem.App_AutoProcessSystembarsBackColor);
         if (gvSystem.App_SystembarsIsDark) {
             EdgeToEdge.enable(
                     this,
-                    SystemBarStyle.dark(Color.TRANSPARENT),
-                    SystemBarStyle.dark(Color.TRANSPARENT)
+                    SystemBarStyle.dark(mColor),
+                    SystemBarStyle.dark(mColor)
             );
         } else {
-            int mColor = ContextCompat.getColor(this, gvSystem.App_AutoProcessSystembarsLightColor);
             EdgeToEdge.enable(
                     this,
                     SystemBarStyle.light(mColor, mColor),
@@ -110,12 +111,7 @@ public abstract class ActBase
             // 1. Vỏ app
             FrameLayout baseWrapper = new FrameLayout(this);
             baseWrapper.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-            int mColor;
-            if (gvSystem.App_SystembarsIsDark) {
-                mColor = ContextCompat.getColor(this, gvSystem.App_AutoProcessSystembarsDarkColor);
-            } else {
-                mColor = ContextCompat.getColor(this, gvSystem.App_AutoProcessSystembarsLightColor);
-            }
+            int mColor = ContextCompat.getColor(this, gvSystem.App_AutoProcessSystembarsBackColor);
             baseWrapper.setBackgroundColor(mColor);
 
             if (view != null && view.getBackground() == null) {
@@ -142,15 +138,11 @@ public abstract class ActBase
     protected void initSystemBarInsets(View pView) {
         WindowInsetsCompat rootInsets = ViewCompat.getRootWindowInsets(pView);
         if (rootInsets != null) {
-            MySystemBarInsets = rootInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            applyLayoutInsets(rootInsets.getInsets(WindowInsetsCompat.Type.systemBars()));
         } else {
-            // Fallback qua listener nếu lúc đó chưa có
-            ViewCompat.setOnApplyWindowInsetsListener(pView, (v, insets) -> {
-                MySystemBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-
-                applyLayoutInsets();
-
-                return WindowInsetsCompat.CONSUMED;
+            ViewCompat.setOnApplyWindowInsetsListener(pView, (v, windowInsets) -> {
+                applyLayoutInsets(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()));
+                return windowInsets;
             });
             ViewCompat.requestApplyInsets(pView);
         }
@@ -160,26 +152,21 @@ public abstract class ActBase
         ViewCompat.setOnApplyWindowInsetsListener(wrapper, (v, windowInsets) -> {
             Insets mInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
 
-            // TOP: Đẩy padding cho vỏ
             v.setPadding(0, mInsets.top, 0, 0);
 
-            // BOTTOM: Đẩy Margin cho ruột
-            // Ép kiểu chắc chắn về FrameLayout.LayoutParams
             if (content.getLayoutParams() instanceof FrameLayout.LayoutParams lp) {
                 lp.bottomMargin = mInsets.bottom; // NHẤC BỔNG NỘI DUNG
                 content.setLayoutParams(lp);
             }
 
-            applyLayoutInsets();
+            applyLayoutInsets(Insets.of(0, 0, 0, 0));
 
             return WindowInsetsCompat.CONSUMED;
         });
-
-        // Ép hệ thống phải gửi Insets ngay lập tức
         ViewCompat.requestApplyInsets(wrapper);
     }
 
-    protected void applyLayoutInsets() {
+    protected void applyLayoutInsets(Insets insets) {
     }
 
     @Override
@@ -598,112 +585,6 @@ public abstract class ActBase
 //        popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
     }
 
-    protected void setupMonthOnlyPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
-        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.inclay_base_singledateandtimepicker, null);
-        PopupWindow popupWindow = new PopupWindow(
-                view,
-                ((isLandscape || isLargeScreen || isXLargeScreen)
-                        ? ViewGroup.LayoutParams.WRAP_CONTENT
-                        : ViewGroup.LayoutParams.MATCH_PARENT), // Rộng
-                ViewGroup.LayoutParams.WRAP_CONTENT, // Cao
-                true // Cho phép bấm ra ngoài để đóng
-        );
-
-        SingleDateAndTimePicker singleDateAndTimePicker = view.findViewById(R.id.SingleDateAndTimePicker);
-        MaterialButton singleDateAndTimePicker_MaterialButton_NgayHienHanh = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_NgayHienHanh);
-        MaterialButton singleDateAndTimePicker_MaterialButton_OK = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_OK);
-
-        if (isLandscape || isLargeScreen || isXLargeScreen) {
-            MaterialTextView SingleDateAndTimePicker_MaterialTextView_Caption = view.findViewById(R.id.SingleDateAndTimePicker_MaterialTextView_Caption);
-            SingleDateAndTimePicker_MaterialTextView_Caption.setText(getText(R.string.Com_Title_ChonThang));
-            SingleDateAndTimePicker_MaterialTextView_Caption.setVisibility(View.VISIBLE);
-        }
-
-        singleDateAndTimePicker.setMinDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 1, 1));
-        singleDateAndTimePicker.setMaxDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 12, 31));
-
-        singleDateAndTimePicker.setDisplayHours(false);
-        singleDateAndTimePicker.setDisplayMinutes(false);
-        singleDateAndTimePicker.setDisplayDays(false);
-        singleDateAndTimePicker.setDisplayMonths(true);
-        singleDateAndTimePicker.setDisplayYears(false);
-        singleDateAndTimePicker.setDisplayDaysOfMonth(false);
-        singleDateAndTimePicker.setCurved(true);
-        singleDateAndTimePicker.setCyclic(true);
-        singleDateAndTimePicker.setTypeface(Typeface.DEFAULT_BOLD);
-
-        singleDateAndTimePicker.setDefaultDate(pInitDate);
-
-        singleDateAndTimePicker_MaterialButton_NgayHienHanh.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            singleDateAndTimePicker.selectDate(calendar);
-        });
-        singleDateAndTimePicker_MaterialButton_OK.setOnClickListener(v -> {
-            pPickedDate.DatePicked(singleDateAndTimePicker.getDate());
-            popupWindow.dismiss();
-        });
-
-        if (!gvSystem.getApp_TietKiemPin())
-            popupWindow.setAnimationStyle(android.R.style.Animation);
-        popupWindow.setElevation(10);
-
-        if (isLandscape || isLargeScreen || isXLargeScreen) {
-            popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-        } else {
-            popupWindow.showAsDropDown(anchorView, 0, 0);
-        }
-    }
-
-    protected void setupMonthOnlyDialogPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
-        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.inclay_base_singledateandtimepicker, null);
-        PopupWindow popupWindow = new PopupWindow(
-                view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, // Rộng
-                ViewGroup.LayoutParams.WRAP_CONTENT, // Cao
-                true // Cho phép bấm ra ngoài để đóng
-        );
-
-        SingleDateAndTimePicker singleDateAndTimePicker = view.findViewById(R.id.SingleDateAndTimePicker);
-        LinearLayout LinearLayout_SingleDateAndTimePicker = view.findViewById(R.id.LinearLayout_SingleDateAndTimePicker);
-        MaterialTextView SingleDateAndTimePicker_MaterialTextView_Caption = view.findViewById(R.id.SingleDateAndTimePicker_MaterialTextView_Caption);
-        MaterialButton singleDateAndTimePicker_MaterialButton_NgayHienHanh = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_NgayHienHanh);
-        MaterialButton singleDateAndTimePicker_MaterialButton_OK = view.findViewById(R.id.SingleDateAndTimePicker_MaterialButton_OK);
-
-        LinearLayout_SingleDateAndTimePicker.setBackgroundResource(R.drawable.bg_popup_menu2);
-
-        SingleDateAndTimePicker_MaterialTextView_Caption.setText(getText(R.string.Com_Title_ChonThang));
-        SingleDateAndTimePicker_MaterialTextView_Caption.setVisibility(View.VISIBLE);
-
-        singleDateAndTimePicker.setMinDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 1, 1));
-        singleDateAndTimePicker.setMaxDate(gvSystem.getDate(gvSystem.getYEARFromDate(pInitDate), 12, 31));
-
-        singleDateAndTimePicker.setDisplayHours(false);
-        singleDateAndTimePicker.setDisplayMinutes(false);
-        singleDateAndTimePicker.setDisplayDays(false);
-        singleDateAndTimePicker.setDisplayMonths(true);
-        singleDateAndTimePicker.setDisplayYears(false);
-        singleDateAndTimePicker.setDisplayDaysOfMonth(false);
-        singleDateAndTimePicker.setCurved(true);
-        singleDateAndTimePicker.setCyclic(true);
-        singleDateAndTimePicker.setTypeface(Typeface.DEFAULT_BOLD);
-
-        singleDateAndTimePicker.setDefaultDate(pInitDate);
-
-        singleDateAndTimePicker_MaterialButton_NgayHienHanh.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            singleDateAndTimePicker.selectDate(calendar);
-        });
-        singleDateAndTimePicker_MaterialButton_OK.setOnClickListener(v -> {
-            pPickedDate.DatePicked(singleDateAndTimePicker.getDate());
-            popupWindow.dismiss();
-        });
-
-        if (!gvSystem.getApp_TietKiemPin())
-            popupWindow.setAnimationStyle(android.R.style.Animation);
-        popupWindow.setElevation(10);
-
-        popupWindow.showAtLocation(anchorView, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-    }
 
     private void setupEnterSharedElementCallback() {
         if (!gvSystem.getApp_TietKiemPin() && My_TransitionObject != null && My_TransitionName != null && !My_TransitionName.isEmpty()) {
@@ -819,37 +700,146 @@ public abstract class ActBase
     }
 
 
-    protected void adjustFloatingButtonPositionWithAnimation(View mView) {
+    protected void setupSearchEvents(
+            MaterialButton pMaterialButton_Search,
+            LinearLayout pSearch_LinearLayout,
+            TextInputEditText pSearch_TextInputEditText_SearchContent,
+            MaterialButton pSearch_MaterialButton_ClearContent,
+            MaterialButton pSearch_MaterialButton_DoSearchContent,
+            FloatingActionButton pFloatingActionButton_Movable,
+            RecyclerView pRecyclerView
+    ) {
+        if (
+                pMaterialButton_Search != null
+                        && pSearch_LinearLayout != null
+                        && pSearch_TextInputEditText_SearchContent != null
+                        && pSearch_MaterialButton_ClearContent != null
+                        && pSearch_MaterialButton_DoSearchContent != null
+        ) {
+            pMaterialButton_Search.setVisibility(View.GONE);
+            pMaterialButton_Search.addOnCheckedChangeListener(
+                    (materialButton, b) -> {
+                        if (b) {
+                            pSearch_TextInputEditText_SearchContent.setEnabled(true);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pSearch_LinearLayout.setPivotY(0f);
+                                pSearch_LinearLayout.setAlpha(0f);
+
+                                pSearch_LinearLayout.setTranslationY(0f);
+                                pSearch_LinearLayout.setScaleY(0f);
+
+                                pSearch_LinearLayout.setVisibility(View.VISIBLE);
+                                pSearch_LinearLayout.post(
+                                        () -> pSearch_LinearLayout.animate()
+                                                .scaleY(1f)
+                                                .alpha(1f)
+                                                .setDuration(300)
+                                                .setInterpolator(new DecelerateInterpolator())
+                                                .withEndAction(
+                                                        () -> {
+                                                            if (pFloatingActionButton_Movable != null) {
+                                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                                            }
+                                                        }
+                                                )
+                                                .start()
+                                );
+                            } else {
+                                pSearch_LinearLayout.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+                            String oldValue = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                            pSearch_TextInputEditText_SearchContent.setText("");
+                            if (!oldValue.isEmpty()) {
+                                _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+                            }
+                            pSearch_TextInputEditText_SearchContent.setEnabled(false);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pSearch_LinearLayout.setPivotY(0f);
+
+                                pSearch_LinearLayout.animate()
+                                        .scaleY(0f)
+                                        .alpha(0f)
+                                        .setDuration(200)
+                                        .setInterpolator(new AccelerateInterpolator())
+                                        .withEndAction(() -> {
+                                            pSearch_LinearLayout.setVisibility(View.GONE);
+                                            pSearch_LinearLayout.setScaleY(1f);
+                                            if (pFloatingActionButton_Movable != null) {
+                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                            }
+                                        })
+                                        .start();
+                            } else {
+                                pSearch_LinearLayout.setVisibility(View.GONE);
+                            }
+
+                            InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(pSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                        }
+                    }
+            );
+            pSearch_MaterialButton_ClearContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    String oldValue = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                    pSearch_TextInputEditText_SearchContent.setText("");
+                    if (!oldValue.isEmpty()) {
+                        _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+                    }
+                }
+            });
+            pSearch_MaterialButton_DoSearchContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(pSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                    String searchContent = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                    _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTARTFILTER, searchContent));
+                }
+            });
+        }
+    }
+
+
+    protected void adjustFloatingButtonPositionWithAnimation(View mView, View paddingView) {
         if (mView != null) {
             mView.post(() -> {
                 View parent = (View) mView.getParent();
                 if (parent == null) return;
+                float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                if (paddingView != null) {
+                    paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
+                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
+                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                    paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
+                } else {
+                    paddingTop = 55f;
+                    paddingStart = 55f;
+                    paddingEnd = 55f;
+                    paddingBottom = 55f;
+                }
 
                 float parentWidth = (float) parent.getWidth();
                 float parentHeight = (float) parent.getHeight();
-                float padding = 55f;
-                float topLimit = padding
-                        + (MySystemBarInsets == null ? 0 : MySystemBarInsets.top);
-                float leftLimit = padding;
-                float rightLimit = (parentWidth - (float) mView.getWidth() - padding);
-                float bottomLimit = (parentHeight - (float) mView.getHeight() - padding)
-                        - (MySystemBarInsets == null ? 0 : MySystemBarInsets.bottom)
-                        - MyBottomMenuHeight;
+                float rightLimit = (parentWidth - (float) mView.getWidth() - paddingEnd);
+                float bottomLimit = (parentHeight - (float) mView.getHeight() - paddingBottom);
 
-                SharedPreferences prefs = getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
-                float savedX = prefs.getFloat("x", -1f);
-                float savedY = prefs.getFloat("y", parentHeight + 1f);
+                float savedX = mView.getX();
+                float savedY = mView.getY();
 
-                if (savedX < leftLimit || savedX > rightLimit || savedY < topLimit || savedY > bottomLimit) {
+                if (savedX < paddingStart || savedX > rightLimit || savedY < paddingTop || savedY > bottomLimit) {
                     float finalX;
                     if (savedX <= (parentWidth / 2f)) {
-                        finalX = leftLimit;
+                        finalX = paddingStart;
                     } else {
                         finalX = rightLimit;
                     }
 
                     float finalY = Math.max(
-                            topLimit,
+                            paddingTop,
                             Math.min(savedY, bottomLimit)
                     );
 
@@ -860,47 +850,101 @@ public abstract class ActBase
                             .setInterpolator(new DecelerateInterpolator())
                             .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
                             .start();
+                } else {
+                    saveSharedPreferences(mView, mView.getX(), mView.getY());
                 }
             });
         }
     }
 
     protected void saveSharedPreferences(View mView, float x, float y) {
-        if (mView != null) {
-            SharedPreferences prefs = getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putFloat("x", x);
-            editor.putFloat("y", y);
-            editor.apply();
-        }
+        if (mView == null) return;
+        SharedPreferences prefs = getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putFloat("x", x);
+        editor.putFloat("y", y);
+        editor.apply();
     }
 
-    protected void restoreSharedPreferences(View mView) {
-        if (mView != null) {
-            View parent = (View) mView.getParent();
-            if (parent == null) return;
+    protected void restoreSharedPreferences(View mView, View paddingView) {
+        if (mView == null) return;
+        View parent = (View) mView.getParent();
+        if (parent == null) return;
 
-            SharedPreferences prefs = getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
-            float x = prefs.getFloat("x", -1f); // Giá trị mặc định là -1
-            float y = prefs.getFloat("y", parent.getHeight() + 1f);
+        SharedPreferences prefs = getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
+        float savedX = prefs.getFloat("x", -1f); // Giá trị mặc định là -1
+        float savedY = prefs.getFloat("y", parent.getHeight() + 1f);
 
-            mView.post(() -> {
-                mView.setX(x);
-                mView.setY(y);
-            });
-        }
+        mView.post(
+                () -> {
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (paddingView != null) {
+                        paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
+                        paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                        paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+
+                    float parentWidth = (float) parent.getWidth();
+                    float parentHeight = (float) parent.getHeight();
+                    float rightLimit = (parentWidth - (float) mView.getWidth() - paddingEnd);
+                    float bottomLimit = (parentHeight - (float) mView.getHeight() - paddingBottom);
+
+                    if (savedX < paddingStart || savedX > rightLimit || savedY < paddingTop || savedY > bottomLimit) {
+                        float finalX;
+                        if (savedX <= (parentWidth / 2f)) {
+                            finalX = paddingStart;
+                        } else {
+                            finalX = rightLimit;
+                        }
+
+                        float finalY = Math.max(
+                                paddingTop,
+                                Math.min(savedY, bottomLimit)
+                        );
+
+                        mView.setX(finalX);
+                        mView.setY(finalY);
+
+//                        mView.animate()
+//                                .x(finalX)
+//                                .y(finalY)
+//                                .setDuration(200)
+//                                .setInterpolator(new DecelerateInterpolator())
+//                                .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
+//                                .start();
+                    }
+                    else {
+                        mView.setX(savedX);
+                        mView.setY(savedY);
+
+//                        mView.animate()
+//                                .x(savedX)
+//                                .y(savedY)
+//                                .setDuration(200)
+//                                .setInterpolator(new DecelerateInterpolator())
+//                                .start();
+                    }
+                }
+        );
     }
-
 
     protected Intent getIntentBroadcast(String pValue) {
         Intent mIntent = new Intent(pValue);
         mIntent.setPackage(getPackageName());
         return mIntent;
     }
+
     protected void DoRaiseBroadcast(String pValue) {
         Intent mIntent = getIntentBroadcast(pValue);
         sendBroadcast(mIntent);
     }
+
     protected void DoRaiseAccessTokenExpired() {
         DoRaiseBroadcast("AccessToken_Expired");
     }

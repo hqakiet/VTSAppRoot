@@ -63,7 +63,7 @@ public class FraAbout
         });
 
         FraAbout_TextView_AppVersion = mView.findViewById(R.id.FraAbout_TextView_AppVersion);
-//        FraAbout_TextView_AppVersion.setText(BuildConfig.VERSION_NAME);
+        FraAbout_TextView_AppVersion.setText(gvSystem.App_Version);
 
         FraAbout_ImageView_AppIcon = mView.findViewById(R.id.FraAbout_ImageView_AppIcon);
         FraAbout_ImageView_AppIcon.setOnLongClickListener(view -> {

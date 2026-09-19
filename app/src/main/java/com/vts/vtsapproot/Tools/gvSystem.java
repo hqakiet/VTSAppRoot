@@ -55,8 +55,11 @@ public class gvSystem {
     public static String App_LocalDBName = "app_default.db";
     public static boolean App_IsFromNotification = false;
 
+    public static String App_Version = "";
+
     public static boolean App_AutoProcessSystembars = true;
     public static boolean App_SystembarsIsDark = true;
+    public static int App_AutoProcessSystembarsBackColor = R.color.md_theme_primaryContainer;
     public static int App_AutoProcessSystembarsLightColor = R.color.md_theme_primaryContainer;
     public static int App_AutoProcessSystembarsDarkColor = R.color.md_theme_primaryContainer;
 

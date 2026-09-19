@@ -10,6 +10,12 @@ public class VtsConfig {
     private boolean App_AutoProcessSystembars;
     private boolean App_SystembarsIsDark;
 
+    private boolean App_Version;
+
+    private int App_AutoProcessSystembarsBackColor;
+    private int App_AutoProcessSystembarsLightColor;
+    private int App_AutoProcessSystembarsDarkColor;
+
     private boolean App_ChucNangAdmin;
 
     private boolean App_NhanThongBao;
@@ -159,5 +165,37 @@ public class VtsConfig {
 
     public void setApp_sysval_SOLETYLE(int app_sysval_SOLETYLE) {
         App_sysval_SOLETYLE = app_sysval_SOLETYLE;
+    }
+
+    public int getApp_AutoProcessSystembarsBackColor() {
+        return App_AutoProcessSystembarsBackColor;
+    }
+
+    public void setApp_AutoProcessSystembarsBackColor(int app_AutoProcessSystembarsBackColor) {
+        App_AutoProcessSystembarsBackColor = app_AutoProcessSystembarsBackColor;
+    }
+
+    public int getApp_AutoProcessSystembarsLightColor() {
+        return App_AutoProcessSystembarsLightColor;
+    }
+
+    public void setApp_AutoProcessSystembarsLightColor(int app_AutoProcessSystembarsLightColor) {
+        App_AutoProcessSystembarsLightColor = app_AutoProcessSystembarsLightColor;
+    }
+
+    public int getApp_AutoProcessSystembarsDarkColor() {
+        return App_AutoProcessSystembarsDarkColor;
+    }
+
+    public void setApp_AutoProcessSystembarsDarkColor(int app_AutoProcessSystembarsDarkColor) {
+        App_AutoProcessSystembarsDarkColor = app_AutoProcessSystembarsDarkColor;
+    }
+
+    public boolean isApp_Version() {
+        return App_Version;
+    }
+
+    public void setApp_Version(boolean app_Version) {
+        App_Version = app_Version;
     }
 }

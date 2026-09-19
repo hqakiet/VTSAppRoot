@@ -83,6 +83,8 @@ public class FraPrivacy
 //        } else {
             String finalHtml = loadHtmlWithAppName(requireContext(), "privacy.html");
             FraPrivacy_WebView_Content.getSettings().setJavaScriptEnabled(true);
+            FraPrivacy_WebView_Content.getSettings().setAllowFileAccess(true);
+            FraPrivacy_WebView_Content.getSettings().setDomStorageEnabled(true);
 
             FraPrivacy_WebView_Content.loadDataWithBaseURL(
                 "file:///android_asset/", // Đảm bảo WebView vẫn load được CSS/hình ảnh trong assets

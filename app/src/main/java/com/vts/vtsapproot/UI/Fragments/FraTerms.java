@@ -79,6 +79,8 @@ public class FraTerms
 //        } else {
             String finalHtml = gvSystem.loadHtmlWithAppName(requireContext(), "terms.html");
             FraTerm_WebView_Content.getSettings().setJavaScriptEnabled(true);
+            FraTerm_WebView_Content.getSettings().setAllowFileAccess(true);
+            FraTerm_WebView_Content.getSettings().setDomStorageEnabled(true);
             FraTerm_WebView_Content.loadDataWithBaseURL(
                     "file:///android_asset/",
                     finalHtml,

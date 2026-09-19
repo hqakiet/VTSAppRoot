@@ -2,19 +2,29 @@ package com.vts.vtsapproot.Tools;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.vts.vtsapproot.API.Interfaces.DateFromToPickerInterface;
 import com.vts.vtsapproot.API.Interfaces.DatePickerInterface;
 
@@ -30,22 +40,25 @@ public class FragmentBase
         return _CustomListEvents;
     }
 
+    protected int MyBottomMenuHeight;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        applyLayoutInsets(view);
+
+        if (gvSystem.App_AutoProcessSystembars) {
+            applyLayoutInsets(Insets.of(0, 0, 0, 0));
+        } else {
+            ViewCompat.setOnApplyWindowInsetsListener(view, (v, windowInsets) -> {
+                applyLayoutInsets(windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()));
+                return windowInsets;
+            });
+            ViewCompat.requestApplyInsets(view);
+        }
+
     }
 
-    protected Insets MySystemBarInsets() {
-        requireContext();
-        return  ((ActBase) requireContext()).MySystemBarInsets;
-    }
-    protected int MyBottomMenuHeight() {
-        requireContext();
-        return  ((ActBase) requireContext()).MyBottomMenuHeight;
-    }
-
-    protected void applyLayoutInsets(@NonNull View view) {
+    protected void applyLayoutInsets(Insets insets) {
 
     }
 
@@ -70,52 +83,162 @@ public class FragmentBase
         ((ActBase) getContext()).setupDateTimeDialogPicker(anchorView, pInitDate, pPickedDate);
     }
 
-    protected void setupMonthOnlyPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
-        if (getContext() == null) return;
-        ((ActBase) getContext()).setupMonthOnlyPicker(anchorView, pInitDate, pPickedDate);
-    }
-    protected void setupMonthOnlyDialogPicker(View anchorView, Date pInitDate, DatePickerInterface pPickedDate) {
-        if (getContext() == null) return;
-        ((ActBase) getContext()).setupMonthOnlyDialogPicker(anchorView, pInitDate, pPickedDate);
-    }
-
     protected void setupNgayTuanThangPicker(View anchorView, DateFromToPickerInterface pPickedDateFromTo) {
         if (getContext() == null) return;
         ((ActBase) getContext()).setupNgayTuanThangPicker(anchorView, pPickedDateFromTo);
     }
 
 
-    protected void adjustFloatingButtonPositionWithAnimation(View mView) {
+    protected void setupSearchEvents(
+            MaterialButton pMaterialButton_Search,
+            LinearLayout pSearch_LinearLayout,
+            TextInputEditText pSearch_TextInputEditText_SearchContent,
+            MaterialButton pSearch_MaterialButton_ClearContent,
+            MaterialButton pSearch_MaterialButton_DoSearchContent,
+            FloatingActionButton pFloatingActionButton_Movable,
+            RecyclerView pRecyclerView
+    ) {
+        requireContext();
+        if (getContext() == null) return;
+        if (
+                pMaterialButton_Search != null
+                        && pSearch_LinearLayout != null
+                        && pSearch_TextInputEditText_SearchContent != null
+                        && pSearch_MaterialButton_ClearContent != null
+                        && pSearch_MaterialButton_DoSearchContent != null
+        ) {
+            pMaterialButton_Search.setVisibility(View.GONE);
+            pMaterialButton_Search.addOnCheckedChangeListener(
+                    (materialButton, b) -> {
+                        if (b) {
+                            pSearch_TextInputEditText_SearchContent.setEnabled(true);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pSearch_LinearLayout.setPivotY(0f);
+                                pSearch_LinearLayout.setAlpha(0f);
+
+                                pSearch_LinearLayout.setTranslationY(0f);
+                                pSearch_LinearLayout.setScaleY(0f);
+
+                                pSearch_LinearLayout.setVisibility(View.VISIBLE);
+                                pSearch_LinearLayout.post(
+                                        () -> pSearch_LinearLayout.animate()
+                                                .scaleY(1f)
+                                                .alpha(1f)
+                                                .setDuration(300)
+                                                .setInterpolator(new DecelerateInterpolator())
+                                                .withEndAction(
+                                                        () -> {
+                                                            if (pFloatingActionButton_Movable != null) {
+                                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                                            }
+                                                        }
+                                                )
+                                                .start()
+                                );
+                            } else {
+                                pSearch_LinearLayout.setVisibility(View.VISIBLE);
+                                if (pFloatingActionButton_Movable != null) {
+                                    pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                }
+                            }
+                        } else {
+                            String oldValue = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                            pSearch_TextInputEditText_SearchContent.setText("");
+                            if (!oldValue.isEmpty()) {
+                                _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+                            }
+                            pSearch_TextInputEditText_SearchContent.setEnabled(false);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pSearch_LinearLayout.setPivotY(0f);
+
+                                pSearch_LinearLayout.animate()
+                                        .scaleY(0f)
+                                        .alpha(0f)
+                                        .setDuration(200)
+                                        .setInterpolator(new AccelerateInterpolator())
+                                        .withEndAction(() -> {
+                                            pSearch_LinearLayout.setVisibility(View.GONE);
+                                            pSearch_LinearLayout.setScaleY(1f);
+                                            if (pFloatingActionButton_Movable != null) {
+                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                            }
+                                        })
+                                        .start();
+                            } else {
+                                pSearch_LinearLayout.setVisibility(View.GONE);
+                                if (pFloatingActionButton_Movable != null) {
+                                    pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                }
+                            }
+
+                            InputMethodManager imm = (InputMethodManager) requireContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(pSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                        }
+                    }
+            );
+            pSearch_MaterialButton_ClearContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    String oldValue = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                    pSearch_TextInputEditText_SearchContent.setText("");
+                    if (!oldValue.isEmpty()) {
+                        _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+                    }
+                }
+            });
+            pSearch_MaterialButton_DoSearchContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    InputMethodManager imm = (InputMethodManager) requireContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(pSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                    String searchContent = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                    _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTARTFILTER, searchContent));
+                }
+            });
+        }
+    }
+
+
+    protected void adjustFloatingButtonPositionWithAnimation(View mView, View paddingView) {
+        requireContext();
+        if (getContext() == null) return;
         if (mView != null) {
             mView.post(() -> {
                 View parent = (View) mView.getParent();
                 if (parent == null) return;
+                float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                if (paddingView != null) {
+                    paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
+                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
+                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                    paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
+                } else {
+                    paddingTop = 55f;
+                    paddingStart = 55f;
+                    paddingEnd = 55f;
+                    paddingBottom = 55f;
+                }
 
                 float parentWidth = (float) parent.getWidth();
                 float parentHeight = (float) parent.getHeight();
-                float padding = 55f;
-                float topLimit = padding
-                        + (MySystemBarInsets() == null ? 0 : MySystemBarInsets().top);
-                float leftLimit = padding;
-                float rightLimit = (parentWidth - (float) mView.getWidth() - padding);
-                float bottomLimit = (parentHeight - (float) mView.getHeight() - padding)
-                        - (MySystemBarInsets() == null ? 0 : MySystemBarInsets().bottom)
-                        - MyBottomMenuHeight();
+                float rightLimit = (parentWidth - (float) mView.getWidth() - paddingEnd);
+                float bottomLimit = (parentHeight - (float) mView.getHeight() - paddingBottom);
 
-                SharedPreferences prefs = requireContext().getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
-                float savedX = prefs.getFloat("x", -1f);
-                float savedY = prefs.getFloat("y", parentHeight + 1f);
+                float savedX = mView.getX();
+                float savedY = mView.getY();
 
-                if (savedX < leftLimit || savedX > rightLimit || savedY < topLimit || savedY > bottomLimit) {
+                if (savedX < paddingStart || savedX > rightLimit || savedY < paddingTop || savedY > bottomLimit) {
                     float finalX;
                     if (savedX <= (parentWidth / 2f)) {
-                        finalX = leftLimit;
+                        finalX = paddingStart;
                     } else {
                         finalX = rightLimit;
                     }
 
                     float finalY = Math.max(
-                            topLimit,
+                            paddingTop,
                             Math.min(savedY, bottomLimit)
                     );
 
@@ -126,6 +249,8 @@ public class FragmentBase
                             .setInterpolator(new DecelerateInterpolator())
                             .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
                             .start();
+                } else {
+                    saveSharedPreferences(mView, mView.getX(), mView.getY());
                 }
             });
         }
@@ -133,6 +258,7 @@ public class FragmentBase
 
     protected void saveSharedPreferences(View mView, float x, float y) {
         requireContext();
+        if (getContext() == null) return;
         if (mView == null) return;
         SharedPreferences prefs = requireContext().getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -141,20 +267,73 @@ public class FragmentBase
         editor.apply();
     }
 
-    protected void restoreSharedPreferences(View mView) {
+    protected void restoreSharedPreferences(View mView, View paddingView) {
         requireContext();
+        if (getContext() == null) return;
         if (mView == null) return;
         View parent = (View) mView.getParent();
         if (parent == null) return;
 
         SharedPreferences prefs = requireContext().getSharedPreferences(this.getClass().getName() + "." + mView.getId(), MODE_PRIVATE);
-        float x = prefs.getFloat("x", -1f); // Giá trị mặc định là -1
-        float y = prefs.getFloat("y", parent.getHeight() + 1f);
+        float savedX = prefs.getFloat("x", -1f); // Giá trị mặc định là -1
+        float savedY = prefs.getFloat("y", parent.getHeight() + 1f);
 
-        mView.post(() -> {
-            mView.setX(x);
-            mView.setY(y);
-        });
+        mView.post(
+                () -> {
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (paddingView != null) {
+                        paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
+                        paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                        paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+
+                    float parentWidth = (float) parent.getWidth();
+                    float parentHeight = (float) parent.getHeight();
+                    float rightLimit = (parentWidth - (float) mView.getWidth() - paddingEnd);
+                    float bottomLimit = (parentHeight - (float) mView.getHeight() - paddingBottom);
+
+                    if (savedX < paddingStart || savedX > rightLimit || savedY < paddingTop || savedY > bottomLimit) {
+                        float finalX;
+                        if (savedX <= (parentWidth / 2f)) {
+                            finalX = paddingStart;
+                        } else {
+                            finalX = rightLimit;
+                        }
+
+                        float finalY = Math.max(
+                                paddingTop,
+                                Math.min(savedY, bottomLimit)
+                        );
+
+                        mView.setX(finalX);
+                        mView.setY(finalY);
+
+//                        mView.animate()
+//                                .x(finalX)
+//                                .y(finalY)
+//                                .setDuration(200)
+//                                .setInterpolator(new DecelerateInterpolator())
+//                                .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
+//                                .start();
+                    } else {
+                        mView.setX(savedX);
+                        mView.setY(savedY);
+
+//                        mView.animate()
+//                                .x(savedX)
+//                                .y(savedY)
+//                                .setDuration(200)
+//                                .setInterpolator(new DecelerateInterpolator())
+//                                .start();
+                    }
+                }
+        );
     }
 
     protected Intent getIntentBroadcast(String pValue) {
@@ -163,12 +342,11 @@ public class FragmentBase
         return mIntent;
     }
     protected void DoRaiseBroadcast(String pValue) {
-        Intent mIntent = getIntentBroadcast("AccessToken_Expired");
+        Intent mIntent = getIntentBroadcast(pValue);
         requireContext().sendBroadcast(mIntent);
     }
     protected void DoRaiseAccessTokenExpired() {
         DoRaiseBroadcast("AccessToken_Expired");
     }
-
 
 }

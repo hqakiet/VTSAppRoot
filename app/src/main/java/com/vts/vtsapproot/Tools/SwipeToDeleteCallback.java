@@ -74,7 +74,7 @@ abstract public class SwipeToDeleteCallback
             return;
         }
 
-        // 1. VẼ NỀN
+        // 1. VẼ NỀN (Vẽ dôi ra 50px để che phủ tốt hơn khi vuốt nhanh)
         mBackground.setColor(backgroundColor);
         mBackground.setCornerRadius(cornerRadius);
         mBackground.setBounds(
@@ -85,27 +85,25 @@ abstract public class SwipeToDeleteCallback
         );
         mBackground.draw(c);
 
-        // 2. TÍNH TOÁN KÍCH THƯỚC ICON DỰA TRÊN CHIỀU CAO ITEM
-        // Ví dụ: Chiều cao gốc của icon khi hiển thị tối đa = 40% chiều cao item
-        int targetIconHeight = (int) (itemHeight * 0.8f);
-        // Tính chiều rộng tương ứng để giữ nguyên tỷ lệ (aspect ratio) của icon gốc
-        int targetIconWidth = (int) (targetIconHeight * ((float) intrinsicWidth / intrinsicHeight));
+        // 2. TÍNH TOÁN HIỆU ỨNG ICON (ALPHA & SCALE)
+        int deleteIconMargin = (itemHeight - intrinsicHeight) / 2;
 
-        // 3. TÍNH TOÁN HIỆU ỨNG ICON (ALPHA & SCALE)
+        // Ngưỡng để icon hiện rõ 100% (ví dụ khi vuốt được 1/2 item)
         float threshold = (float) itemView.getWidth() / 2;
         float alphaRatio = Math.abs(dX) / threshold;
         if (alphaRatio > 1f) alphaRatio = 1f;
 
+        // Thiết lập Alpha (0 - 255)
         deleteDrawable.setAlpha((int) (alphaRatio * 255));
 
-        int deleteIconMargin = (itemHeight - targetIconHeight) / 2;
-        int iconCenterX = itemView.getRight() - deleteIconMargin - (targetIconWidth / 2);
+        // Tính toán tọa độ tâm của Icon
+        int iconCenterX = itemView.getRight() - deleteIconMargin - (intrinsicWidth / 2);
         int iconCenterY = itemView.getTop() + (itemHeight / 2);
 
-        // Hiệu ứng Scale dựa trên kích thước mới đã tính theo itemHeight
+        // Hiệu ứng Scale: Icon to dần từ 0.6 -> 1.0
         float scaleFactor = 0.1f + (0.9f * alphaRatio);
-        int finalWidth = (int) (targetIconWidth * scaleFactor);
-        int finalHeight = (int) (targetIconHeight * scaleFactor);
+        int finalWidth = (int) (intrinsicWidth * scaleFactor);
+        int finalHeight = (int) (intrinsicHeight * scaleFactor);
 
         deleteDrawable.setBounds(
                 iconCenterX - (finalWidth / 2),
@@ -116,78 +114,18 @@ abstract public class SwipeToDeleteCallback
 
         deleteDrawable.draw(c);
 
-        // 4. ĐỘ MỜ CỦA ITEM KHI VUỐT
+        // Tính toán độ mờ (alpha) dựa trên quãng đường vuốt (dX)
+        // Càng vuốt ra xa, item càng mờ đi (từ 1.0 giảm dần về 0.2)
         float maxSwipeDistance = itemView.getWidth();
         float alpha = 1.0f - (Math.abs(dX) / maxSwipeDistance);
         if (alpha < 0.2f) {
-            alpha = 0.2f;
+            alpha = 0.2f; // Giữ độ mờ tối thiểu để không biến mất hoàn toàn
         }
+
+        // Áp dụng trực tiếp alpha lên item đang vuốt
         itemView.setAlpha(alpha);
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-
-//        View itemView = viewHolder.itemView;
-//        int itemHeight = itemView.getHeight();
-//        boolean isCancelled = dX == 0 && !isCurrentlyActive;
-//
-//        if (isCancelled) {
-//            clearCanvas(c, itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
-//            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-//            return;
-//        }
-//
-//        // 1. VẼ NỀN (Vẽ dôi ra 50px để che phủ tốt hơn khi vuốt nhanh)
-//        mBackground.setColor(backgroundColor);
-//        mBackground.setCornerRadius(cornerRadius);
-//        mBackground.setBounds(
-//                itemView.getRight() + (int) dX - 50,
-//                itemView.getTop(),
-//                itemView.getRight(),
-//                itemView.getBottom()
-//        );
-//        mBackground.draw(c);
-//
-//        // 2. TÍNH TOÁN HIỆU ỨNG ICON (ALPHA & SCALE)
-//        int deleteIconMargin = (itemHeight - intrinsicHeight) / 2;
-//
-//        // Ngưỡng để icon hiện rõ 100% (ví dụ khi vuốt được 1/2 item)
-//        float threshold = (float) itemView.getWidth() / 2;
-//        float alphaRatio = Math.abs(dX) / threshold;
-//        if (alphaRatio > 1f) alphaRatio = 1f;
-//
-//        // Thiết lập Alpha (0 - 255)
-//        deleteDrawable.setAlpha((int) (alphaRatio * 255));
-//
-//        // Tính toán tọa độ tâm của Icon
-//        int iconCenterX = itemView.getRight() - deleteIconMargin - (intrinsicWidth / 2);
-//        int iconCenterY = itemView.getTop() + (itemHeight / 2);
-//
-//        // Hiệu ứng Scale: Icon to dần từ 0.6 -> 1.0
-//        float scaleFactor = 0.1f + (0.9f * alphaRatio);
-//        int finalWidth = (int) (intrinsicWidth * scaleFactor);
-//        int finalHeight = (int) (intrinsicHeight * scaleFactor);
-//
-//        deleteDrawable.setBounds(
-//                iconCenterX - (finalWidth / 2),
-//                iconCenterY - (finalHeight / 2),
-//                iconCenterX + (finalWidth / 2),
-//                iconCenterY + (finalHeight / 2)
-//        );
-//
-//        deleteDrawable.draw(c);
-//
-//        // Tính toán độ mờ (alpha) dựa trên quãng đường vuốt (dX)
-//        // Càng vuốt ra xa, item càng mờ đi (từ 1.0 giảm dần về 0.2)
-//        float maxSwipeDistance = itemView.getWidth();
-//        float alpha = 1.0f - (Math.abs(dX) / maxSwipeDistance);
-//        if (alpha < 0.2f) {
-//            alpha = 0.2f; // Giữ độ mờ tối thiểu để không biến mất hoàn toàn
-//        }
-//
-//        // Áp dụng trực tiếp alpha lên item đang vuốt
-//        itemView.setAlpha(alpha);
-//
-//        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
     private void clearCanvas(Canvas c, Float left, Float top, Float right, Float bottom) {

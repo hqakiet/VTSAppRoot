@@ -20,6 +20,7 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
     private String MaChucNang;
     private String TenChucNang;
     private String Caption;
+    private String Title;
     private String GhiChu;
     private boolean ALLOW_VISIBLE;
     private boolean ALLOW_VIEW;
@@ -56,6 +57,14 @@ public class ResModDetail_DanhSachChucNang implements Serializable {
 
     public void setCaption(String caption) {
         Caption = caption;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
     }
 
     public int getTextColorResId() {

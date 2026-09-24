@@ -192,29 +192,6 @@
     <string name="Com_Message__ClearImage_Phieu_GiaCong">Xóa dữ liệu hình ở vị trí này sẽ xóa kèm các dữ liệu hình ảnh phía bên dưới. Bạn có muốn tiếp tục không?</string>
 
 
-    <!--  FraData  -->
-    <string name="FraData_WeightBill">Phiếu cân xe</string>
-
-    <!--  FraThongBao  -->
-    <string name="FraThongBao_MarkAllRead">Đánh dấu đã đọc tất cả</string>
-    <string name="FraThongBao_DeleteAll">Xóa tất cả</string>
-    <string name="FraThongBao_ListItem_SoPhieu">Số:</string>
-    <string name="FraThongBao_ListItem_Ngay">Ngày:</string>
-    <string name="FraThongBao_ListItem_XeNgoai">Xe ngoài:</string>
-    <string name="FraThongBao_ListItem_SoXe">Số xe:</string>
-    <string name="FraThongBao_ListItem_NgayPhieu">Ngày phiếu:</string>">
-    <string name="FraThongBao_ListItem_TaiXe">Tài xế:</string>
-    <string name="FraThongBao_ListItem_HangHoa">Hàng nhận:</string>
-    <string name="FraThongBao_ListItem_TrongLuong">Số lượng:</string>
-    <string name="FraThongBao_ListItem_TrongLuong_Unit">KG</string>
-    <string name="FraThongBao_ListItem_HangHoaGC">Hàng nhận:</string>
-    <string name="FraThongBao_ListItem_TrongLuongGC">Số lượng:</string>
-    <string name="FraThongBao_ListItem_TrongLuongGC_Unit">KG</string>
-    <string name="FraThongBao_ListItem_HangHoaTV">Hàng nhận:</string>
-    <string name="FraThongBao_ListItem_TrongLuongTV">Số lượng:</string>
-    <string name="FraThongBao_ListItem_TrongLuongTV_Unit">KG</string>
-    <string name="FraThongBao_ListItem_KhachHang">Khách hàng:</string>
-
     <!--  ActSetting  -->
     <string name="FraSetting_Title">Cài đặt</string>
 
@@ -239,24 +216,6 @@
     <string name="FraSetting_TextView_HienThiThongKeHangGiao">Hiện thống kê hàng giao</string>
     <string name="FraSetting_TextView_HienThiThongKeHangGiao_HomNay">Hôm nay</string>
     <string name="FraSetting_TextView_HienThiThongKeHangGiao_TuanNay">Tuần này</string>
-
-    <string name="FraSetting_TextView_SysInforGroup">Giá trị hệ thống</string>
-    <string name="FraSetting_CommonLimitPickedData_Helper">Số lượng mã hàng tối đa lưu trữ cho truy vấn tồn kho</string>
-    <string name="FraSetting_Caption_Number_1">1</string>
-    <string name="FraSetting_Caption_Number_20">20</string>
-    <string name="FraSetting_FirstPageSize_Helper">Số dòng dữ liệu hiển thị trang đầu tiên</string>
-    <string name="FraSetting_Caption_Number_1000">1.000</string>
-    <string name="FraSetting_Caption_Number_10000">10.000</string>
-    <string name="FraSetting_NextPageSize_Helper">Số dòng dữ liệu hiển thị mỗi trang kế tiếp</string>
-    <string name="FraSetting_Caption_Number_100">100</string>
-    <string name="FraSetting_Caption_Number_2000">2.000</string>
-
-    <string name="FraSetting_HoTroQuetMa">Các loại mã vạch hỗ trợ nhận dạng</string>
-    <string name="FraSetting_TextView_UsingEAN8">Sử dụng mã EAN8</string>
-    <string name="FraSetting_TextView_UsingEAN13">Sử dụng mã EAN13</string>
-    <string name="FraSetting_TextView_UsingCode128">Sử dụng mã CODE128</string>
-    <string name="FraSetting_TextView_UsingQrCode">Sử dụng mã QR-Code</string>
-
 
     <!--  ActPassCode  -->
     <string name="ActPasscode_Title">Ứng dụng đã được bảo vệ</string>
@@ -294,6 +253,7 @@
     <string name="ActSetPassCode_EditText_OldPassword_Helper5">Số thứ 5</string>
     <string name="ActSetPassCode_EditText_OldPassword_Hint6">Số thứ 6</string>
     <string name="ActSetPassCode_EditText_OldPassword_Helper6">Số thứ 6</string>
+
     <!--  ActLogin  -->
     <string name="ActLogin_Title">Đăng nhập ứng dụng</string>
     <string name="ActLogin_TextView_Account_Hint">Tài khoản</string>

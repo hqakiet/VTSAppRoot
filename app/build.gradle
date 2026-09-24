@@ -6,10 +6,13 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile = file('D:\\Working\\Projects\\Android\\KeyStores\\MyKey.jks')
-            storePassword = '171719150'
-            keyPassword = '171719150'
-            keyAlias = 'MainKey'
+            def kFile = file('D:\\Working\\Projects\\Android\\KeyStores\\MyKey.jks')
+            if (kFile.exists()) {
+                storeFile = kFile
+                storePassword = '171719150'
+                keyPassword = '171719150'
+                keyAlias = 'MainKey'
+            }
         }
     }
     namespace 'com.vts.vtsapproot'
@@ -41,10 +44,27 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    publishing {
+        singleVariant('release')
+    }
+
     allprojects {
         tasks.withType(JavaCompile).tap {
             configureEach {
                 options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.vts.vtsapproot'
+                artifactId = 'vtsapproot'
+                version = android.defaultConfig.versionName
             }
         }
     }

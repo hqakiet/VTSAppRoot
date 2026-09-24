@@ -53,6 +53,7 @@ public class ActStart
 
     MaterialTextView ActStart_MaterialTextView_ProcessInfor;
     private String _NotiRemoteDB = null;
+    private String _NotiMsgType = null;
 
     // Launcher mới hỗ trợ xin NHIỀU quyền cùng lúc
     private final ActivityResultLauncher<String[]> requestPermissionsLauncher =
@@ -73,7 +74,7 @@ public class ActStart
     private void handleIntent(Intent intent) {
         if (intent == null) return;
         _NotiRemoteDB = intent.getStringExtra("EXTRA_REMOTE_DB");
-        String _NotiMsgType = intent.getStringExtra("EXTRA_MSG_TYPE");
+        _NotiMsgType = intent.getStringExtra("EXTRA_MSG_TYPE");
     }
 
     @Override

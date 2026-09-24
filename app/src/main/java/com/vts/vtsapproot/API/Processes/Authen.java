@@ -42,11 +42,8 @@ public class Authen {
                         if (mResponseModel.getDataError() == 0) {
                             gvSystem.setApp_AccessToken(mResponseModel.getTKN() == null ? "" : mResponseModel.getTKN());
                             gvSystem.setApp_RefreshToken(mResponseModel.getRTKN() == null ? "" : mResponseModel.getRTKN());
-
                             gvSystem.setApp_GoogleAccount(gvSystem.App_GoogleSignInAccount.getEmail());
-
                             gvSystem.setApp_IsReleaseTest(mResponseModel.isReleaseTest());
-
                             gvSystem.setApp_BasicAuthenLogIn(false);
                             gvSystem.setApp_CurrentAccount(null);
                             gvSystem.setApp_CurrentPassword(null);

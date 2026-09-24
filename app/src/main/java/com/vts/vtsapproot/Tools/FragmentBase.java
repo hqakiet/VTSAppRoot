@@ -2,13 +2,16 @@ package com.vts.vtsapproot.Tools;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
@@ -17,10 +20,12 @@ import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,10 +33,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.vts.vtsapproot.API.Interfaces.DateFromToPickerInterface;
 import com.vts.vtsapproot.API.Interfaces.DatePickerInterface;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class FragmentBase
         extends Fragment {
+
 
     protected final MutableLiveData<CustomListEvents<?>> _CustomListEvents = new MutableLiveData<>();
     protected boolean My_AllowLayoutAnimation = true;
@@ -95,8 +102,7 @@ public class FragmentBase
             TextInputEditText pSearch_TextInputEditText_SearchContent,
             MaterialButton pSearch_MaterialButton_ClearContent,
             MaterialButton pSearch_MaterialButton_DoSearchContent,
-            FloatingActionButton pFloatingActionButton_Movable,
-            RecyclerView pRecyclerView
+            Runnable runnable
     ) {
         requireContext();
         if (getContext() == null) return;
@@ -129,8 +135,8 @@ public class FragmentBase
                                                 .setInterpolator(new DecelerateInterpolator())
                                                 .withEndAction(
                                                         () -> {
-                                                            if (pFloatingActionButton_Movable != null) {
-                                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                                            if (runnable != null) {
+                                                                runnable.run();
                                                             }
                                                         }
                                                 )
@@ -138,8 +144,8 @@ public class FragmentBase
                                 );
                             } else {
                                 pSearch_LinearLayout.setVisibility(View.VISIBLE);
-                                if (pFloatingActionButton_Movable != null) {
-                                    pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                if (runnable != null) {
+                                    runnable.run();
                                 }
                             }
                         } else {
@@ -161,15 +167,15 @@ public class FragmentBase
                                         .withEndAction(() -> {
                                             pSearch_LinearLayout.setVisibility(View.GONE);
                                             pSearch_LinearLayout.setScaleY(1f);
-                                            if (pFloatingActionButton_Movable != null) {
-                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                            if (runnable != null) {
+                                                runnable.run();
                                             }
                                         })
                                         .start();
                             } else {
                                 pSearch_LinearLayout.setVisibility(View.GONE);
-                                if (pFloatingActionButton_Movable != null) {
-                                    pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                if (runnable != null) {
+                                    runnable.run();
                                 }
                             }
 
@@ -200,6 +206,200 @@ public class FragmentBase
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    protected void setupFloatingActionButton(
+            FloatingActionButton pFloatingActionButton_Movable,
+            SwipeRefreshLayout pSwipeRefreshLayout,
+            RecyclerView pRecyclerView,
+            View pPaddingView
+    ) {
+        requireContext();
+        if (getContext() == null) return;
+        if (pFloatingActionButton_Movable != null) {
+            pFloatingActionButton_Movable.post(() -> restoreSharedPreferences(pFloatingActionButton_Movable, pRecyclerView));
+            pFloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
+                private static final int MAX_CLICK_DURATION = 200; // ms
+                private long startClickTime;
+                private float dX, dY;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    View parent = (View) view.getParent();
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (pPaddingView != null) {
+                        paddingTop = Math.max(55f, (float) pPaddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) pPaddingView.getPaddingStart());
+                        paddingEnd = Math.max(55f, (float) pPaddingView.getPaddingEnd());
+                        paddingBottom = Math.max(55f, (float) pPaddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            startClickTime = Calendar.getInstance().getTimeInMillis();
+                            dX = view.getX() - event.getRawX();
+                            dY = view.getY() - event.getRawY();
+                            break;
+
+                        case MotionEvent.ACTION_MOVE:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            float newX = event.getRawX() + dX;
+                            float newY = event.getRawY() + dY;
+
+                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
+                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
+                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
+
+                            view.animate().x(newX).y(newY).setDuration(0).start();
+
+                            break;
+
+                        case MotionEvent.ACTION_UP:
+                            if (pSwipeRefreshLayout != null) {
+                                if (pRecyclerView != null) {
+                                    pSwipeRefreshLayout.setEnabled(!pRecyclerView.canScrollVertically(-1));
+                                }
+                            }
+
+                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+
+                            if (clickDuration < MAX_CLICK_DURATION) {
+                                view.performClick();
+                            } else {
+                                float finalX;
+                                float finalY = view.getY();
+
+                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
+                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
+                                    finalX = paddingStart; // Hút về cạnh trái
+                                } else {
+                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
+                                }
+
+                                view.animate()
+                                        .x(finalX)
+                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
+                                        .setInterpolator(new OvershootInterpolator(0.8f))
+                                        .withEndAction(() -> {
+                                            // Lưu lại vị trí chuẩn sau khi đã neo
+                                            saveSharedPreferences(pFloatingActionButton_Movable, finalX, finalY);
+                                        })
+                                        .start();
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    protected void setupFloatingActionButton(
+            FloatingActionButton pFloatingActionButton_Movable,
+            SwipeRefreshLayout pSwipeRefreshLayout,
+            NestedScrollView pNestedScrollView,
+            View pPaddingView
+    ) {
+        if (pFloatingActionButton_Movable != null) {
+            pFloatingActionButton_Movable.post(() -> restoreSharedPreferences(pFloatingActionButton_Movable, pNestedScrollView));
+            pFloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
+                private static final int MAX_CLICK_DURATION = 200; // ms
+                private long startClickTime;
+                private float dX, dY;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    View parent = (View) view.getParent();
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (pPaddingView != null) {
+                        paddingTop = Math.max(55f, (float) pPaddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) pPaddingView.getPaddingStart());
+                        paddingEnd = Math.max(55f, (float) pPaddingView.getPaddingEnd());
+                        paddingBottom = Math.max(55f, (float) pPaddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            startClickTime = Calendar.getInstance().getTimeInMillis();
+                            dX = view.getX() - event.getRawX();
+                            dY = view.getY() - event.getRawY();
+                            break;
+
+                        case MotionEvent.ACTION_MOVE:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            float newX = event.getRawX() + dX;
+                            float newY = event.getRawY() + dY;
+
+                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
+                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
+                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
+
+                            view.animate().x(newX).y(newY).setDuration(0).start();
+
+                            break;
+
+                        case MotionEvent.ACTION_UP:
+                            if (pSwipeRefreshLayout != null) {
+                                if (pNestedScrollView != null) {
+                                    pSwipeRefreshLayout.setEnabled(!pNestedScrollView.canScrollVertically(-1));
+                                }
+                            }
+
+                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+
+                            if (clickDuration < MAX_CLICK_DURATION) {
+                                view.performClick();
+                            } else {
+                                float finalX;
+                                float finalY = view.getY();
+
+                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
+                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
+                                    finalX = paddingStart; // Hút về cạnh trái
+                                } else {
+                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
+                                }
+
+                                view.animate()
+                                        .x(finalX)
+                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
+                                        .setInterpolator(new OvershootInterpolator(0.8f))
+                                        .withEndAction(() -> {
+                                            // Lưu lại vị trí chuẩn sau khi đã neo
+                                            saveSharedPreferences(pFloatingActionButton_Movable, finalX, finalY);
+                                        })
+                                        .start();
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+    }
+
 
     protected void adjustFloatingButtonPositionWithAnimation(View mView, View paddingView) {
         requireContext();
@@ -211,8 +411,8 @@ public class FragmentBase
                 float paddingTop, paddingStart, paddingEnd, paddingBottom;
                 if (paddingView != null) {
                     paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
-                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
-                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart());
+                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd());
                     paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
                 } else {
                     paddingTop = 55f;
@@ -283,8 +483,8 @@ public class FragmentBase
                     float paddingTop, paddingStart, paddingEnd, paddingBottom;
                     if (paddingView != null) {
                         paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
-                        paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
-                        paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                        paddingStart = Math.max(55f, (float) paddingView.getPaddingStart());
+                        paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd());
                         paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
                     } else {
                         paddingTop = 55f;
@@ -313,38 +513,26 @@ public class FragmentBase
 
                         mView.setX(finalX);
                         mView.setY(finalY);
-
-//                        mView.animate()
-//                                .x(finalX)
-//                                .y(finalY)
-//                                .setDuration(200)
-//                                .setInterpolator(new DecelerateInterpolator())
-//                                .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
-//                                .start();
                     } else {
                         mView.setX(savedX);
                         mView.setY(savedY);
-
-//                        mView.animate()
-//                                .x(savedX)
-//                                .y(savedY)
-//                                .setDuration(200)
-//                                .setInterpolator(new DecelerateInterpolator())
-//                                .start();
                     }
                 }
         );
     }
+
 
     protected Intent getIntentBroadcast(String pValue) {
         Intent mIntent = new Intent(pValue);
         mIntent.setPackage(requireContext().getPackageName());
         return mIntent;
     }
+
     protected void DoRaiseBroadcast(String pValue) {
         Intent mIntent = getIntentBroadcast(pValue);
         requireContext().sendBroadcast(mIntent);
     }
+
     protected void DoRaiseAccessTokenExpired() {
         DoRaiseBroadcast("AccessToken_Expired");
     }

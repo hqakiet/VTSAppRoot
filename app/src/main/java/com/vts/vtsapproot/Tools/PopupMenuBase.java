@@ -13,7 +13,7 @@ import android.widget.PopupWindow;
 
 import com.vts.vtsapproot.R;
 
-public class PopupMenuBase extends PopupWindow {
+public class PopupMenuBase  extends PopupWindow {
     private final View contentView;
     private final Context context;
 
@@ -65,11 +65,68 @@ public class PopupMenuBase extends PopupWindow {
         return contentView.findViewById(id);
     }
 
+    public void showPopup(View viewAnchor, OnMenuClickListener listener) {
+        this.listener = listener;
+        showPopup(viewAnchor);
+    }
+
+    private void showPopup(View viewAnchor) {
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int popupWidth = contentView.getMeasuredWidth();
+        int popupHeight = contentView.getMeasuredHeight();
+
+        int[] location = new int[2];
+        viewAnchor.getLocationOnScreen(location);
+        int anchorX = location[0];
+        int anchorY = location[1];
+        int anchorWidth = viewAnchor.getWidth();
+        int anchorHeight = viewAnchor.getHeight();
+
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        int screenWidth = dm.widthPixels;
+        int screenHeight = dm.heightPixels;
+
+//        int marginEdge = (int) (24 * dm.density); // Cách mép màn hình
+//        int marginFab = (int) (10 * dm.density);   // Khoảng cách hở giữa Popup và FAB
+
+        // --- TÍNH TOÁN TRỤC X (Né FAB) ---
+        int xOffset=0;
+//        // Nếu nút FAB nằm ở nửa bên phải màn hình -> Hiện popup sang bên TRÁI nút
+//        if (anchorX + (anchorWidth / 2) > screenWidth / 2) {
+//            xOffset = -(popupWidth);
+//        } else {
+//            // Ngược lại hiện sang bên PHẢI nút
+//            xOffset = anchorWidth;
+//        }
+
+        // --- TÍNH TOÁN TRỤC Y (Gióng hàng theo tâm) ---
+        int yOffset;
+        int anchorCenterY = anchorY + (anchorHeight / 2);
+
+        // Kiểm tra không gian bên dưới tính từ tâm FAB
+        boolean canShowBelow = (anchorCenterY + popupHeight) < screenHeight;
+
+        if (canShowBelow) {
+            setAnimationStyle(R.style.AppPopupAnimation_SlideDown);
+            // Xổ xuống: Cạnh trên Popup ngang tâm FAB
+            // (Gốc là cạnh dưới FAB nên phải trừ đi nửa nút)
+            yOffset = -(anchorHeight);
+            showAsDropDown(viewAnchor, xOffset, yOffset);
+        } else {
+            setAnimationStyle(R.style.AppPopupAnimation_SlideUp);
+            // Xổ lên: Cạnh dưới Popup ngang tâm FAB
+            // (Kéo lên hết popup và thêm nửa nút)
+            yOffset = -(popupHeight);
+            showAsDropDown(viewAnchor, xOffset, yOffset);
+        }
+    }
+
     public void showSmart(View viewAnchor, OnMenuClickListener listener) {
         this.listener = listener;
         showSmart(viewAnchor);
     }
-    public void showSmart(View viewAnchor) {
+
+    private void showSmart(View viewAnchor) {
         contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int popupWidth = contentView.getMeasuredWidth();
         int popupHeight = contentView.getMeasuredHeight();
@@ -126,7 +183,7 @@ public class PopupMenuBase extends PopupWindow {
         showAtTouch(viewAnchor, event);
     }
 
-    public void showAtTouch(View viewAnchor, MotionEvent event) {
+    private void showAtTouch(View viewAnchor, MotionEvent event) {
         if (event == null) return;
 
         // 1. Đo kích thước thực tế của popup trước khi vẽ

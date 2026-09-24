@@ -13,9 +13,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.regex.Pattern;
 
-public class NumberTextWatcher
-        implements TextWatcher, View.OnFocusChangeListener
-{
+public class NumberTextWatcher implements TextWatcher, View.OnFocusChangeListener {
     private final EditText myEditText;
     private final NumberTextWatcherValueChanged myNumberTextWatcherValueChanged;
 
@@ -85,10 +83,12 @@ public class NumberTextWatcher
     }
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {}
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    }
 
     @Override
     public void afterTextChanged(Editable pEditable) {
@@ -217,7 +217,8 @@ public class NumberTextWatcher
 
                     myEditText.addTextChangedListener(this);
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
     }
 
@@ -288,186 +289,3 @@ public class NumberTextWatcher
         }
     }
 }
-
-//package com.viettas.vts_staff.Tools;
-//
-//import android.text.Editable;
-//import android.text.InputType;
-//import android.text.TextWatcher;
-//import android.text.method.DigitsKeyListener;
-//import android.widget.EditText;
-//
-//import com.viettas.vts_staff.API.Interfaces.NumberTextWatcherValueChanged;
-//
-//import java.text.DecimalFormat;
-//import java.text.ParseException;
-//
-//public class NumberTextWatcher
-//        implements TextWatcher
-//{
-//    private DecimalFormat _DecimalFormat_WithDecimal;
-//    private DecimalFormat _DecimalFormat;
-//    private boolean _HasFractionalPart;
-//    int _InputType = InputType.TYPE_CLASS_NUMBER;
-//    String _Keys = "0123456789";
-//    double _MaxValue = 999999999999999.0;
-//    double _MinValue = -999999999999999.0;
-//    NumberTextWatcherValueChanged My_NumberTextWatcherValueChanged;
-//
-//    private EditText My_EditText;
-//
-//    public NumberTextWatcher(EditText pEditText, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(false);
-//        Apply_DecimalLen(0);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, double pMinVal, double pMaxVal, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(false);
-//        Apply_DecimalLen(0);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        _MinValue = pMinVal;
-//        _MaxValue = pMaxVal;
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, boolean pAllowNegative, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(pAllowNegative);
-//        Apply_DecimalLen(0);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, double pMinVal, double pMaxVal, boolean pAllowNegative, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(pAllowNegative);
-//        Apply_DecimalLen(0);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        _MinValue = pMinVal;
-//        _MaxValue = pMaxVal;
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, int pDecimalLen, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(false);
-//        Apply_DecimalLen(pDecimalLen);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, double pMinVal, double pMaxVal, int pDecimalLen, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(false);
-//        Apply_DecimalLen(pDecimalLen);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        _MinValue = pMinVal;
-//        _MaxValue = pMaxVal;
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, boolean pAllowNegative, int pDecimalLen, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(pAllowNegative);
-//        Apply_DecimalLen(pDecimalLen);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//    public NumberTextWatcher(EditText pEditText, double pMinVal, double pMaxVal, boolean pAllowNegative, int pDecimalLen, NumberTextWatcherValueChanged pNumberTextWatcherValueChanged) {
-//        Apply_AllowNegative(pAllowNegative);
-//        Apply_DecimalLen(pDecimalLen);
-//        pEditText.setInputType(_InputType);
-//        pEditText.setKeyListener(DigitsKeyListener.getInstance(_Keys));
-//        _MinValue = pMinVal;
-//        _MaxValue = pMaxVal;
-//        My_NumberTextWatcherValueChanged = pNumberTextWatcherValueChanged;
-//        My_EditText = pEditText;
-//    }
-//
-//    void Apply_AllowNegative(boolean pAllowNegative) {
-//        if (pAllowNegative) {
-//            _InputType += InputType.TYPE_NUMBER_FLAG_SIGNED;
-//            _Keys += "-";
-//        }
-//    }
-//
-//    void Apply_DecimalLen(int pDecimalLen) {
-//        _DecimalFormat = new DecimalFormat("#,###");
-//        if (pDecimalLen>0) {
-//            String mPattern = "#,###.";
-//            for (int i = 0; i < pDecimalLen; i++) {
-//                mPattern += "#";
-//            }
-//            _DecimalFormat_WithDecimal = new DecimalFormat(mPattern);
-//            _DecimalFormat_WithDecimal.setDecimalSeparatorAlwaysShown(true);
-//            _HasFractionalPart = true;
-//            _Keys += String.valueOf(_DecimalFormat_WithDecimal.getDecimalFormatSymbols().getDecimalSeparator());
-//        }
-//        else {
-//            _DecimalFormat_WithDecimal = new DecimalFormat("#,###");
-//            _HasFractionalPart = false;
-//        }
-//    }
-//
-//    @SuppressWarnings("unused")
-//    private static final String TAG = "NumberTextWatcher";
-//
-//    public void afterTextChanged(Editable pEditable) {
-//        My_EditText.removeTextChangedListener(this);
-//
-//        try {
-//            int inilen, endlen;
-//            inilen = My_EditText.getText().length();
-//
-//            String mStringValue = pEditable.toString().replace(String.valueOf(_DecimalFormat_WithDecimal.getDecimalFormatSymbols().getGroupingSeparator()), "");
-//            Number mNumberValue = _DecimalFormat_WithDecimal.parse(mStringValue);
-//            if (mNumberValue.doubleValue() < _MinValue) mNumberValue = _MinValue;
-//            if (mNumberValue.doubleValue() > _MaxValue) mNumberValue = _MaxValue;
-//            int cp = My_EditText.getSelectionStart();
-//            if (_HasFractionalPart) {
-//                My_EditText.setText(_DecimalFormat_WithDecimal.format(mNumberValue));
-//            }
-//            else {
-//                My_EditText.setText(_DecimalFormat.format(mNumberValue));
-//            }
-//            endlen = My_EditText.getText().length();
-//            int sel = (cp + (endlen - inilen));
-//            if (sel > 0 && sel <= My_EditText.getText().length()) {
-//                My_EditText.setSelection(sel);
-//            }
-//            else {
-//                // place cursor at the end?
-//                My_EditText.setSelection(My_EditText.getText().length() - 1);
-//            }
-//
-//            try {
-//                My_EditText.setTag(mStringValue);
-//            } catch (NumberFormatException nfe) {
-//                My_EditText.setTag("0");
-//            }
-//            My_NumberTextWatcherValueChanged.ValueChanged(mNumberValue);
-//        } catch (NumberFormatException nfe) {
-//            // do nothing?
-//        } catch (ParseException e) {
-//            // do nothing?
-//        }
-//        My_EditText.addTextChangedListener(this);
-//    }
-//
-//    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-//
-//    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//        if (s.toString().contains(String.valueOf(_DecimalFormat_WithDecimal.getDecimalFormatSymbols().getDecimalSeparator()))) {
-//            _HasFractionalPart = true;
-//        }
-//        else {
-//            _HasFractionalPart = false;
-//        }
-//    }
-//
-//}

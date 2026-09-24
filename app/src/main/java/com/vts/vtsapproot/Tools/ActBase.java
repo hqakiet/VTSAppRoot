@@ -10,10 +10,12 @@ import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -27,9 +29,11 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.google.android.material.button.MaterialButton;
@@ -94,9 +98,16 @@ public class ActBase extends AppCompatActivity {
         MySpanCount = 1;
         if (isXLargeScreen)
             MySpanCount = 2;
+//        if (isLandscape && isXLargeScreen)
+//            MySpanCount = 4;
+//        else if (isXLargeScreen || (isLandscape && isLargeScreen))
+//            MySpanCount = 3;
+//        else if (isLargeScreen || isLandscape)
+//            MySpanCount = 2;
         gvSystem.ResetLayout(this);
 
     }
+
 
     @Override
     public void setContentView(int layoutResID) {
@@ -436,6 +447,8 @@ public class ActBase extends AppCompatActivity {
         MaterialTextView Picker_MaterialTextView_TuanNay = view.findViewById(R.id.Picker_MaterialTextView_TuanNay);
         MaterialTextView Picker_MaterialTextView_ThangTruoc = view.findViewById(R.id.Picker_MaterialTextView_ThangTruoc);
         MaterialTextView Picker_MaterialTextView_ThangNay = view.findViewById(R.id.Picker_MaterialTextView_ThangNay);
+        MaterialTextView Picker_MaterialTextView_QuyTruoc = view.findViewById(R.id.Picker_MaterialTextView_QuyTruoc);
+        MaterialTextView Picker_MaterialTextView_QuyNay = view.findViewById(R.id.Picker_MaterialTextView_QuyNay);
         MaterialTextView Picker_MaterialTextView_NamTruoc = view.findViewById(R.id.Picker_MaterialTextView_NamTruoc);
         MaterialTextView Picker_MaterialTextView_NamNay = view.findViewById(R.id.Picker_MaterialTextView_NamNay);
 
@@ -532,6 +545,52 @@ public class ActBase extends AppCompatActivity {
                     mCalendar.set(Calendar.HOUR, 0);
                     mDateFrom = mCalendar.getTime();
                     mCalendar.add(Calendar.MONTH, 1);
+                    mCalendar.add(Calendar.DATE, -1);
+                    mDateTo = mCalendar.getTime();
+                    pPickedDateFromTo.DateFromToPicked(mDateFrom, mDateTo);
+                    popupWindow.dismiss();
+                }
+        );
+
+        Picker_MaterialTextView_QuyTruoc.setOnClickListener(
+                v -> {
+                    Date mDateFrom, mDateTo;
+                    Calendar mCalendar = Calendar.getInstance();
+                    mCalendar.set(Calendar.DAY_OF_MONTH, 1);
+                    mCalendar.set(Calendar.HOUR_OF_DAY, Calendar.AM);
+                    mCalendar.set(Calendar.MILLISECOND, 0);
+                    mCalendar.set(Calendar.SECOND, 0);
+                    mCalendar.set(Calendar.MINUTE, 0);
+                    mCalendar.set(Calendar.HOUR, 0);
+                    int month = mCalendar.get(Calendar.MONTH);
+                    int quarter = (month / 3) + 1;
+                    int newmonth = (quarter - 1) * 3;
+                    mCalendar.set(Calendar.MONTH, newmonth);
+                    mCalendar.add(Calendar.MONTH, -3);
+                    mDateFrom = mCalendar.getTime();
+                    mCalendar.add(Calendar.MONTH, 3);
+                    mCalendar.add(Calendar.DATE, -1);
+                    mDateTo = mCalendar.getTime();
+                    pPickedDateFromTo.DateFromToPicked(mDateFrom, mDateTo);
+                    popupWindow.dismiss();
+                }
+        );
+        Picker_MaterialTextView_QuyNay.setOnClickListener(
+                v -> {
+                    Date mDateFrom, mDateTo;
+                    Calendar mCalendar = Calendar.getInstance();
+                    mCalendar.set(Calendar.DAY_OF_MONTH, 1);
+                    mCalendar.set(Calendar.HOUR_OF_DAY, Calendar.AM);
+                    mCalendar.set(Calendar.MILLISECOND, 0);
+                    mCalendar.set(Calendar.SECOND, 0);
+                    mCalendar.set(Calendar.MINUTE, 0);
+                    mCalendar.set(Calendar.HOUR, 0);
+                    int month = mCalendar.get(Calendar.MONTH);
+                    int quarter = (month / 3) + 1;
+                    int newmonth = (quarter - 1) * 3;
+                    mCalendar.set(Calendar.MONTH, newmonth);
+                    mDateFrom = mCalendar.getTime();
+                    mCalendar.add(Calendar.MONTH, 3);
                     mCalendar.add(Calendar.DATE, -1);
                     mDateTo = mCalendar.getTime();
                     pPickedDateFromTo.DateFromToPicked(mDateFrom, mDateTo);
@@ -706,8 +765,7 @@ public class ActBase extends AppCompatActivity {
             TextInputEditText pSearch_TextInputEditText_SearchContent,
             MaterialButton pSearch_MaterialButton_ClearContent,
             MaterialButton pSearch_MaterialButton_DoSearchContent,
-            FloatingActionButton pFloatingActionButton_Movable,
-            RecyclerView pRecyclerView
+            Runnable runnable
     ) {
         if (
                 pMaterialButton_Search != null
@@ -738,8 +796,8 @@ public class ActBase extends AppCompatActivity {
                                                 .setInterpolator(new DecelerateInterpolator())
                                                 .withEndAction(
                                                         () -> {
-                                                            if (pFloatingActionButton_Movable != null) {
-                                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                                            if (runnable != null) {
+                                                                runnable.run();
                                                             }
                                                         }
                                                 )
@@ -747,6 +805,9 @@ public class ActBase extends AppCompatActivity {
                                 );
                             } else {
                                 pSearch_LinearLayout.setVisibility(View.VISIBLE);
+                                if (runnable != null) {
+                                    runnable.run();
+                                }
                             }
                         } else {
                             String oldValue = pSearch_TextInputEditText_SearchContent.getText() != null ? pSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
@@ -767,13 +828,16 @@ public class ActBase extends AppCompatActivity {
                                         .withEndAction(() -> {
                                             pSearch_LinearLayout.setVisibility(View.GONE);
                                             pSearch_LinearLayout.setScaleY(1f);
-                                            if (pFloatingActionButton_Movable != null) {
-                                                pFloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(pFloatingActionButton_Movable, pRecyclerView));
+                                            if (runnable != null) {
+                                                runnable.run();
                                             }
                                         })
                                         .start();
                             } else {
                                 pSearch_LinearLayout.setVisibility(View.GONE);
+                                if (runnable != null) {
+                                    runnable.run();
+                                }
                             }
 
                             InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -803,6 +867,316 @@ public class ActBase extends AppCompatActivity {
         }
     }
 
+    protected void setupFilterSearchEvents(
+            MaterialButton pMaterialButton_Filter,
+            LinearLayout pFilter_LinearLayout,
+            TextInputEditText pFilterSearch_TextInputEditText_SearchContent,
+            MaterialButton pFilterSearch_MaterialButton_ClearContent,
+            MaterialButton pFilter_MaterialButton_DoFilterSearchContent,
+            MaterialButton pFilter_MaterialButton_DoCancelSearchContent,
+            Runnable runnableDoFilterSearchContent
+//            ,
+//            Runnable runnableDoCancelSearchContent
+    ) {
+        if (
+                pMaterialButton_Filter != null
+                        && pFilter_LinearLayout != null
+                        && pFilterSearch_TextInputEditText_SearchContent != null
+                        && pFilterSearch_MaterialButton_ClearContent != null
+                        && pFilter_MaterialButton_DoFilterSearchContent != null
+                        && pFilter_MaterialButton_DoCancelSearchContent != null
+        ) {
+            pMaterialButton_Filter.setVisibility(View.GONE);
+            pMaterialButton_Filter.addOnCheckedChangeListener(
+                    (materialButton, b) -> {
+                        if (b) {
+//                            pFilterSearch_TextInputEditText_SearchContent.setEnabled(true);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pFilter_LinearLayout.setPivotY(0f);
+                                pFilter_LinearLayout.setAlpha(0f);
+
+                                pFilter_LinearLayout.setTranslationY(0f);
+                                pFilter_LinearLayout.setScaleY(0f);
+
+                                pFilter_LinearLayout.setVisibility(View.VISIBLE);
+                                pFilter_LinearLayout.post(
+                                        () -> pFilter_LinearLayout.animate()
+                                                .scaleY(1f)
+                                                .alpha(1f)
+                                                .setDuration(300)
+                                                .setInterpolator(new DecelerateInterpolator())
+                                                .start()
+                                );
+                            } else {
+                                pFilter_LinearLayout.setVisibility(View.VISIBLE);
+                            }
+                        } else {
+//                            String oldValue = pFilterSearch_TextInputEditText_SearchContent.getText() != null ? pFilterSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+//                            pFilterSearch_TextInputEditText_SearchContent.setText("");
+//                            if (!oldValue.isEmpty()) {
+//                                _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+//                            }
+//                            pFilterSearch_TextInputEditText_SearchContent.setEnabled(false);
+
+                            if (!gvSystem.getApp_TietKiemPin()) {
+                                pFilter_LinearLayout.setPivotY(0f);
+
+                                pFilter_LinearLayout.animate()
+                                        .scaleY(0f)
+                                        .alpha(0f)
+                                        .setDuration(200)
+                                        .setInterpolator(new AccelerateInterpolator())
+                                        .withEndAction(() -> {
+                                            pFilter_LinearLayout.setVisibility(View.GONE);
+                                            pFilter_LinearLayout.setScaleY(1f);
+                                        })
+                                        .start();
+                            } else {
+                                pFilter_LinearLayout.setVisibility(View.GONE);
+                            }
+
+                            InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(pFilterSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                        }
+                    }
+            );
+            pFilterSearch_MaterialButton_ClearContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    String oldValue = pFilterSearch_TextInputEditText_SearchContent.getText() != null ? pFilterSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+                    pFilterSearch_TextInputEditText_SearchContent.setText("");
+//                    if (!oldValue.isEmpty()) {
+//                        _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTOPFILTER, ""));
+//                    }
+                }
+            });
+            if (runnableDoFilterSearchContent != null) {
+                pFilter_MaterialButton_DoFilterSearchContent.setOnClickListener(new SingleClickListener() {
+                    @Override
+                    public void safeSingleClick(View v) {
+                        pMaterialButton_Filter.setChecked(false);
+                        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(pFilterSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+                        runnableDoFilterSearchContent.run();
+                    }
+                });
+            }
+//            if (runnableDoCancelSearchContent != null) {
+            pFilter_MaterialButton_DoCancelSearchContent.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void safeSingleClick(View v) {
+                    pMaterialButton_Filter.setChecked(false);
+                    InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(pFilterSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+//                        runnableDoCancelSearchContent.run();
+                }
+            });
+//            }
+//            pFilter_MaterialButton_DoFilterSearchContent.setOnClickListener(new SingleClickListener() {
+//                @Override
+//                public void safeSingleClick(View v) {
+//                    InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(pFilterSearch_TextInputEditText_SearchContent.getWindowToken(), 0);
+//                    String searchContent = pFilterSearch_TextInputEditText_SearchContent.getText() != null ? pFilterSearch_TextInputEditText_SearchContent.getText().toString().trim() : "";
+//                    _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDSTARTFILTER, searchContent));
+//                }
+//            });
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    protected void setupFloatingActionButton(
+            FloatingActionButton pFloatingActionButton_Movable,
+            SwipeRefreshLayout pSwipeRefreshLayout,
+            RecyclerView pRecyclerView,
+            View pPaddingView
+    ) {
+        if (pFloatingActionButton_Movable != null) {
+            pFloatingActionButton_Movable.post(() -> restoreSharedPreferences(pFloatingActionButton_Movable, pRecyclerView));
+            pFloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
+                private static final int MAX_CLICK_DURATION = 200; // ms
+                private long startClickTime;
+                private float dX, dY;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    View parent = (View) view.getParent();
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (pPaddingView != null) {
+                        paddingTop = Math.max(55f, (float) pPaddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) pPaddingView.getPaddingStart());
+                        paddingEnd = Math.max(55f, (float) pPaddingView.getPaddingEnd());
+                        paddingBottom = Math.max(55f, (float) pPaddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            startClickTime = Calendar.getInstance().getTimeInMillis();
+                            dX = view.getX() - event.getRawX();
+                            dY = view.getY() - event.getRawY();
+                            break;
+
+                        case MotionEvent.ACTION_MOVE:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            float newX = event.getRawX() + dX;
+                            float newY = event.getRawY() + dY;
+
+                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
+                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
+                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
+
+                            view.animate().x(newX).y(newY).setDuration(0).start();
+
+                            break;
+
+                        case MotionEvent.ACTION_UP:
+                            if (pSwipeRefreshLayout != null) {
+                                if (pRecyclerView != null) {
+                                    pSwipeRefreshLayout.setEnabled(!pRecyclerView.canScrollVertically(-1));
+                                }
+                            }
+
+                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+
+                            if (clickDuration < MAX_CLICK_DURATION) {
+                                view.performClick();
+                            } else {
+                                float finalX;
+                                float finalY = view.getY();
+
+                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
+                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
+                                    finalX = paddingStart; // Hút về cạnh trái
+                                } else {
+                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
+                                }
+
+                                view.animate()
+                                        .x(finalX)
+                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
+                                        .setInterpolator(new OvershootInterpolator(0.8f))
+                                        .withEndAction(() -> {
+                                            // Lưu lại vị trí chuẩn sau khi đã neo
+                                            saveSharedPreferences(pFloatingActionButton_Movable, finalX, finalY);
+                                        })
+                                        .start();
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    protected void setupFloatingActionButton(
+            FloatingActionButton pFloatingActionButton_Movable,
+            SwipeRefreshLayout pSwipeRefreshLayout,
+            NestedScrollView pNestedScrollView,
+            View pPaddingView
+    ) {
+        if (pFloatingActionButton_Movable != null) {
+            pFloatingActionButton_Movable.post(() -> restoreSharedPreferences(pFloatingActionButton_Movable, pNestedScrollView));
+            pFloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
+                private static final int MAX_CLICK_DURATION = 200; // ms
+                private long startClickTime;
+                private float dX, dY;
+
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    View parent = (View) view.getParent();
+                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
+                    if (pPaddingView != null) {
+                        paddingTop = Math.max(55f, (float) pPaddingView.getPaddingTop());
+                        paddingStart = Math.max(55f, (float) pPaddingView.getPaddingStart());
+                        paddingEnd = Math.max(55f, (float) pPaddingView.getPaddingEnd());
+                        paddingBottom = Math.max(55f, (float) pPaddingView.getPaddingBottom());
+                    } else {
+                        paddingTop = 55f;
+                        paddingStart = 55f;
+                        paddingEnd = 55f;
+                        paddingBottom = 55f;
+                    }
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            startClickTime = Calendar.getInstance().getTimeInMillis();
+                            dX = view.getX() - event.getRawX();
+                            dY = view.getY() - event.getRawY();
+                            break;
+
+                        case MotionEvent.ACTION_MOVE:
+                            if (pSwipeRefreshLayout != null) {
+                                pSwipeRefreshLayout.setEnabled(false);
+                            }
+
+                            float newX = event.getRawX() + dX;
+                            float newY = event.getRawY() + dY;
+
+                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
+                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
+                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
+
+                            view.animate().x(newX).y(newY).setDuration(0).start();
+
+                            break;
+
+                        case MotionEvent.ACTION_UP:
+                            if (pSwipeRefreshLayout != null) {
+                                if (pNestedScrollView != null) {
+                                    pSwipeRefreshLayout.setEnabled(!pNestedScrollView.canScrollVertically(-1));
+                                }
+                            }
+
+                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+
+                            if (clickDuration < MAX_CLICK_DURATION) {
+                                view.performClick();
+                            } else {
+                                float finalX;
+                                float finalY = view.getY();
+
+                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
+                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
+                                    finalX = paddingStart; // Hút về cạnh trái
+                                } else {
+                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
+                                }
+
+                                view.animate()
+                                        .x(finalX)
+                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
+                                        .setInterpolator(new OvershootInterpolator(0.8f))
+                                        .withEndAction(() -> {
+                                            // Lưu lại vị trí chuẩn sau khi đã neo
+                                            saveSharedPreferences(pFloatingActionButton_Movable, finalX, finalY);
+                                        })
+                                        .start();
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+    }
+
 
     protected void adjustFloatingButtonPositionWithAnimation(View mView, View paddingView) {
         if (mView != null) {
@@ -812,8 +1186,8 @@ public class ActBase extends AppCompatActivity {
                 float paddingTop, paddingStart, paddingEnd, paddingBottom;
                 if (paddingView != null) {
                     paddingTop = Math.max(55f, (float) paddingView.getPaddingTop());
-                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart() + (float) paddingView.getPaddingLeft());
-                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd() + (float) paddingView.getPaddingRight());
+                    paddingStart = Math.max(55f, (float) paddingView.getPaddingStart());
+                    paddingEnd = Math.max(55f, (float) paddingView.getPaddingEnd());
                     paddingBottom = Math.max(55f, (float) paddingView.getPaddingBottom());
                 } else {
                     paddingTop = 55f;
@@ -918,8 +1292,7 @@ public class ActBase extends AppCompatActivity {
 //                                .setInterpolator(new DecelerateInterpolator())
 //                                .withEndAction(() -> saveSharedPreferences(mView, finalX, finalY))
 //                                .start();
-                    }
-                    else {
+                    } else {
                         mView.setX(savedX);
                         mView.setY(savedY);
 

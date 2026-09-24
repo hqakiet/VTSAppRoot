@@ -3,14 +3,13 @@ package com.vts.vtsapproot.Tools;
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,8 +19,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Calendar;
 
 public abstract class FragmentListBase<
         VM extends ViewModel,
@@ -86,8 +83,11 @@ public abstract class FragmentListBase<
                 Search_TextInputEditText_SearchContent,
                 Search_MaterialButton_ClearContent,
                 Search_MaterialButton_DoSearchContent,
-                FloatingActionButton_Movable,
-                RecyclerView
+                () -> {
+                    if (FloatingActionButton_Movable != null) {
+                        FloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable, RecyclerView));
+                    }
+                }
         );
     }
 
@@ -115,92 +115,12 @@ public abstract class FragmentListBase<
                 }
             });
         }
-        if (FloatingActionButton_Movable != null) {
-            FloatingActionButton_Movable.post(() -> restoreSharedPreferences(FloatingActionButton_Movable, RecyclerView));
-            FloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
-                private static final int MAX_CLICK_DURATION = 200; // ms
-                private long startClickTime;
-                private float dX, dY;
-
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    View parent = (View) view.getParent();
-                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
-                    if (RecyclerView != null) {
-                        paddingTop = Math.max(55f, (float) RecyclerView.getPaddingTop());
-                        paddingStart = Math.max(55f, (float) RecyclerView.getPaddingStart() + (float) RecyclerView.getPaddingLeft());
-                        paddingEnd = Math.max(55f, (float) RecyclerView.getPaddingEnd() + (float) RecyclerView.getPaddingRight());
-                        paddingBottom = Math.max(55f, (float) RecyclerView.getPaddingBottom());
-                    } else {
-                        paddingTop = 55f;
-                        paddingStart = 55f;
-                        paddingEnd = 55f;
-                        paddingBottom = 55f;
-                    }
-                    switch (event.getActionMasked()) {
-                        case MotionEvent.ACTION_DOWN:
-                            if (SwipeRefreshLayout != null) {
-                                SwipeRefreshLayout.setEnabled(false);
-                            }
-                            startClickTime = Calendar.getInstance().getTimeInMillis();
-                            dX = view.getX() - event.getRawX();
-                            dY = view.getY() - event.getRawY();
-                            break;
-
-                        case MotionEvent.ACTION_MOVE:
-                            if (SwipeRefreshLayout != null) {
-                                SwipeRefreshLayout.setEnabled(false);
-                            }
-
-                            float newX = event.getRawX() + dX;
-                            float newY = event.getRawY() + dY;
-
-                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
-                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
-                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
-
-                            view.animate().x(newX).y(newY).setDuration(0).start();
-
-                            break;
-
-                        case MotionEvent.ACTION_UP:
-                            if (SwipeRefreshLayout != null) {
-                                if (RecyclerView != null) {
-                                    SwipeRefreshLayout.setEnabled(!RecyclerView.canScrollVertically(-1));
-                                }
-                            }
-
-                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
-
-                            if (clickDuration < MAX_CLICK_DURATION) {
-                                view.performClick();
-                            } else {
-                                float finalX;
-                                float finalY = view.getY();
-
-                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
-                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
-                                    finalX = paddingStart; // Hút về cạnh trái
-                                } else {
-                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
-                                }
-
-                                view.animate()
-                                        .x(finalX)
-                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
-                                        .setInterpolator(new OvershootInterpolator(0.8f))
-                                        .withEndAction(() -> {
-                                            // Lưu lại vị trí chuẩn sau khi đã neo
-                                            saveSharedPreferences(FloatingActionButton_Movable, finalX, finalY);
-                                        })
-                                        .start();
-                            }
-                            break;
-                    }
-                    return true;
-                }
-            });
-        }
+        setupFloatingActionButton(
+                FloatingActionButton_Movable,
+                SwipeRefreshLayout,
+                RecyclerView,
+                RecyclerView
+        );
         if (RecyclerView != null) {
             if (RecyclerView.getLayoutManager() instanceof GridLayoutManager manager) {
                 manager.setSpanCount(((ActBase) requireContext()).MySpanCount);
@@ -233,6 +153,67 @@ public abstract class FragmentListBase<
                 _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDREFRESHDATA, null));
                 SwipeRefreshLayout.setRefreshing(false);
             });
+        }
+    }
+
+    protected void setupNestedScrollViewEvents(
+            SwipeRefreshLayout pSwipeRefreshLayout,
+            FloatingActionButton pFloatingActionButton_BackToTop,
+            FloatingActionButton pFloatingActionButton_GoToBot,
+            NestedScrollView pNestedScrollView
+    ) {
+        requireContext();
+        if (getContext() == null) return;
+        if (pSwipeRefreshLayout != null) {
+            pSwipeRefreshLayout.setOnRefreshListener(
+                    () -> {
+                        _CustomListEvents.setValue(new CustomListEvents<>(CustomListEvents.Type.NEEDREFRESHDATA, null));
+                        pSwipeRefreshLayout.setRefreshing(false);
+                    }
+            );
+        }
+        if (pFloatingActionButton_BackToTop != null) {
+            pFloatingActionButton_BackToTop.setOnClickListener(
+                    v -> {
+                        if (pNestedScrollView == null) return;
+                        pNestedScrollView.postDelayed(() -> pNestedScrollView.smoothScrollTo(0, 0), 100);
+                    }
+            );
+        }
+        if (pFloatingActionButton_GoToBot != null) {
+            pFloatingActionButton_GoToBot.setOnClickListener(
+                    v -> {
+                        if (pNestedScrollView == null) return;
+                        pNestedScrollView.postDelayed(() -> {
+                            View childView = pNestedScrollView.getChildAt(0);
+                            if (childView != null) {
+                                int targetY = childView.getBottom();
+                                // Cuộn mượt mà xuống đáy
+                                pNestedScrollView.smoothScrollTo(0, targetY);
+                            }
+                        }, 100);
+                    }
+            );
+        }
+        if (pNestedScrollView != null) {
+            pNestedScrollView.setOnScrollChangeListener(
+                    (NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                        boolean isAtTop = !v.canScrollVertically(-1);
+                        if (pSwipeRefreshLayout != null) {
+                            pSwipeRefreshLayout.setEnabled(isAtTop);
+                        }
+                        if (pFloatingActionButton_BackToTop != null) {
+                            if (isAtTop) pFloatingActionButton_BackToTop.hide();
+                        }
+                        boolean isAtBot = !v.canScrollVertically(1);
+                        if (pFloatingActionButton_GoToBot != null) {
+                            if (isAtBot) pFloatingActionButton_GoToBot.hide();
+                        }
+                        if (Math.abs((scrollY - oldScrollY)) > 5) {
+                            RefreshFloatingButton();
+                        }
+                    }
+            );
         }
     }
 

@@ -3,14 +3,12 @@ package com.vts.vtsapproot.Tools;
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,8 +18,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Calendar;
 
 public abstract class ActListBase<
         VM extends ViewModel,
@@ -38,6 +34,7 @@ public abstract class ActListBase<
     protected MaterialButton Search_MaterialButton_DoSearchContent;
     protected SwipeRefreshLayout SwipeRefreshLayout;
     protected RecyclerView RecyclerView;
+    protected NestedScrollView NestedScrollView;
     protected FrameLayout FrameLayout_FAB;
     protected FloatingActionButton FloatingActionButton_GoToBot;
     protected FloatingActionButton FloatingActionButton_BackToTop;
@@ -86,11 +83,13 @@ public abstract class ActListBase<
                 Search_TextInputEditText_SearchContent,
                 Search_MaterialButton_ClearContent,
                 Search_MaterialButton_DoSearchContent,
-                FloatingActionButton_Movable,
-                RecyclerView
+                () -> {
+                    if (FloatingActionButton_Movable != null) {
+                        FloatingActionButton_Movable.post(() -> adjustFloatingButtonPositionWithAnimation(FloatingActionButton_Movable, RecyclerView));
+                    }
+                }
         );
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     protected void setupRecyclerViewEvents() {
@@ -114,93 +113,12 @@ public abstract class ActListBase<
                 }
             });
         }
-        if (FloatingActionButton_Movable != null) {
-            FloatingActionButton_Movable.post(() -> restoreSharedPreferences(FloatingActionButton_Movable, RecyclerView));
-            FloatingActionButton_Movable.setOnTouchListener(new View.OnTouchListener() {
-                private static final int MAX_CLICK_DURATION = 200; // ms
-                private long startClickTime;
-                private float dX, dY;
-
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    View parent = (View) view.getParent();
-                    float paddingTop, paddingStart, paddingEnd, paddingBottom;
-                    if (RecyclerView != null) {
-                        paddingTop = Math.max(55f, (float) RecyclerView.getPaddingTop());
-                        paddingStart = Math.max(55f, (float) RecyclerView.getPaddingStart() + (float) RecyclerView.getPaddingLeft());
-                        paddingEnd = Math.max(55f, (float) RecyclerView.getPaddingEnd() + (float) RecyclerView.getPaddingRight());
-                        paddingBottom = Math.max(55f, (float) RecyclerView.getPaddingBottom());
-                    } else {
-                        paddingTop = 55f;
-                        paddingStart = 55f;
-                        paddingEnd = 55f;
-                        paddingBottom = 55f;
-                    }
-                    switch (event.getActionMasked()) {
-                        case MotionEvent.ACTION_DOWN:
-                            if (SwipeRefreshLayout != null) {
-                                SwipeRefreshLayout.setEnabled(false);
-                            }
-
-                            startClickTime = Calendar.getInstance().getTimeInMillis();
-                            dX = view.getX() - event.getRawX();
-                            dY = view.getY() - event.getRawY();
-                            break;
-
-                        case MotionEvent.ACTION_MOVE:
-                            if (SwipeRefreshLayout != null) {
-                                SwipeRefreshLayout.setEnabled(false);
-                            }
-
-                            float newX = event.getRawX() + dX;
-                            float newY = event.getRawY() + dY;
-
-                            // Giới hạn không cho nút bay ra khỏi màn hình (tùy chọn)
-                            newX = Math.max(paddingStart, Math.min(newX, (float) parent.getWidth() - (float) view.getWidth() - paddingEnd));
-                            newY = Math.max(paddingTop, Math.min(newY, (float) parent.getHeight() - (float) view.getHeight() - paddingBottom));
-
-                            view.animate().x(newX).y(newY).setDuration(0).start();
-
-                            break;
-
-                        case MotionEvent.ACTION_UP:
-                            if (SwipeRefreshLayout != null) {
-                                if (RecyclerView != null) {
-                                    SwipeRefreshLayout.setEnabled(!RecyclerView.canScrollVertically(-1));
-                                }
-                            }
-
-                            long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
-
-                            if (clickDuration < MAX_CLICK_DURATION) {
-                                view.performClick();
-                            } else {
-                                float finalX;
-                                float finalY = view.getY();
-
-                                // Kiểm tra xem nút đang ở nửa bên trái hay nửa bên phải màn hình
-                                if (view.getX() + (view.getWidth() / 2f) < parent.getWidth() / 2f) {
-                                    finalX = paddingStart; // Hút về cạnh trái
-                                } else {
-                                    finalX = parent.getWidth() - view.getWidth() - paddingEnd; // Hút về cạnh phải
-                                }
-
-                                view.animate()
-                                        .x(finalX)
-                                        .setDuration(400) // Thời gian trượt 0.4 giây cho mượt
-                                        .setInterpolator(new OvershootInterpolator(0.8f))
-                                        .withEndAction(() -> {
-                                            // Lưu lại vị trí chuẩn sau khi đã neo
-                                            saveSharedPreferences(FloatingActionButton_Movable, finalX, finalY);
-                                        })
-                                        .start();
-                            }
-                            break;
-                    }
-                    return true;
-                }
-            });
-        }
+        setupFloatingActionButton(
+                FloatingActionButton_Movable,
+                SwipeRefreshLayout,
+                RecyclerView,
+                RecyclerView
+        );
         if (RecyclerView != null) {
             if (RecyclerView.getLayoutManager() instanceof GridLayoutManager manager) {
                 manager.setSpanCount(MySpanCount);
@@ -366,5 +284,4 @@ public abstract class ActListBase<
             HideFloatingActionButtonsHandler.postDelayed(HideFloatingActionButtons, 2000);
         }
     }
-
 }

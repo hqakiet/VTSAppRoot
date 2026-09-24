@@ -19,7 +19,7 @@
     <string name="ComInfor_GoogleLogoDesc">Logo Google</string>
 
     <!--  Biometric  -->
-    <string name="Biometric_Title">Xác thực sinh trắc học cho %s</string>
+    <string name="Biometric_Title">Xác thực sinh trắc học cho %1$s</string>
     <string name="Biometric_Caption_Cancel">Hủy bỏ</string>
     <string name="Biometric_Message_Failed">Thử lại</string>
 
@@ -51,7 +51,7 @@
     <string name="Button_View">Xem</string>
     <string name="Button_Add">Thêm</string>
     <string name="Button_Del">Xóa</string>
-    <string name="Button_DelItems">Xóa (%s)</string>
+    <string name="Button_DelItems">Xóa (%1$s)</string>
     <string name="Button_Edit">Sửa</string>
     <string name="Button_DelAll">Xóa hết</string>
     <string name="Button_Close">Đóng</string>
@@ -59,15 +59,15 @@
     <string name="Button_ScanImage">Quét ảnh</string>
     <string name="Button_Crop">Cắt ảnh</string>
     <string name="Button_Locked">Khóa</string>
-    <string name="Button_LockedItems">Khóa (%s)</string>
+    <string name="Button_LockedItems">Khóa (%1$s)</string>
     <string name="Button_UnLocked">Gỡ khóa</string>
-    <string name="Button_UnLockedItems">Gỡ khóa (%s)</string>
+    <string name="Button_UnLockedItems">Gỡ khóa (%1$s)</string>
     <string name="NoPicture">Chưa có ảnh</string>
     <string name="Button_PickedImage">Chọn ảnh</string>
     <string name="Button_Picked">Chọn</string>
-    <string name="Button_PickedItems">Chọn (%s)</string>
+    <string name="Button_PickedItems">Chọn (%1$s)</string>
     <string name="Button_UnPicked">Bỏ chọn</string>
-    <string name="Button_UnPickedItems">Bỏ chọn (%s)</string>
+    <string name="Button_UnPickedItems">Bỏ chọn (%1$s)</string>
     <string name="Button_Share">Chia sẻ</string>
     <string name="Button_Search">Tìm kiếm dữ liệu</string>
     <string name="Button_ToTop">Lên đầu trang</string>
@@ -101,7 +101,7 @@
 
     <string name="Com_Caption_Cong">Cộng</string>
     <string name="Com_Caption_CongNotSum">\?</string>
-    <string name="Com_Caption_CongItem">Tổng cộng %s</string>
+    <string name="Com_Caption_CongItem">Tổng cộng %1$s</string>
     <string name="Com_Caption_CacNhomConLai">Các nhóm còn lại</string>
     <string name="Com_Caption_DangXuat">Đăng xuất</string>
     <string name="Com_Caption_Search">Nhập nội dung để tìm</string>
@@ -113,11 +113,11 @@
     <string name="Com_Caption_STT">#</string>
     <string name="Com_Caption_HaiCham">:</string>
     <string name="Com_Caption_ListItem">Danh sách dữ liệu</string>
-    <string name="Com_Caption_LimitCount">(Tối đa %s)</string>
+    <string name="Com_Caption_LimitCount">(Tối đa %1$s)</string>
     <string name="Com_Caption_Today">Hôm nay</string>
     <string name="Com_Caption_XemNoiDung">Xem nội dung</string>
-    <string name="Com_Caption_CongPhieu">Tổng cộng %s phiếu</string>
-    <string name="Com_Caption_CongTrongLuong">Tổng cộng %s Kg</string>
+    <string name="Com_Caption_CongPhieu">Tổng cộng %1$s phiếu</string>
+    <string name="Com_Caption_CongTrongLuong">Tổng cộng %1$s Kg</string>
     <string name="Com_Caption_PhotoPicker">Chọn ảnh</string>
     <string name="Com_Caption_PhotoFromCamera">Chụp ảnh mới</string>
     <string name="Com_Caption_PhotoFromGallery">Chọn từ bộ sưu tập</string>
@@ -133,7 +133,7 @@
 
     <!--  Com_Message  -->
     <string name="Com_Message_KhongCoDuLieu">Không có dữ liệu</string>
-    <string name="Com_Message_KhongCoDuLieu_WithContent">Không tìm thấy dữ liệu với nội dung [%s]</string>
+    <string name="Com_Message_KhongCoDuLieu_WithContent">Không tìm thấy dữ liệu với nội dung [%1$s]</string>
     <string name="Com_Message_ChuaCoDuLieu">Chưa có dữ liệu</string>
     <string name="Com_Message_DangNapDuLieu">Đang nạp dữ liệu …</string>
     <string name="Com_Message_DangXuLy">Đang xử lý …</string>
@@ -158,36 +158,36 @@
     <string name="Com_Message_AppHasUpdate">Ứng dụng đã có phiên bản cập nhật mới.\nBạn có muốn tải xuống bản cập nhật mới ngay bây giờ không?</string>
     <string name="Com_Message_AppUpdateDownloading">Đang tải bản cập nhật mới…</string>
     <string name="Com_Message_AppUpdateDownloadFinish">Đã tải xong bản cập nhật mới.</string>
-    <string name="Com_Message_AskForAccessPermission">Yêu cầu cung cấp quyền truy cập%s …</string>
+    <string name="Com_Message_AskForAccessPermission">Yêu cầu cung cấp quyền truy cập%1$s …</string>
     <string name="Com_Message_AskForAccessPermission_OK">Yêu cầu cung cấp quyền truy cập hoàn tất</string>
     <string name="Com_Message_AskForAccessPermission_Failed">Yêu cầu cung cấp quyền truy cập thất bại.</string>
-    <string name="Com_Message_Logging">Đăng nhập hệ thống%s …</string>
+    <string name="Com_Message_Logging">Đăng nhập hệ thống%1$s …</string>
     <string name="Com_Message_Login_OK">Đăng nhập hệ thống hoàn tất.</string>
     <string name="Com_Message_Login_Failed">Đăng nhập hệ thống thất bại.</string>
     <string name="Com_Message_CheckDataNotEmpty">Không được để trống.</string>
     <string name="Com_Message_CheckDataNotOK">Không hợp lệ.</string>
-    <string name="Com_Message_GoogleLogging">Xác thực tài khoản Google%s …</string>
+    <string name="Com_Message_GoogleLogging">Xác thực tài khoản Google%1$s …</string>
     <string name="Com_Message_PasscodeChangeOK">Mật khẩu bảo vệ đã được thay đổi thành công.</string>
     <string name="Com_Message_PasscodeCreateOK">Mật khẩu bảo vệ đã được gán thành công.</string>
     <string name="Com_Message_PasscodeDeleteOK">Mật khẩu bảo vệ đã được loại bỏ thành công.</string>
-    <string name="Com_Message_InsertDataOK">%s đã được thêm vào dữ liệu.</string>
-    <string name="Com_Message_DeleteDataOK">%s đã được xóa khỏi dữ liệu.</string>
-    <string name="Com_Message_UpdateDataOK">Thông tin điều chỉnh %s đã lưu vào dữ liệu.</string>
+    <string name="Com_Message_InsertDataOK">%1$s đã được thêm vào dữ liệu.</string>
+    <string name="Com_Message_DeleteDataOK">%1$s đã được xóa khỏi dữ liệu.</string>
+    <string name="Com_Message_UpdateDataOK">Thông tin điều chỉnh %1$s đã lưu vào dữ liệu.</string>
     <string name="Com_Message_CropperCancel">Thao tác đã bị hủy.</string>
 
     <string name="Com_Message_DataHasError">Dữ liệu còn lỗi.\nVui lòng kiểm tra lại.</string>
-    <string name="Com_Message_AskForDelete_Data">Bạn đang xóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
-    <string name="Com_Message_AskForKhoa_Data">Bạn đang khóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
-    <string name="Com_Message_AskForGoKhoa_Data">Bạn đang gỡ khóa dữ liệu:\n\n%s\n\nCó tiếp tục không?</string>
+    <string name="Com_Message_AskForDelete_Data">Bạn đang xóa dữ liệu:\n\n%1$s\n\nCó tiếp tục không?</string>
+    <string name="Com_Message_AskForKhoa_Data">Bạn đang khóa dữ liệu:\n\n%1$s\n\nCó tiếp tục không?</string>
+    <string name="Com_Message_AskForGoKhoa_Data">Bạn đang gỡ khóa dữ liệu:\n\n%1$s\n\nCó tiếp tục không?</string>
 
     <string name="App_Message_LoiKhongCoKhoHang">Không tồn tại kho hàng nào.</string>
     <string name="App_Message_LoiKhongCoTonKhoHangHoa">Không có dữ liệu tồn kho của hàng hóa này</string>
     <string name="App_Message_LoiKhongTonTaiMaTem">Không có dữ liệu của mã tem này trong hệ thống</string>
     <string name="Com_Message_XacNhan_Policy">Tôi đồng ý</string>
 
-    <string name="Com_Message_ItemCleared">Bạn vừa xóa %s - %s khỏi danh sách.</string>
-    <string name="Com_Message__ClearItem_Phieu">Số phiếu %s đã bị Xóa khỏi danh sách.</string>
-    <string name="Com_Message__ChangeWeight">Trọng lượng hàng của hình %s hiện tại đã bị thay đổi. Bạn có muốn thay đổi không?</string>
+    <string name="Com_Message_ItemCleared">Bạn vừa xóa %1$s - %1$s khỏi danh sách.</string>
+    <string name="Com_Message__ClearItem_Phieu">Số phiếu %1$s đã bị Xóa khỏi danh sách.</string>
+    <string name="Com_Message__ChangeWeight">Trọng lượng hàng của hình %1$s hiện tại đã bị thay đổi. Bạn có muốn thay đổi không?</string>
     <string name="Com_Message__ClearImage_Phieu_NhapXuat">Xóa dữ liệu hình ở vị trí này sẽ xóa kèm cả dữ liệu hình ảnh phía bên dưới. Bạn có muốn tiếp tục không?</string>
     <string name="Com_Message__ClearImage_Phieu_GiaCong">Xóa dữ liệu hình ở vị trí này sẽ xóa kèm các dữ liệu hình ảnh phía bên dưới. Bạn có muốn tiếp tục không?</string>
 
@@ -265,7 +265,7 @@
     <string name="ActLogin_Button_Google_Confirm">Sử dụng tài khoản Google</string>
     <string name="ActLogin_Message_NoAccount">Chưa nhập tài khoản</string>
     <string name="ActLogin_Message_NoPassword">Chưa nhập mật khẩu</string>
-    <string name="ActLogin_TextView_Agreement">Bằng cách tiếp tục truy cập, bạn đồng ý với %s và %s của chúng tôi.</string>
+    <string name="ActLogin_TextView_Agreement">Bằng cách tiếp tục truy cập, bạn đồng ý với %1$s và %2$s của chúng tôi.</string>
 
     <!--  ActAbout  -->
     <string name="ActAbout_Title">Thông tin</string>
